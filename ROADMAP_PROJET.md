@@ -131,7 +131,7 @@ Une fonctionnalité est terminée lorsque :
 - [x] Exécuter lint, typecheck et tests sur chaque pull request.
 - [x] Exécuter le build de production en CI.
 - [x] Mettre en cache les dépendances npm.
-- [ ] Bloquer la fusion lorsqu'un contrôle échoue.
+- [x] Bloquer la fusion lorsqu'un contrôle échoue.
 - [x] Ajouter les tests de migrations Supabase.
 - [ ] Ajouter les tests Playwright lorsqu'ils seront disponibles.
 - [x] Générer un rapport de couverture des tests.
