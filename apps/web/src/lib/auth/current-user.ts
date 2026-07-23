@@ -13,6 +13,12 @@ export async function getVerifiedUser() {
 
   const { data, error } = await supabase.auth.getUser();
   if (error || !data.user?.email_confirmed_at) return null;
+  const { data: accountState } = await supabase
+    .from("account_states")
+    .select("status")
+    .eq("user_id", data.user.id)
+    .maybeSingle();
+  if (accountState?.status === "suspended") return null;
   return data.user;
 }
 
