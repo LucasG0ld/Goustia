@@ -28,6 +28,10 @@ Les actions GitHub utilisent Node.js 24 et les versions majeures actuelles
 `actions/checkout@v6`, `actions/setup-node@v6` et `actions/upload-artifact@v6`.
 Dependabot suit leurs mises à jour.
 
+Les binaires Linux optionnels de Tailwind/Lightning CSS sont déclarés
+explicitement dans le workspace web. Cela garantit qu'un lockfile régénéré sous
+Windows reste installable par `npm ci` sur les runners Linux.
+
 ## Protection de `main`
 
 Après le premier passage réussi, configurer dans GitHub :

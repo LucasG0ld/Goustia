@@ -159,8 +159,8 @@ Une fonctionnalité est terminée lorsque :
 - [x] Ajouter la commande de création d'une migration.
 - [x] Ajouter la commande de réinitialisation de la base locale.
 - [x] Ajouter un jeu de données de développement.
-- [ ] Générer les types TypeScript depuis PostgreSQL.
-- [ ] Vérifier les migrations dans une base vide.
+- [x] Générer les types TypeScript depuis PostgreSQL.
+- [x] Vérifier les migrations dans une base vide.
 - [x] Documenter la procédure de restauration.
 
 ### 4.5. Observabilité — P0
