@@ -456,43 +456,43 @@ Une fonctionnalité est terminée lorsque :
 
 ### 9.2. Données Ciqual — P0
 
-- [ ] Télécharger la version 2025 des données Ciqual.
-- [ ] Vérifier la licence et les obligations d'attribution.
-- [ ] Créer le script d'import.
-- [ ] Stocker les références Ciqual nécessaires.
-- [ ] Faire correspondre les ingrédients internes à Ciqual.
-- [ ] Gérer les aliments sans correspondance.
-- [ ] Gérer les valeurs manquantes ou traces.
-- [ ] Versionner la source nutritionnelle.
-- [ ] Tester l'import complet.
+- [x] Télécharger la version 2025 des données Ciqual.
+- [x] Vérifier la licence et les obligations d'attribution.
+- [x] Créer le script d'import.
+- [x] Stocker les références Ciqual nécessaires.
+- [x] Faire correspondre les ingrédients internes à Ciqual.
+- [x] Gérer les aliments sans correspondance.
+- [x] Gérer les valeurs manquantes ou traces.
+- [x] Versionner la source nutritionnelle.
+- [x] Tester l'import complet.
 
 ### 9.3. Calcul nutritionnel — P0
 
-- [ ] Définir les nutriments affichés.
-- [ ] Normaliser grammes, millilitres et unités.
-- [ ] Créer les tables de conversion.
-- [ ] Calculer les valeurs par ingrédient.
-- [ ] Calculer les valeurs par recette.
-- [ ] Calculer les valeurs par portion.
-- [ ] Gérer les pertes ou gains de masse lorsque pertinent.
-- [ ] Indiquer clairement que les résultats sont estimatifs.
-- [ ] Définir un seuil d'acceptation des données manquantes.
-- [ ] Rejeter ou masquer un calcul trop incertain.
-- [ ] Écrire les tests sur les calculs.
+- [x] Définir les nutriments affichés.
+- [x] Normaliser grammes, millilitres et unités.
+- [x] Créer les tables de conversion.
+- [x] Calculer les valeurs par ingrédient.
+- [x] Calculer les valeurs par recette.
+- [x] Calculer les valeurs par portion.
+- [x] Gérer les pertes ou gains de masse lorsque pertinent.
+- [x] Indiquer clairement que les résultats sont estimatifs.
+- [x] Définir un seuil d'acceptation des données manquantes.
+- [x] Rejeter ou masquer un calcul trop incertain.
+- [x] Écrire les tests sur les calculs.
 
 ### 9.4. Moteur de contrôle alimentaire — P0
 
-- [ ] Détecter un ingrédient strictement exclu.
-- [ ] Détecter ses synonymes.
-- [ ] Détecter ses dérivés connus.
-- [ ] Détecter les allergènes indirects.
-- [ ] Détecter l'alcool.
-- [ ] Appliquer la règle liée à l'âge.
-- [ ] Distinguer exclusion stricte et préférence négative.
-- [ ] Produire un rapport de validation lisible.
-- [ ] Bloquer l'enregistrement d'une recette dangereuse.
-- [ ] Recontrôler avant l'affichage à l'utilisateur.
-- [ ] Écrire un corpus de tests de sécurité.
+- [x] Détecter un ingrédient strictement exclu.
+- [x] Détecter ses synonymes.
+- [x] Détecter ses dérivés connus.
+- [x] Détecter les allergènes indirects.
+- [x] Détecter l'alcool.
+- [x] Appliquer la règle liée à l'âge.
+- [x] Distinguer exclusion stricte et préférence négative.
+- [x] Produire un rapport de validation lisible.
+- [x] Bloquer l'enregistrement d'une recette dangereuse.
+- [x] Recontrôler avant l'affichage à l'utilisateur.
+- [x] Écrire un corpus de tests de sécurité.
 
 ---
 
@@ -508,20 +508,20 @@ Une fonctionnalité est terminée lorsque :
 - [ ] Configurer les limites de consommation.
 - [ ] Ajouter les secrets aux environnements.
 - [ ] Vérifier la rotation des clés.
-- [ ] Documenter la procédure en cas de compromission.
+- [x] Documenter la procédure en cas de compromission.
 
 ### 10.2. Contrats du domaine — P0
 
-- [ ] Définir `RecipeGenerationInput`.
-- [ ] Définir le schéma complet d'une recette.
-- [ ] Définir ingrédients, quantités et unités.
-- [ ] Définir les étapes structurées.
-- [ ] Définir les métadonnées nutritionnelles attendues.
-- [ ] Définir allergènes et exclusions détectés.
-- [ ] Définir le prompt visuel.
-- [ ] Définir le rapport de génération.
-- [ ] Versionner les schémas.
-- [ ] Écrire des tests de validation Zod.
+- [x] Définir `RecipeGenerationInput`.
+- [x] Définir le schéma complet d'une recette.
+- [x] Définir ingrédients, quantités et unités.
+- [x] Définir les étapes structurées.
+- [x] Définir les métadonnées nutritionnelles attendues.
+- [x] Définir allergènes et exclusions détectés.
+- [x] Définir le prompt visuel.
+- [x] Définir le rapport de génération.
+- [x] Versionner les schémas.
+- [x] Écrire des tests de validation Zod.
 
 ### 10.3. Abstraction des fournisseurs — P0
 
@@ -961,9 +961,9 @@ Une fonctionnalité est terminée lorsque :
 
 - [x] Tester la règle de majorité.
 - [ ] Tester tous les schémas Zod.
-- [ ] Tester les conversions d'unités.
-- [ ] Tester les calculs nutritionnels.
-- [ ] Tester le moteur d'allergènes.
+- [x] Tester les conversions d'unités.
+- [x] Tester les calculs nutritionnels.
+- [x] Tester le moteur d'allergènes.
 - [ ] Tester le score de recommandation.
 - [ ] Tester les quotas.
 - [ ] Tester la déduplication.

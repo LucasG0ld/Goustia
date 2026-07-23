@@ -101,6 +101,9 @@ jobs:
       - name: Import versioned ingredient taxonomy
         run: npm run supabase:taxonomy:import
 
+      - name: Import official Ciqual nutrition source
+        run: npm run supabase:ciqual:import
+
       - name: Lint database
         run: npm run supabase:lint
 

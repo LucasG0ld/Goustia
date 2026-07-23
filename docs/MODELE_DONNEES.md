@@ -67,6 +67,16 @@ La suppression d’un compte cascade vers ses données personnelles.
 - `allergens` et `ingredient_allergens` : allergènes structurés ;
 - `user_food_constraints` : contraintes et goûts négatifs.
 
+Le référentiel nutritionnel est séparé de la taxonomie interne :
+
+- `nutrition_source_versions` : millésime, licence, DOI et empreinte ;
+- `ciqual_foods` : catalogue complet des aliments du millésime ;
+- `ciqual_constituents` : nutriments effectivement utilisés ;
+- `ciqual_nutrient_values` : valeur brute, numérique, trace, borne ou absence ;
+- `ingredient_ciqual_mappings` : rapprochement explicite et niveau de confiance
+  ;
+- `ingredient_unit_conversions` : densités et poids unitaires sourcés.
+
 Les noms français possèdent une valeur normalisée sans accent et des index
 trigrammes. Cette recherche sert à retrouver un ingrédient ; elle ne remplace
 jamais la validation déterministe de ses relations allergènes.
@@ -109,5 +119,6 @@ Le seed local contient uniquement des identifiants déterministes :
 - des relations ingrédient-allergène ;
 - 2 catégories et 4 tags de recette.
 
-`npm run supabase:verify` reconstruit une base vide, exécute 35 tests pgTAP,
-analyse le SQL puis régénère les types TypeScript.
+`npm run supabase:verify` reconstruit une base vide, importe la taxonomie et
+Ciqual, exécute les tests pgTAP, analyse le SQL puis régénère les types
+TypeScript.

@@ -208,6 +208,148 @@ export type Database = {
           },
         ];
       };
+      ciqual_constituents: {
+        Row: {
+          code: string;
+          created_at: string;
+          displayed: boolean;
+          infoods_tag: string | null;
+          name_fr: string;
+          source_column: number;
+          source_version_id: string;
+          unit: string;
+        };
+        Insert: {
+          code: string;
+          created_at?: string;
+          displayed?: boolean;
+          infoods_tag?: string | null;
+          name_fr: string;
+          source_column: number;
+          source_version_id: string;
+          unit: string;
+        };
+        Update: {
+          code?: string;
+          created_at?: string;
+          displayed?: boolean;
+          infoods_tag?: string | null;
+          name_fr?: string;
+          source_column?: number;
+          source_version_id?: string;
+          unit?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "ciqual_constituents_source_version_id_fkey";
+            columns: ["source_version_id"];
+            isOneToOne: false;
+            referencedRelation: "nutrition_source_versions";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      ciqual_foods: {
+        Row: {
+          code: string;
+          created_at: string;
+          group_code: string;
+          group_name_fr: string | null;
+          name_fr: string;
+          scientific_name: string | null;
+          search_name: string | null;
+          source_version_id: string;
+          subgroup_code: string;
+          subgroup_name_fr: string | null;
+          subsubgroup_code: string;
+          subsubgroup_name_fr: string | null;
+        };
+        Insert: {
+          code: string;
+          created_at?: string;
+          group_code: string;
+          group_name_fr?: string | null;
+          name_fr: string;
+          scientific_name?: string | null;
+          search_name?: string | null;
+          source_version_id: string;
+          subgroup_code: string;
+          subgroup_name_fr?: string | null;
+          subsubgroup_code: string;
+          subsubgroup_name_fr?: string | null;
+        };
+        Update: {
+          code?: string;
+          created_at?: string;
+          group_code?: string;
+          group_name_fr?: string | null;
+          name_fr?: string;
+          scientific_name?: string | null;
+          search_name?: string | null;
+          source_version_id?: string;
+          subgroup_code?: string;
+          subgroup_name_fr?: string | null;
+          subsubgroup_code?: string;
+          subsubgroup_name_fr?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "ciqual_foods_source_version_id_fkey";
+            columns: ["source_version_id"];
+            isOneToOne: false;
+            referencedRelation: "nutrition_source_versions";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      ciqual_nutrient_values: {
+        Row: {
+          constituent_code: string;
+          created_at: string;
+          food_code: string;
+          numeric_value: number | null;
+          raw_value: string;
+          source_version_id: string;
+          upper_bound: number | null;
+          value_status: Database["public"]["Enums"]["ciqual_value_status"];
+        };
+        Insert: {
+          constituent_code: string;
+          created_at?: string;
+          food_code: string;
+          numeric_value?: number | null;
+          raw_value: string;
+          source_version_id: string;
+          upper_bound?: number | null;
+          value_status: Database["public"]["Enums"]["ciqual_value_status"];
+        };
+        Update: {
+          constituent_code?: string;
+          created_at?: string;
+          food_code?: string;
+          numeric_value?: number | null;
+          raw_value?: string;
+          source_version_id?: string;
+          upper_bound?: number | null;
+          value_status?: Database["public"]["Enums"]["ciqual_value_status"];
+        };
+        Relationships: [
+          {
+            foreignKeyName: "ciqual_nutrient_values_source_version_id_constituent_code_fkey";
+            columns: ["source_version_id", "constituent_code"];
+            isOneToOne: false;
+            referencedRelation: "ciqual_constituents";
+            referencedColumns: ["source_version_id", "code"];
+          },
+          {
+            foreignKeyName: "ciqual_nutrient_values_source_version_id_food_code_fkey";
+            columns: ["source_version_id", "food_code"];
+            isOneToOne: false;
+            referencedRelation: "ciqual_foods";
+            referencedColumns: ["source_version_id", "code"];
+          },
+        ];
+      };
       content_reports: {
         Row: {
           assigned_admin_id: string | null;
@@ -577,6 +719,57 @@ export type Database = {
           },
         ];
       };
+      ingredient_ciqual_mappings: {
+        Row: {
+          confidence: number;
+          created_at: string;
+          food_code: string | null;
+          ingredient_id: string;
+          rationale_fr: string;
+          reviewed_at: string | null;
+          source_version_id: string;
+          status: Database["public"]["Enums"]["ciqual_mapping_status"];
+          updated_at: string;
+        };
+        Insert: {
+          confidence: number;
+          created_at?: string;
+          food_code?: string | null;
+          ingredient_id: string;
+          rationale_fr: string;
+          reviewed_at?: string | null;
+          source_version_id: string;
+          status: Database["public"]["Enums"]["ciqual_mapping_status"];
+          updated_at?: string;
+        };
+        Update: {
+          confidence?: number;
+          created_at?: string;
+          food_code?: string | null;
+          ingredient_id?: string;
+          rationale_fr?: string;
+          reviewed_at?: string | null;
+          source_version_id?: string;
+          status?: Database["public"]["Enums"]["ciqual_mapping_status"];
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "ingredient_ciqual_mappings_ingredient_id_fkey";
+            columns: ["ingredient_id"];
+            isOneToOne: false;
+            referencedRelation: "ingredients";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "ingredient_ciqual_mappings_source_version_id_food_code_fkey";
+            columns: ["source_version_id", "food_code"];
+            isOneToOne: false;
+            referencedRelation: "ciqual_foods";
+            referencedColumns: ["source_version_id", "code"];
+          },
+        ];
+      };
       ingredient_corrections: {
         Row: {
           corrected_value: string;
@@ -727,6 +920,50 @@ export type Database = {
             columns: ["taxonomy_version_id"];
             isOneToOne: false;
             referencedRelation: "taxonomy_versions";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      ingredient_unit_conversions: {
+        Row: {
+          confidence: number;
+          created_at: string;
+          density_g_per_ml: number | null;
+          grams_per_unit: number | null;
+          ingredient_id: string;
+          reviewed_at: string | null;
+          source_reference: string;
+          unit: string;
+          updated_at: string;
+        };
+        Insert: {
+          confidence: number;
+          created_at?: string;
+          density_g_per_ml?: number | null;
+          grams_per_unit?: number | null;
+          ingredient_id: string;
+          reviewed_at?: string | null;
+          source_reference: string;
+          unit: string;
+          updated_at?: string;
+        };
+        Update: {
+          confidence?: number;
+          created_at?: string;
+          density_g_per_ml?: number | null;
+          grams_per_unit?: number | null;
+          ingredient_id?: string;
+          reviewed_at?: string | null;
+          source_reference?: string;
+          unit?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "ingredient_unit_conversions_ingredient_id_fkey";
+            columns: ["ingredient_id"];
+            isOneToOne: false;
+            referencedRelation: "ingredients";
             referencedColumns: ["id"];
           },
         ];
@@ -920,6 +1157,48 @@ export type Database = {
             referencedColumns: ["id"];
           },
         ];
+      };
+      nutrition_source_versions: {
+        Row: {
+          attribution: string;
+          documentation_url: string;
+          doi: string;
+          id: string;
+          imported_at: string;
+          is_current: boolean;
+          license_name: string;
+          published_on: string;
+          source_name: string;
+          source_sha256: string;
+          source_url: string;
+        };
+        Insert: {
+          attribution: string;
+          documentation_url: string;
+          doi: string;
+          id: string;
+          imported_at?: string;
+          is_current?: boolean;
+          license_name: string;
+          published_on: string;
+          source_name: string;
+          source_sha256: string;
+          source_url: string;
+        };
+        Update: {
+          attribution?: string;
+          documentation_url?: string;
+          doi?: string;
+          id?: string;
+          imported_at?: string;
+          is_current?: boolean;
+          license_name?: string;
+          published_on?: string;
+          source_name?: string;
+          source_sha256?: string;
+          source_url?: string;
+        };
+        Relationships: [];
       };
       onboarding_dish_preferences: {
         Row: {
@@ -2272,6 +2551,13 @@ export type Database = {
         | "cancelled";
       app_role: "user" | "admin";
       budget_level: "low" | "moderate" | "flexible";
+      ciqual_mapping_status: "exact" | "approximate" | "unmatched";
+      ciqual_value_status:
+        | "exact"
+        | "less_than"
+        | "trace"
+        | "missing"
+        | "unparsed";
       constraint_severity:
         | "none"
         | "mild"
@@ -2489,6 +2775,14 @@ export const Constants = {
       ai_job_status: ["queued", "running", "succeeded", "failed", "cancelled"],
       app_role: ["user", "admin"],
       budget_level: ["low", "moderate", "flexible"],
+      ciqual_mapping_status: ["exact", "approximate", "unmatched"],
+      ciqual_value_status: [
+        "exact",
+        "less_than",
+        "trace",
+        "missing",
+        "unparsed",
+      ],
       constraint_severity: [
         "none",
         "mild",

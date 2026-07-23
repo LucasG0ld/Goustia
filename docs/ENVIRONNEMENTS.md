@@ -34,26 +34,32 @@ la fonctionnalité associée n'est pas activée.
 
 ## Matrice des variables
 
-| Variable                               | Visibilité       | Local/test         | Staging/production          | Rotation             |
-| -------------------------------------- | ---------------- | ------------------ | --------------------------- | -------------------- |
-| `APP_ENV`                              | Serveur          | Requise            | Requise                     | Jamais               |
-| `NEXT_PUBLIC_APP_ENV`                  | Publique         | Requise            | Requise                     | Jamais               |
-| `NEXT_PUBLIC_APP_URL`                  | Publique         | Requise            | Requise                     | À chaque domaine     |
-| `NEXT_PUBLIC_SUPABASE_URL`             | Publique         | Requise            | Requise                     | Avec le projet       |
-| `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Publique         | Requise            | Requise                     | Selon Supabase       |
-| `SUPABASE_SERVICE_ROLE_KEY`            | Secrète          | Facultative        | Seulement si nécessaire     | 90 jours ou incident |
-| `GROQ_API_KEY`                         | Secrète          | À l'intégration IA | Requise pour le fournisseur | 90 jours ou incident |
-| `CLOUDFLARE_ACCOUNT_ID`                | Serveur          | À l'intégration IA | Requise pour Cloudflare     | Si compte modifié    |
-| `CLOUDFLARE_API_TOKEN`                 | Secrète          | À l'intégration IA | Requise pour Cloudflare     | 90 jours ou incident |
-| `NEXT_PUBLIC_SENTRY_DSN`               | Publique         | Facultative        | Requise si Sentry activé    | Avec le projet       |
-| `NEXT_PUBLIC_OBSERVABILITY_ENABLED`    | Publique         | `false`            | `true` si Sentry activé     | Jamais               |
-| `SENTRY_DSN`                           | Serveur          | Facultative        | Requise si Sentry activé    | Avec le projet       |
-| `SENTRY_AUTH_TOKEN`                    | Secrète de build | Inutile            | Requis pour les source maps | 90 jours ou incident |
-| `NEXT_PUBLIC_UMAMI_WEBSITE_ID`         | Publique         | Inutile            | Après validation analytics  | Avec le site         |
+| Variable                               | Visibilité       | Local/test         | Staging/production           | Rotation             |
+| -------------------------------------- | ---------------- | ------------------ | ---------------------------- | -------------------- |
+| `APP_ENV`                              | Serveur          | Requise            | Requise                      | Jamais               |
+| `NEXT_PUBLIC_APP_ENV`                  | Publique         | Requise            | Requise                      | Jamais               |
+| `NEXT_PUBLIC_APP_URL`                  | Publique         | Requise            | Requise                      | À chaque domaine     |
+| `NEXT_PUBLIC_SUPABASE_URL`             | Publique         | Requise            | Requise                      | Avec le projet       |
+| `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Publique         | Requise            | Requise                      | Selon Supabase       |
+| `SUPABASE_SERVICE_ROLE_KEY`            | Secrète          | Facultative        | Seulement si nécessaire      | 90 jours ou incident |
+| `AI_GENERATION_ENABLED`                | Serveur          | `false`            | Après validation du pipeline | À chaque activation  |
+| `GROQ_API_KEY`                         | Secrète          | À l'intégration IA | Requise pour le fournisseur  | 90 jours ou incident |
+| `CLOUDFLARE_ACCOUNT_ID`                | Serveur          | À l'intégration IA | Requise pour Cloudflare      | Si compte modifié    |
+| `CLOUDFLARE_API_TOKEN`                 | Secrète          | À l'intégration IA | Requise pour Cloudflare      | 90 jours ou incident |
+| `NEXT_PUBLIC_SENTRY_DSN`               | Publique         | Facultative        | Requise si Sentry activé     | Avec le projet       |
+| `NEXT_PUBLIC_OBSERVABILITY_ENABLED`    | Publique         | `false`            | `true` si Sentry activé      | Jamais               |
+| `SENTRY_DSN`                           | Serveur          | Facultative        | Requise si Sentry activé     | Avec le projet       |
+| `SENTRY_AUTH_TOKEN`                    | Secrète de build | Inutile            | Requis pour les source maps  | 90 jours ou incident |
+| `NEXT_PUBLIC_UMAMI_WEBSITE_ID`         | Publique         | Inutile            | Après validation analytics   | Avec le site         |
 
 Les modèles et fournisseurs sont configurables par les variables documentées
 dans `.env.example`. Une clé vide signifie « fonctionnalité inactive », jamais «
 utiliser une valeur par défaut secrète ».
+
+La génération réelle reste désactivée tant que `AI_GENERATION_ENABLED=false`. La
+présence des secrets sélectionnés est testée sans effectuer d’appel réseau. La
+création, la rotation et la réponse à incident sont décrites dans
+[`RUNBOOK_FOURNISSEURS_IA.md`](RUNBOOK_FOURNISSEURS_IA.md).
 
 ## Promotion
 
