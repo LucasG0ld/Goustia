@@ -197,33 +197,33 @@ Une fonctionnalité est terminée lorsque :
 
 ### 5.2. Design system — P0
 
-- [ ] Définir les couleurs sémantiques.
-- [ ] Définir l'échelle typographique.
-- [ ] Définir espacements, rayons, bordures et ombres.
-- [ ] Définir les états focus, hover, actif et désactivé.
-- [ ] Créer les boutons.
-- [ ] Créer les champs, listes et sélecteurs.
-- [ ] Créer les cases à cocher et boutons radio.
-- [ ] Créer les modales et panneaux.
-- [ ] Créer les alertes et notifications temporaires.
-- [ ] Créer les squelettes de chargement.
-- [ ] Créer les cartes de recettes.
-- [ ] Créer les badges alimentaires.
-- [ ] Créer le composant de progression d'onboarding.
-- [ ] Créer les états vides et d'erreur.
-- [ ] Documenter l'utilisation des composants.
+- [x] Définir les couleurs sémantiques.
+- [x] Définir l'échelle typographique.
+- [x] Définir espacements, rayons, bordures et ombres.
+- [x] Définir les états focus, hover, actif et désactivé.
+- [x] Créer les boutons.
+- [x] Créer les champs, listes et sélecteurs.
+- [x] Créer les cases à cocher et boutons radio.
+- [x] Créer les modales et panneaux.
+- [x] Créer les alertes et notifications temporaires.
+- [x] Créer les squelettes de chargement.
+- [x] Créer les cartes de recettes.
+- [x] Créer les badges alimentaires.
+- [x] Créer le composant de progression d'onboarding.
+- [x] Créer les états vides et d'erreur.
+- [x] Documenter l'utilisation des composants.
 
 ### 5.3. Accessibilité dès la conception — P0
 
-- [ ] Définir un objectif WCAG 2.2 niveau AA.
-- [ ] Vérifier les contrastes.
-- [ ] Définir une hiérarchie de titres cohérente.
-- [ ] Prévoir des libellés explicites pour tous les contrôles.
-- [ ] Prévoir la navigation complète au clavier.
-- [ ] Prévoir les annonces des changements dynamiques.
-- [ ] Éviter de transmettre une information uniquement par la couleur.
-- [ ] Prévoir une réduction des animations.
-- [ ] Définir des textes alternatifs pour les images utiles.
+- [x] Définir un objectif WCAG 2.2 niveau AA.
+- [x] Vérifier les contrastes.
+- [x] Définir une hiérarchie de titres cohérente.
+- [x] Prévoir des libellés explicites pour tous les contrôles.
+- [x] Prévoir la navigation complète au clavier.
+- [x] Prévoir les annonces des changements dynamiques.
+- [x] Éviter de transmettre une information uniquement par la couleur.
+- [x] Prévoir une réduction des animations.
+- [x] Définir des textes alternatifs pour les images utiles.
 
 ---
 
@@ -231,50 +231,50 @@ Une fonctionnalité est terminée lorsque :
 
 ### 6.1. Utilisateurs et préférences — P0
 
-- [ ] Créer la table des profils.
-- [ ] Lier les profils à `auth.users`.
-- [ ] Stocker prénom et nom.
-- [ ] Stocker la date de naissance avec le minimum de précision nécessaire.
-- [ ] Stocker l'objectif nutritionnel.
-- [ ] Stocker le nombre de repas par semaine.
-- [ ] Stocker le nombre habituel de portions.
-- [ ] Stocker le statut de l'onboarding.
-- [ ] Créer la table des préférences culinaires.
-- [ ] Créer la table des équipements.
-- [ ] Créer la table des préférences de durée.
-- [ ] Créer la table des préférences de budget.
+- [x] Créer la table des profils.
+- [x] Lier les profils à `auth.users`.
+- [x] Stocker prénom et nom.
+- [x] Stocker la date de naissance avec le minimum de précision nécessaire.
+- [x] Stocker l'objectif nutritionnel.
+- [x] Stocker le nombre de repas par semaine.
+- [x] Stocker le nombre habituel de portions.
+- [x] Stocker le statut de l'onboarding.
+- [x] Créer la table des préférences culinaires.
+- [x] Créer la table des équipements.
+- [x] Créer la table des préférences de durée.
+- [x] Créer la table des préférences de budget.
 
 ### 6.2. Ingrédients et sécurité alimentaire — P0
 
-- [ ] Créer la table des ingrédients canoniques.
-- [ ] Créer la table des synonymes d'ingrédients.
-- [ ] Créer la table des allergènes.
-- [ ] Créer les relations ingrédient-allergène.
-- [ ] Créer la hiérarchie des ingrédients et dérivés.
-- [ ] Créer la table des contraintes utilisateur.
-- [ ] Distinguer allergie, intolérance, interdiction et dislike.
-- [ ] Stocker la sévérité ou le caractère absolu d'une contrainte.
-- [ ] Ajouter les index de recherche des ingrédients.
-- [ ] Ajouter une recherche tolérante aux accents et fautes simples.
+- [x] Créer la table des ingrédients canoniques.
+- [x] Créer la table des synonymes d'ingrédients.
+- [x] Créer la table des allergènes.
+- [x] Créer les relations ingrédient-allergène.
+- [x] Créer la hiérarchie des ingrédients et dérivés.
+- [x] Créer la table des contraintes utilisateur.
+- [x] Distinguer allergie, intolérance, interdiction et dislike.
+- [x] Stocker la sévérité ou le caractère absolu d'une contrainte.
+- [x] Ajouter les index de recherche des ingrédients.
+- [x] Ajouter une recherche tolérante aux accents et fautes simples.
 
 ### 6.3. Recettes — P0
 
-- [ ] Créer la table des recettes.
-- [ ] Créer la table des ingrédients d'une recette.
-- [ ] Créer la table des étapes.
-- [ ] Créer les catégories et tags.
-- [ ] Stocker les portions.
-- [ ] Stocker les durées.
-- [ ] Stocker la difficulté.
-- [ ] Stocker le coût estimé.
-- [ ] Stocker les données nutritionnelles calculées.
-- [ ] Stocker la provenance de la recette.
-- [ ] Stocker le modèle IA et la version du prompt.
-- [ ] Stocker le statut de validation.
-- [ ] Stocker le statut de publication.
-- [ ] Stocker le hash de déduplication.
-- [ ] Stocker l'image et son statut.
-- [ ] Prévoir le versionnement d'une recette.
+- [x] Créer la table des recettes.
+- [x] Créer la table des ingrédients d'une recette.
+- [x] Créer la table des étapes.
+- [x] Créer les catégories et tags.
+- [x] Stocker les portions.
+- [x] Stocker les durées.
+- [x] Stocker la difficulté.
+- [x] Stocker le coût estimé.
+- [x] Stocker les données nutritionnelles calculées.
+- [x] Stocker la provenance de la recette.
+- [x] Stocker le modèle IA et la version du prompt.
+- [x] Stocker le statut de validation.
+- [x] Stocker le statut de publication.
+- [x] Stocker le hash de déduplication.
+- [x] Stocker l'image et son statut.
+- [x] Prévoir le versionnement d'une recette.
 
 ### 6.4. Planning et interactions — P0
 
@@ -306,17 +306,17 @@ Une fonctionnalité est terminée lorsque :
 
 ### 6.6. Sécurité PostgreSQL — P0
 
-- [ ] Activer RLS sur chaque table exposée.
-- [ ] Écrire les politiques de lecture par propriétaire.
-- [ ] Écrire les politiques d'insertion par propriétaire.
-- [ ] Écrire les politiques de modification par propriétaire.
-- [ ] Écrire les politiques de suppression par propriétaire.
+- [x] Activer RLS sur chaque table exposée.
+- [x] Écrire les politiques de lecture par propriétaire.
+- [x] Écrire les politiques d'insertion par propriétaire.
+- [x] Écrire les politiques de modification par propriétaire.
+- [x] Écrire les politiques de suppression par propriétaire.
 - [ ] Écrire les politiques propres aux administrateurs.
-- [ ] Révoquer les droits inutiles des rôles `anon` et `authenticated`.
-- [ ] Tester les tentatives d'accès entre deux utilisateurs.
-- [ ] Tester les accès sans session.
+- [x] Révoquer les droits inutiles des rôles `anon` et `authenticated`.
+- [x] Tester les tentatives d'accès entre deux utilisateurs.
+- [x] Tester les accès sans session.
 - [ ] Tester les fonctions et vues avec RLS.
-- [ ] Ajouter les index nécessaires aux politiques.
+- [x] Ajouter les index nécessaires aux politiques.
 
 ---
 
@@ -971,8 +971,8 @@ Une fonctionnalité est terminée lorsque :
 
 ### 19.2. Tests d'intégration — P0
 
-- [ ] Tester les migrations.
-- [ ] Tester les politiques RLS.
+- [x] Tester les migrations.
+- [x] Tester les politiques RLS.
 - [ ] Tester l'inscription et la création du profil.
 - [ ] Tester l'onboarding complet.
 - [ ] Tester une génération avec fournisseur factice.

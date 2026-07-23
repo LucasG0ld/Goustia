@@ -30,7 +30,10 @@ export default function RootLayout({
       lang="fr"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="flex min-h-full flex-col">
+        <a className="skip-link" href="#contenu-principal">
+          Aller au contenu principal
+        </a>
         {children}
         <WebVitalsReporter />
       </body>

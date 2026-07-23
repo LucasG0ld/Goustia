@@ -27,3 +27,43 @@ export {
   type RecipeReaction,
   type SwapGuidance,
 } from "./product-policy";
+
+export {
+  constraintSeverities,
+  foodConstraintKinds,
+  ingredientSchema,
+  normalizeFrenchSearchTerm,
+  userFoodConstraintSchema,
+  type Ingredient,
+  type UserFoodConstraint,
+} from "./food";
+
+export {
+  budgetLevels,
+  cookingSkills,
+  cuisinePreferenceSchema,
+  dietaryPatterns,
+  equipmentPreferenceSchema,
+  onboardingStatuses,
+  preferenceSignals,
+  profilePreferencesSchema,
+  type CuisinePreference,
+  type EquipmentPreference,
+  type ProfilePreferences,
+} from "./profile";
+
+export {
+  recipeCostLevels,
+  recipeDifficulties,
+  recipeIdentitySchema,
+  recipeImageSchema,
+  recipeImageStatuses,
+  recipeNutritionSchema,
+  recipeOrigins,
+  recipePublicationStatuses,
+  recipeUnits,
+  recipeValidationStatuses,
+  recipeVersionSchema,
+  type RecipeIdentity,
+  type RecipeVersion,
+} from "./recipe";
