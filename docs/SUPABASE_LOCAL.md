@@ -14,6 +14,8 @@ npm run supabase:reset
 npm run supabase:lint
 npm run supabase:test
 npm run supabase:types
+npm run supabase:taxonomy:import
+npm run supabase:ciqual:import
 npm run supabase:verify
 ```
 
@@ -52,15 +54,18 @@ npm run supabase:verify
 ```
 
 Cette commande réinitialise la base, rejoue toutes les migrations et le seed,
-analyse le SQL, exécute les tests pgTAP, puis génère les types dans
+importe la taxonomie puis le millésime officiel Ciqual, analyse le SQL, exécute
+les tests pgTAP, puis génère les types dans
 `apps/web/src/types/database.generated.ts`.
 
 La CI effectue la même reconstruction dans un environnement jetable, exécute le
 parcours Auth réel et publie les types générés comme artefact. Les migrations
-P12 à P24, leurs 118 tests pgTAP et le parcours
+P12 à P29, leurs 164 tests pgTAP et le parcours
 inscription/consentements/connexion/récupération/onboarding/génération
 factice/suppression ont été validés localement avec Docker Desktop le 23
-juillet 2026. La vérification importe aussi la taxonomie française versionnée.
+juillet 2026. La vérification importe aussi la taxonomie française versionnée et
+les 3 484 références Ciqual 2025. La procédure nutritionnelle complète est
+décrite dans [`CIQUAL_2025.md`](CIQUAL_2025.md).
 
 ## Restauration
 

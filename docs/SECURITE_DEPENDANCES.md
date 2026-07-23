@@ -13,10 +13,10 @@
 
 `npm audit` remonte trois vulnérabilités transitives depuis Next.js 16.2.11 :
 
-| Composant         | Avis                                                                     | Sévérité | Décision                             |
-| ----------------- | ------------------------------------------------------------------------ | -------- | ------------------------------------ |
-| PostCSS `<8.5.10` | [GHSA-qx2v-qp2m-jg93](https://github.com/advisories/GHSA-qx2v-qp2m-jg93) | Modérée  | Acceptée uniquement en développement |
-| Sharp `<0.35.0`   | [GHSA-f88m-g3jw-g9cj](https://github.com/advisories/GHSA-f88m-g3jw-g9cj) | Haute    | Acceptée uniquement en développement |
+| Composant          | Avis                                                                                                                                               | Sévérité | Décision                             |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ------------------------------------ |
+| PostCSS `<=8.5.11` | [GHSA-qx2v-qp2m-jg93](https://github.com/advisories/GHSA-qx2v-qp2m-jg93), [GHSA-6g55-p6wh-862q](https://github.com/advisories/GHSA-6g55-p6wh-862q) | Haute    | Acceptée uniquement en développement |
+| Sharp `<0.35.0`    | [GHSA-f88m-g3jw-g9cj](https://github.com/advisories/GHSA-f88m-g3jw-g9cj)                                                                           | Haute    | Acceptée uniquement en développement |
 
 npm propose une rétrogradation forcée de Next.js vers 9.3.3. Cette correction
 est incompatible avec l'architecture et n'est pas sûre; elle n'a pas été

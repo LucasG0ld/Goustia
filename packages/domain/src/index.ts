@@ -121,3 +121,53 @@ export {
   type ProgressiveProfile,
   type TastesStep,
 } from "./onboarding-flow";
+
+export {
+  calculateIngredientNutrition,
+  calculateRecipeNutrition,
+  convertQuantityToGrams,
+  displayedNutrients,
+  ingredientNutritionInputSchema,
+  nutrientDatumSchema,
+  nutritionConfidenceThreshold,
+  nutritionValueStatuses,
+  recipeNutritionInputSchema,
+  unitConversionSchema,
+  type CalculatedRecipeNutrition,
+  type IngredientNutritionInput,
+  type QuantityConversionResult,
+  type RecipeNutritionInput,
+  type UnitConversion,
+} from "./nutrition";
+
+export {
+  assertRecipeSafeForDisplay,
+  assertRecipeSafeForStorage,
+  checkFoodSafety,
+  foodSafetyCheckInputSchema,
+  foodSafetyFindingKinds,
+  foodSafetyProfileSchema,
+  foodSafetyTaxonomySchema,
+  FoodSafetyValidationError,
+  safetyRecipeIngredientSchema,
+  type FoodSafetyFinding,
+  type FoodSafetyReport,
+} from "./food-safety";
+
+export {
+  generatedRecipeIngredientSchema,
+  generatedRecipeJsonSchema,
+  generatedRecipeSchema,
+  generatedRecipeStepSchema,
+  invalidGeneratedRecipeExamples,
+  recipeGenerationInputJsonSchema,
+  recipeGenerationInputSchema,
+  recipeGenerationReportSchema,
+  recipeGenerationResultSchema,
+  RECIPE_GENERATION_CONTRACT_VERSION,
+  validGeneratedRecipeExample,
+  validRecipeGenerationInputExample,
+  type GeneratedRecipe,
+  type RecipeGenerationInput,
+  type RecipeGenerationReport,
+} from "./recipe-generation-contract";

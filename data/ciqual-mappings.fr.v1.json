@@ -1,0 +1,145 @@
+{
+  "sourceVersion": "ciqual-2025-11-03",
+  "mappings": [
+    {
+      "ingredient": "pois-chiche",
+      "foodCode": "20507",
+      "status": "approximate",
+      "confidence": 0.9,
+      "rationale": "Pois chiche cuit choisi comme usage culinaire par défaut ; préciser sec dans une recette nécessitera une correspondance dédiée."
+    },
+    {
+      "ingredient": "cacahuete",
+      "foodCode": "15001",
+      "status": "exact",
+      "confidence": 1,
+      "rationale": "Cacahuète nature sans sel ajouté."
+    },
+    {
+      "ingredient": "lait-de-vache",
+      "foodCode": "19016",
+      "status": "approximate",
+      "confidence": 0.95,
+      "rationale": "Lait entier moyen retenu tant que la teneur en matière grasse n’est pas précisée."
+    },
+    {
+      "ingredient": "ble",
+      "foodCode": "9436",
+      "status": "approximate",
+      "confidence": 0.8,
+      "rationale": "Farine de blé tendre T55 retenue pour le synonyme culinaire actuel ; le grain de blé devra disposer d’une entrée séparée."
+    },
+    {
+      "ingredient": "vin-blanc",
+      "foodCode": "5215",
+      "status": "exact",
+      "confidence": 1,
+      "rationale": "Vin blanc sec."
+    },
+    {
+      "ingredient": "beurre-de-cacahuete",
+      "foodCode": "15202",
+      "status": "exact",
+      "confidence": 1,
+      "rationale": "Beurre de cacahuète ou pâte d’arachide."
+    },
+    {
+      "ingredient": "oeuf",
+      "foodCode": "22000",
+      "status": "exact",
+      "confidence": 1,
+      "rationale": "Œuf cru entier."
+    },
+    {
+      "ingredient": "saumon",
+      "foodCode": "26036",
+      "status": "approximate",
+      "confidence": 0.9,
+      "rationale": "Saumon d’élevage cru retenu avant prise en compte du mode de cuisson."
+    },
+    {
+      "ingredient": "poulet",
+      "foodCode": "36003",
+      "status": "approximate",
+      "confidence": 0.9,
+      "rationale": "Viande de poulet crue sans précision de morceau."
+    },
+    {
+      "ingredient": "porc",
+      "foodCode": "28205",
+      "status": "approximate",
+      "confidence": 0.75,
+      "rationale": "Viande de porc cuite moyenne ; une recette doit préciser le morceau et l’état pour améliorer la confiance."
+    },
+    {
+      "ingredient": "tofu",
+      "foodCode": "20904",
+      "status": "exact",
+      "confidence": 1,
+      "rationale": "Tofu nature préemballé."
+    },
+    {
+      "ingredient": "tomate",
+      "foodCode": "20385",
+      "status": "approximate",
+      "confidence": 0.95,
+      "rationale": "Tomate crue moyenne sans précision de variété."
+    },
+    {
+      "ingredient": "pomme-de-terre",
+      "foodCode": "4008",
+      "status": "exact",
+      "confidence": 1,
+      "rationale": "Pomme de terre crue sans peau."
+    },
+    {
+      "ingredient": "riz",
+      "foodCode": "9100",
+      "status": "approximate",
+      "confidence": 0.95,
+      "rationale": "Riz blanc cru retenu comme forme pesée avant cuisson."
+    },
+    {
+      "ingredient": "pates",
+      "foodCode": "9810",
+      "status": "approximate",
+      "confidence": 0.95,
+      "rationale": "Pâtes sèches standard crues retenues comme forme pesée avant cuisson."
+    },
+    {
+      "ingredient": "oignon",
+      "foodCode": "20034",
+      "status": "exact",
+      "confidence": 1,
+      "rationale": "Oignon cru."
+    },
+    {
+      "ingredient": "ail",
+      "foodCode": "11000",
+      "status": "exact",
+      "confidence": 1,
+      "rationale": "Ail cru."
+    },
+    {
+      "ingredient": "biere",
+      "foodCode": "5001",
+      "status": "approximate",
+      "confidence": 0.9,
+      "rationale": "Bière courante à 4–5 degrés d’alcool."
+    },
+    {
+      "ingredient": "creme-fraiche",
+      "foodCode": "19410",
+      "status": "approximate",
+      "confidence": 0.9,
+      "rationale": "Crème épaisse à 30 % de matière grasse."
+    },
+    {
+      "ingredient": "parmesan",
+      "foodCode": "12120",
+      "status": "exact",
+      "confidence": 1,
+      "rationale": "Parmesan."
+    }
+  ]
+}
