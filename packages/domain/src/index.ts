@@ -9,4 +9,21 @@ export {
   type OnboardingProfile,
 } from "./onboarding";
 
-export { canReceiveAlcoholRecipes, getAgeAt } from "./age";
+export {
+  ALCOHOL_LEGAL_AGE,
+  MINIMUM_ACCOUNT_AGE,
+  canCreateAccount,
+  canReceiveAlcoholRecipes,
+  getAgeAt,
+} from "./age";
+
+export {
+  canGeneratePersistentPlan,
+  getRecipeCooldownDays,
+  getSwapGuidance,
+  productPolicy,
+  supportedLaunchCountries,
+  supportedMealTypes,
+  type RecipeReaction,
+  type SwapGuidance,
+} from "./product-policy";

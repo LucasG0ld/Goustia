@@ -1,5 +1,8 @@
 import { z } from "zod";
 
+import { canCreateAccount } from "./age";
+import { productPolicy } from "./product-policy";
+
 export const nutritionGoals = [
   "weight_loss",
   "balanced",
@@ -23,10 +26,23 @@ export const foodRestrictionSchema = z.object({
 export const onboardingProfileSchema = z.object({
   firstName: z.string().trim().min(1).max(100),
   lastName: z.string().trim().min(1).max(100),
-  birthDate: z.iso.date(),
+  birthDate: z.iso
+    .date()
+    .refine(
+      (value) => canCreateAccount(new Date(`${value}T00:00:00.000Z`)),
+      `Vous devez avoir au moins ${productPolicy.minimumAccountAge} ans`,
+    ),
   nutritionGoal: nutritionGoalSchema,
-  mealsPerWeek: z.number().int().min(1).max(35),
-  servingsPerMeal: z.number().int().min(1).max(20),
+  mealsPerWeek: z
+    .number()
+    .int()
+    .min(productPolicy.mealsPerWeek.min)
+    .max(productPolicy.mealsPerWeek.max),
+  servingsPerMeal: z
+    .number()
+    .int()
+    .min(productPolicy.servingsPerMeal.min)
+    .max(productPolicy.servingsPerMeal.max),
   restrictions: z.array(foodRestrictionSchema).max(100),
   initialLikedRecipeIds: z.array(z.string().trim().min(1)).max(12).default([]),
 });

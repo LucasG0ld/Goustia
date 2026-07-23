@@ -1,15 +1,16 @@
-# Atelier d'identité produit
+# Identité produit
 
-Statut : **propositions à valider**  
+Statut : **validée par le responsable produit le 23 juillet 2026**
+
 Date de vérification préliminaire : 23 juillet 2026
 
-## Positionnement recommandé
+## Positionnement validé
 
 Une application française qui transforme quelques contraintes et réactions
 simples en un planning de recettes réellement personnel, sans imposer un long
 questionnaire.
 
-Promesse courte proposée :
+Promesse :
 
 > Des repas qui apprennent vos goûts, semaine après semaine.
 
@@ -26,8 +27,9 @@ nutritionniste ou une garantie de perte de poids.
 | Mijoti        | Chaleureux et culinaire                                   | Collision avec « Mijoti Mijotons »                   | À écarter                                                                                                          |
 | Papillia      | Léger et culinaire                                        | Collision avec une société de restauration existante | À écarter                                                                                                          |
 
-**Recommandation de travail : Goustia**, sous réserve d'un test utilisateur et
-des contrôles juridiques et commerciaux ci-dessous.
+**Nom retenu : Goustia.** Le dépôt GitHub et les premiers éléments produit
+emploient désormais ce nom. Cette validation produit ne remplace pas les
+contrôles juridiques et commerciaux ci-dessous.
 
 L'absence de résultat web ou d'enregistrement DNS ne prouve pas la
 disponibilité. Avant adoption, il faut vérifier le nom auprès de l'INPI, d'un
@@ -41,7 +43,7 @@ Sources de vérification :
 
 ## Alternatives de positionnement
 
-### Complice du quotidien — recommandé
+### Complice du quotidien — retenu
 
 Simple, rassurant et non culpabilisant. Le produit propose, l'utilisateur garde
 la main avec like, dislike et remplacement.
@@ -71,7 +73,7 @@ Exemples :
 - « Pas envie de ce plat ? On t'en propose un autre. »
 - « Cette image illustre la recette ; le résultat peut varier. »
 
-## Direction visuelle recommandée
+## Direction visuelle validée
 
 ### « Cuisine fraîche et chaleureuse »
 
@@ -83,8 +85,8 @@ Exemples :
 - icônes simples et arrondies ;
 - contraste WCAG AA minimum et information jamais portée par la couleur seule.
 
-Les couleurs exactes, polices, logo et icône seront définis après validation du
-nom. Aucun élément d'identité n'est encore implémenté.
+Les couleurs exactes, polices, logo et icône seront définis dans le design
+system P10 à partir de cette direction.
 
 ## Images générées
 
@@ -95,12 +97,13 @@ Chaque image générée doit porter une mention visible et accessible :
 La fiche recette doit rester compréhensible si l'image manque. Une image ne doit
 jamais servir à confirmer la présence ou l'absence d'un allergène.
 
-## Décisions attendues
+## Décisions actées
 
-1. Valider **Goustia**, choisir une alternative ou demander une nouvelle piste.
-2. Valider le positionnement « complice du quotidien ».
-3. Valider le tutoiement.
-4. Valider la direction « cuisine fraîche et chaleureuse ».
+1. nom : **Goustia** ;
+2. positionnement : « complice du quotidien » ;
+3. ton : tutoiement simple, bienveillant et non culpabilisant ;
+4. direction : « cuisine fraîche et chaleureuse » ;
+5. images IA : mention illustrative visible et contenu utilisable sans image.
 
-Les tâches 3.1 de la roadmap restent ouvertes tant que ces choix et les
-vérifications officielles ne sont pas terminés.
+La disponibilité juridique, le domaine, les stores, le logo et les tokens
+visuels exacts restent des travaux distincts de la roadmap.

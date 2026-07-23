@@ -1,7 +1,8 @@
-# Recettes personnalisées
+# Goustia
 
-Application de recommandation de recettes personnalisées, développée d'abord
-pour le web puis portée sur iOS et Android.
+Application de recommandation de recettes personnalisées. Le MVP est développé
+pour le web; les applications iOS et Android resteront reportées jusqu'à sa
+stabilisation.
 
 ## Architecture
 
