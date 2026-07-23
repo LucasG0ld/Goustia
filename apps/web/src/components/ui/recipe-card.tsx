@@ -38,6 +38,7 @@ export function RecipeCard({
   badges,
   image,
   imageAlt,
+  imageIllustrative = true,
   reason,
 }: {
   href: string;
@@ -48,27 +49,41 @@ export function RecipeCard({
   badges?: ReactNode;
   image?: string;
   imageAlt?: string;
+  imageIllustrative?: boolean;
   reason?: string;
 }) {
   return (
     <article className="relative overflow-hidden rounded-xl border bg-surface shadow-card">
       {image ? (
-        // A native image keeps the primitive independent from host allow-lists.
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          alt={imageAlt ?? ""}
-          className="aspect-[4/3] w-full object-cover"
-          height="360"
-          src={image}
-          width="480"
-        />
+        <div className="relative">
+          {/* A native image keeps the primitive independent from host allow-lists. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            alt={imageAlt ?? ""}
+            className="aspect-[4/3] w-full object-cover"
+            height="360"
+            src={image}
+            width="480"
+          />
+          {imageIllustrative ? (
+            <span className="absolute right-2 bottom-2 rounded-full bg-surface/95 px-2 py-1 text-xs font-medium text-muted">
+              Image illustrative
+            </span>
+          ) : null}
+        </div>
       ) : (
-        <div
-          aria-label="Illustration de recette indisponible"
-          className="flex aspect-[4/3] items-center justify-center bg-brand-soft text-sm font-medium text-brand"
-          role="img"
-        >
-          Illustration à venir
+        <div className="relative">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            alt="Illustration générique du plat"
+            className="aspect-[4/3] w-full object-cover"
+            height="360"
+            src="/images/recipe-placeholder.svg"
+            width="480"
+          />
+          <span className="absolute right-2 bottom-2 rounded-full bg-surface/95 px-2 py-1 text-xs font-medium text-muted">
+            Image illustrative
+          </span>
         </div>
       )}
       <div className="p-5">

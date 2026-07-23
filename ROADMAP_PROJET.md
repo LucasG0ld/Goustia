@@ -525,82 +525,82 @@ Une fonctionnalité est terminée lorsque :
 
 ### 10.3. Abstraction des fournisseurs — P0
 
-- [ ] Créer l'interface `RecipeGenerator`.
-- [ ] Créer l'interface `RecipeImageGenerator`.
-- [ ] Créer une fabrique pilotée par variables d'environnement.
-- [ ] Ajouter l'adaptateur Groq.
-- [ ] Ajouter l'adaptateur texte Cloudflare.
-- [ ] Ajouter l'adaptateur image Cloudflare.
-- [ ] Normaliser les erreurs des fournisseurs.
-- [ ] Ajouter les délais d'expiration.
-- [ ] Ajouter les retries avec attente progressive.
-- [ ] Ajouter un coupe-circuit.
-- [ ] Ajouter un fournisseur factice pour les tests.
+- [x] Créer l'interface `RecipeGenerator`.
+- [x] Créer l'interface `RecipeImageGenerator`.
+- [x] Créer une fabrique pilotée par variables d'environnement.
+- [x] Ajouter l'adaptateur Groq.
+- [x] Ajouter l'adaptateur texte Cloudflare.
+- [x] Ajouter l'adaptateur image Cloudflare.
+- [x] Normaliser les erreurs des fournisseurs.
+- [x] Ajouter les délais d'expiration.
+- [x] Ajouter les retries avec attente progressive.
+- [x] Ajouter un coupe-circuit.
+- [x] Ajouter un fournisseur factice pour les tests.
 
 ### 10.4. Prompts — P0
 
-- [ ] Rédiger le prompt système de génération.
-- [ ] Interdire explicitement les ingrédients exclus.
-- [ ] Interdire l'alcool lorsque nécessaire.
-- [ ] Imposer le français.
-- [ ] Imposer des quantités réalistes.
-- [ ] Imposer la cohérence entre ingrédients et étapes.
-- [ ] Imposer le schéma structuré.
-- [ ] Demander un prompt d'image sans donnée utilisateur.
-- [ ] Ajouter quelques exemples de qualité.
-- [ ] Versionner chaque prompt.
-- [ ] Créer un changelog des prompts.
+- [x] Rédiger le prompt système de génération.
+- [x] Interdire explicitement les ingrédients exclus.
+- [x] Interdire l'alcool lorsque nécessaire.
+- [x] Imposer le français.
+- [x] Imposer des quantités réalistes.
+- [x] Imposer la cohérence entre ingrédients et étapes.
+- [x] Imposer le schéma structuré.
+- [x] Demander un prompt d'image sans donnée utilisateur.
+- [x] Ajouter quelques exemples de qualité.
+- [x] Versionner chaque prompt.
+- [x] Créer un changelog des prompts.
 
 ### 10.5. Orchestration — P0
 
-- [ ] Créer la route de demande de génération.
-- [ ] Vérifier l'identité et le quota de l'utilisateur.
-- [ ] Construire un profil pseudonymisé.
-- [ ] Ne transmettre aucune donnée personnelle directe.
-- [ ] Générer les recettes par lot.
-- [ ] Valider le JSON reçu.
-- [ ] Normaliser les ingrédients.
-- [ ] Exécuter le contrôle alimentaire.
-- [ ] Calculer les valeurs nutritionnelles.
-- [ ] Vérifier la cohérence des étapes.
-- [ ] Dédupliquer les recettes.
-- [ ] Rejeter et régénérer un résultat invalide.
-- [ ] Limiter le nombre de tentatives.
-- [ ] Enregistrer uniquement les recettes validées.
-- [ ] Mettre à jour l'état de la tâche.
-- [ ] Informer l'interface de la progression.
-- [ ] Gérer proprement une panne du fournisseur.
+- [x] Créer la route de demande de génération.
+- [x] Vérifier l'identité et le quota de l'utilisateur.
+- [x] Construire un profil pseudonymisé.
+- [x] Ne transmettre aucune donnée personnelle directe.
+- [x] Générer les recettes par lot.
+- [x] Valider le JSON reçu.
+- [x] Normaliser les ingrédients.
+- [x] Exécuter le contrôle alimentaire.
+- [x] Calculer les valeurs nutritionnelles.
+- [x] Vérifier la cohérence des étapes.
+- [x] Dédupliquer les recettes.
+- [x] Rejeter et régénérer un résultat invalide.
+- [x] Limiter le nombre de tentatives.
+- [x] Enregistrer uniquement les recettes validées.
+- [x] Mettre à jour l'état de la tâche.
+- [x] Informer l'interface de la progression.
+- [x] Gérer proprement une panne du fournisseur.
 
 ### 10.6. Génération des images — P0
 
-- [ ] Définir le style visuel des plats.
-- [ ] Définir un modèle de prompt photographique.
-- [ ] Générer une image uniquement après validation de la recette.
-- [ ] Appeler FLUX.2 Klein 4B.
-- [ ] Vérifier format, poids et dimensions.
-- [ ] Compresser ou convertir l'image si nécessaire.
-- [ ] Ajouter les métadonnées utiles.
-- [ ] Stocker l'image dans Supabase Storage.
-- [ ] Associer l'image à la recette canonique.
-- [ ] Mettre en cache et réutiliser l'image.
-- [ ] Ajouter une image générique en cas d'échec.
-- [ ] Ajouter une régénération réservée aux administrateurs.
-- [ ] Tester FLUX.1 Schnell comme solution de secours.
-- [ ] Afficher que l'image est illustrative.
+- [x] Définir le style visuel des plats.
+- [x] Définir un modèle de prompt photographique.
+- [x] Générer une image uniquement après validation de la recette.
+- [x] Appeler FLUX.2 Klein 4B.
+- [x] Vérifier format, poids et dimensions.
+- [x] Compresser ou convertir l'image si nécessaire.
+- [x] Ajouter les métadonnées utiles.
+- [x] Stocker l'image dans Supabase Storage.
+- [x] Associer l'image à la recette canonique.
+- [x] Mettre en cache et réutiliser l'image.
+- [x] Ajouter une image générique en cas d'échec.
+- [x] Ajouter une régénération réservée aux administrateurs.
+- [x] Tester FLUX.1 Schnell comme solution de secours.
+- [x] Afficher que l'image est illustrative.
 
 ### 10.7. Quotas et coûts — P0
 
-- [ ] Définir un quota de génération par utilisateur.
-- [ ] Définir un quota global quotidien.
-- [ ] Comptabiliser les appels texte.
-- [ ] Comptabiliser les appels image.
-- [ ] Stocker les jetons ou neurons consommés.
-- [ ] Calculer un coût estimé.
-- [ ] Bloquer les appels au-delà du plafond.
-- [ ] Prévoir une dégradation sans image.
-- [ ] Prévoir une dégradation avec recettes en cache.
-- [ ] Afficher les quotas dans l'administration.
-- [ ] Ajouter des alertes à 50 %, 80 % et 95 %.
+- [x] Définir un quota de génération par utilisateur.
+- [x] Définir un quota global quotidien.
+- [x] Comptabiliser les appels texte.
+- [x] Comptabiliser les appels image.
+- [x] Stocker les jetons ou neurons consommés.
+- [x] Calculer un coût estimé.
+- [x] Bloquer les appels au-delà du plafond.
+- [x] Prévoir une dégradation sans image.
+- [x] Prévoir une dégradation avec recettes en cache.
+- [x] Afficher les quotas dans l'administration.
+- [x] Ajouter des alertes à 50 %, 80 % et 95 %.
 
 ### 10.8. Benchmark IA — P0
 

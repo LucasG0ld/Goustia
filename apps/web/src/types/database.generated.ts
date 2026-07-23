@@ -84,18 +84,59 @@ export type Database = {
         };
         Relationships: [];
       };
+      ai_generation_job_recipes: {
+        Row: {
+          created_at: string;
+          job_id: string;
+          position: number;
+          recipe_id: string;
+        };
+        Insert: {
+          created_at?: string;
+          job_id: string;
+          position: number;
+          recipe_id: string;
+        };
+        Update: {
+          created_at?: string;
+          job_id?: string;
+          position?: number;
+          recipe_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "ai_generation_job_recipes_job_id_fkey";
+            columns: ["job_id"];
+            isOneToOne: false;
+            referencedRelation: "ai_generation_jobs";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "ai_generation_job_recipes_recipe_id_fkey";
+            columns: ["recipe_id"];
+            isOneToOne: false;
+            referencedRelation: "recipes";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       ai_generation_jobs: {
         Row: {
           attempt_count: number;
           completed_at: string | null;
           created_at: string;
+          degraded_mode: string | null;
           expires_at: string;
           id: string;
           idempotency_key: string;
           kind: Database["public"]["Enums"]["ai_job_kind"];
           model: string | null;
+          progress_percent: number;
+          progress_stage: string;
           prompt_version: string;
           provider: string | null;
+          request_payload: Json;
+          result_recipe_ids: string[];
           started_at: string | null;
           status: Database["public"]["Enums"]["ai_job_status"];
           updated_at: string;
@@ -107,13 +148,18 @@ export type Database = {
           attempt_count?: number;
           completed_at?: string | null;
           created_at?: string;
+          degraded_mode?: string | null;
           expires_at?: string;
           id?: string;
           idempotency_key: string;
           kind: Database["public"]["Enums"]["ai_job_kind"];
           model?: string | null;
+          progress_percent?: number;
+          progress_stage?: string;
           prompt_version: string;
           provider?: string | null;
+          request_payload?: Json;
+          result_recipe_ids?: string[];
           started_at?: string | null;
           status?: Database["public"]["Enums"]["ai_job_status"];
           updated_at?: string;
@@ -125,13 +171,18 @@ export type Database = {
           attempt_count?: number;
           completed_at?: string | null;
           created_at?: string;
+          degraded_mode?: string | null;
           expires_at?: string;
           id?: string;
           idempotency_key?: string;
           kind?: Database["public"]["Enums"]["ai_job_kind"];
           model?: string | null;
+          progress_percent?: number;
+          progress_stage?: string;
           prompt_version?: string;
           provider?: string | null;
+          request_payload?: Json;
+          result_recipe_ids?: string[];
           started_at?: string | null;
           status?: Database["public"]["Enums"]["ai_job_status"];
           updated_at?: string;
@@ -1501,14 +1552,21 @@ export type Database = {
       recipe_images: {
         Row: {
           alt_text: string | null;
+          byte_size: number | null;
+          checksum_sha256: string | null;
+          content_type: string | null;
           created_at: string;
           failure_code: string | null;
+          generated_at: string | null;
+          generation_key: string | null;
           height: number | null;
           id: string;
+          illustrative: boolean;
           is_primary: boolean;
           model: string | null;
           prompt_version: string | null;
           provider: string | null;
+          recipe_id: string;
           recipe_version_id: string;
           status: Database["public"]["Enums"]["recipe_image_status"];
           storage_bucket: string;
@@ -1518,14 +1576,21 @@ export type Database = {
         };
         Insert: {
           alt_text?: string | null;
+          byte_size?: number | null;
+          checksum_sha256?: string | null;
+          content_type?: string | null;
           created_at?: string;
           failure_code?: string | null;
+          generated_at?: string | null;
+          generation_key?: string | null;
           height?: number | null;
           id?: string;
+          illustrative?: boolean;
           is_primary?: boolean;
           model?: string | null;
           prompt_version?: string | null;
           provider?: string | null;
+          recipe_id: string;
           recipe_version_id: string;
           status?: Database["public"]["Enums"]["recipe_image_status"];
           storage_bucket?: string;
@@ -1535,14 +1600,21 @@ export type Database = {
         };
         Update: {
           alt_text?: string | null;
+          byte_size?: number | null;
+          checksum_sha256?: string | null;
+          content_type?: string | null;
           created_at?: string;
           failure_code?: string | null;
+          generated_at?: string | null;
+          generation_key?: string | null;
           height?: number | null;
           id?: string;
+          illustrative?: boolean;
           is_primary?: boolean;
           model?: string | null;
           prompt_version?: string | null;
           provider?: string | null;
+          recipe_id?: string;
           recipe_version_id?: string;
           status?: Database["public"]["Enums"]["recipe_image_status"];
           storage_bucket?: string;
@@ -1551,6 +1623,13 @@ export type Database = {
           width?: number | null;
         };
         Relationships: [
+          {
+            foreignKeyName: "recipe_images_recipe_id_fkey";
+            columns: ["recipe_id"];
+            isOneToOne: false;
+            referencedRelation: "recipes";
+            referencedColumns: ["id"];
+          },
           {
             foreignKeyName: "recipe_images_recipe_version_id_fkey";
             columns: ["recipe_version_id"];
@@ -1931,6 +2010,7 @@ export type Database = {
           difficulty: Database["public"]["Enums"]["recipe_difficulty"];
           estimated_cost_eur: number | null;
           id: string;
+          image_illustrative: boolean;
           origin: Database["public"]["Enums"]["recipe_origin"];
           preparation_minutes: number;
           prompt_version: string | null;
@@ -1945,6 +2025,8 @@ export type Database = {
           validation_notes: string | null;
           validation_status: Database["public"]["Enums"]["recipe_validation_status"];
           version_number: number;
+          visual_alt_text: string | null;
+          visual_prompt: string | null;
         };
         Insert: {
           ai_model?: string | null;
@@ -1956,6 +2038,7 @@ export type Database = {
           difficulty: Database["public"]["Enums"]["recipe_difficulty"];
           estimated_cost_eur?: number | null;
           id?: string;
+          image_illustrative?: boolean;
           origin: Database["public"]["Enums"]["recipe_origin"];
           preparation_minutes: number;
           prompt_version?: string | null;
@@ -1970,6 +2053,8 @@ export type Database = {
           validation_notes?: string | null;
           validation_status?: Database["public"]["Enums"]["recipe_validation_status"];
           version_number: number;
+          visual_alt_text?: string | null;
+          visual_prompt?: string | null;
         };
         Update: {
           ai_model?: string | null;
@@ -1981,6 +2066,7 @@ export type Database = {
           difficulty?: Database["public"]["Enums"]["recipe_difficulty"];
           estimated_cost_eur?: number | null;
           id?: string;
+          image_illustrative?: boolean;
           origin?: Database["public"]["Enums"]["recipe_origin"];
           preparation_minutes?: number;
           prompt_version?: string | null;
@@ -1995,6 +2081,8 @@ export type Database = {
           validation_notes?: string | null;
           validation_status?: Database["public"]["Enums"]["recipe_validation_status"];
           version_number?: number;
+          visual_alt_text?: string | null;
+          visual_prompt?: string | null;
         };
         Relationships: [
           {
@@ -2481,6 +2569,36 @@ export type Database = {
           },
         ];
       };
+      admin_ai_usage_daily: {
+        Row: {
+          estimated_cost_usd: number | null;
+          limit_count: number | null;
+          quota_key: string | null;
+          updated_at: string | null;
+          usage_date: string | null;
+          usage_percent: number | null;
+          used_count: number | null;
+        };
+        Insert: {
+          estimated_cost_usd?: number | null;
+          limit_count?: number | null;
+          quota_key?: string | null;
+          updated_at?: string | null;
+          usage_date?: string | null;
+          usage_percent?: never;
+          used_count?: number | null;
+        };
+        Update: {
+          estimated_cost_usd?: number | null;
+          limit_count?: number | null;
+          quota_key?: string | null;
+          updated_at?: string | null;
+          usage_date?: string | null;
+          usage_percent?: never;
+          used_count?: number | null;
+        };
+        Relationships: [];
+      };
     };
     Functions: {
       complete_food_safety_onboarding: {
@@ -2518,9 +2636,41 @@ export type Database = {
         Returns: undefined;
       };
       export_my_account: { Args: never; Returns: Json };
+      is_ai_cost_circuit_open: {
+        Args: { p_daily_cost_limit_usd: number };
+        Returns: boolean;
+      };
       normalize_search_term: { Args: { value: string }; Returns: string };
+      record_ai_usage: {
+        Args: {
+          p_estimated_cost_usd: number;
+          p_event_key: string;
+          p_image_count: number;
+          p_input_tokens: number;
+          p_job_id: string;
+          p_kind: string;
+          p_model: string;
+          p_neurons: number;
+          p_output_tokens: number;
+          p_provider: string;
+          p_user_id: string;
+        };
+        Returns: boolean;
+      };
       request_account_deletion: {
         Args: { p_confirmation: string; p_idempotency_key: string };
+        Returns: string;
+      };
+      reserve_ai_generation_job: {
+        Args: {
+          p_global_daily_limit: number;
+          p_idempotency_key: string;
+          p_prompt_version: string;
+          p_recipe_count: number;
+          p_request_payload: Json;
+          p_user_daily_limit: number;
+          p_user_id: string;
+        };
         Returns: string;
       };
       save_progressive_profile: {
@@ -2534,6 +2684,21 @@ export type Database = {
           p_max_preparation_minutes: number;
         };
         Returns: undefined;
+      };
+      store_validated_ai_recipe: {
+        Args: {
+          p_canonical_slug: string;
+          p_deduplication_hash: string;
+          p_job_id: string;
+          p_model: string;
+          p_nutrition: Json;
+          p_position: number;
+          p_prompt_version: string;
+          p_provider: string;
+          p_recipe: Json;
+          p_user_id: string;
+        };
+        Returns: string;
       };
     };
     Enums: {

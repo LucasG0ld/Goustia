@@ -60,6 +60,41 @@ export const serverEnvSchema = publicEnvSchema.extend({
     .trim()
     .min(1)
     .default("@cf/black-forest-labs/flux-2-klein-4b"),
+  AI_IMAGE_FALLBACK_MODEL: z
+    .string()
+    .trim()
+    .min(1)
+    .default("@cf/black-forest-labs/flux-1-schnell"),
+  AI_TEXT_TIMEOUT_MS: z.coerce
+    .number()
+    .int()
+    .min(1000)
+    .max(120000)
+    .default(30000),
+  AI_IMAGE_TIMEOUT_MS: z.coerce
+    .number()
+    .int()
+    .min(1000)
+    .max(180000)
+    .default(60000),
+  AI_MAX_ATTEMPTS: z.coerce.number().int().min(1).max(5).default(3),
+  AI_USER_DAILY_RECIPE_LIMIT: z.coerce
+    .number()
+    .int()
+    .min(1)
+    .max(100)
+    .default(14),
+  AI_GLOBAL_DAILY_RECIPE_LIMIT: z.coerce
+    .number()
+    .int()
+    .min(1)
+    .max(100000)
+    .default(500),
+  AI_GLOBAL_DAILY_COST_LIMIT_USD: z.coerce
+    .number()
+    .positive()
+    .max(100000)
+    .default(10),
   CLOUDFLARE_ACCOUNT_ID: optionalSecret,
   CLOUDFLARE_API_TOKEN: optionalSecret,
 });
