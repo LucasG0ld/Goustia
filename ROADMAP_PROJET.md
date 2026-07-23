@@ -354,20 +354,20 @@ Une fonctionnalité est terminée lorsque :
 
 ### 7.3. RGPD et documents légaux — P0
 
-- [ ] Cartographier les données collectées.
-- [ ] Définir la base légale de chaque traitement.
-- [ ] Définir les durées de conservation.
-- [ ] Rédiger la politique de confidentialité.
-- [ ] Rédiger les conditions d'utilisation.
-- [ ] Rédiger les mentions légales.
-- [ ] Rédiger l'information spécifique aux données alimentaires.
-- [ ] Rédiger l'avertissement nutritionnel et médical.
-- [ ] Documenter les sous-traitants.
+- [x] Cartographier les données collectées.
+- [x] Définir la base légale de chaque traitement.
+- [x] Définir les durées de conservation.
+- [x] Rédiger la politique de confidentialité.
+- [x] Rédiger les conditions d'utilisation.
+- [x] Rédiger les mentions légales.
+- [x] Rédiger l'information spécifique aux données alimentaires.
+- [x] Rédiger l'avertissement nutritionnel et médical.
+- [x] Documenter les sous-traitants.
 - [ ] Vérifier les transferts de données hors UE.
-- [ ] Définir la gestion des demandes d'accès et de suppression.
-- [ ] Définir la gestion des mineurs et du consentement parental.
-- [ ] Mettre en place le consentement aux cookies non essentiels si nécessaire.
-- [ ] Ajouter un registre des versions acceptées des documents.
+- [x] Définir la gestion des demandes d'accès et de suppression.
+- [x] Définir la gestion des mineurs et du consentement parental.
+- [x] Mettre en place le consentement aux cookies non essentiels si nécessaire.
+- [x] Ajouter un registre des versions acceptées des documents.
 - [ ] Faire valider les documents par un professionnel compétent.
 
 ---
@@ -376,66 +376,66 @@ Une fonctionnalité est terminée lorsque :
 
 ### 8.1. Étape compte — P0
 
-- [ ] Créer l'écran d'inscription.
-- [ ] Ajouter prénom, nom, e-mail et mot de passe.
-- [ ] Ajouter la date de naissance.
-- [ ] Valider les champs côté client et serveur.
-- [ ] Calculer l'âge sans envoyer la date de naissance à l'IA.
-- [ ] Enregistrer l'acceptation des documents légaux.
-- [ ] Afficher des erreurs compréhensibles.
+- [x] Créer l'écran d'inscription.
+- [x] Ajouter prénom, nom, e-mail et mot de passe.
+- [x] Ajouter la date de naissance.
+- [x] Valider les champs côté client et serveur.
+- [x] Calculer l'âge sans envoyer la date de naissance à l'IA.
+- [x] Enregistrer l'acceptation des documents légaux.
+- [x] Afficher des erreurs compréhensibles.
 
 ### 8.2. Étape sécurité alimentaire — P0
 
-- [ ] Créer la recherche d'allergies et d'interdictions.
-- [ ] Proposer les ingrédients les plus fréquents.
-- [ ] Permettre l'option « Je n'en ai pas ».
-- [ ] Distinguer visuellement allergies, intolérances et interdictions.
-- [ ] Expliquer la différence entre sécurité et préférence.
-- [ ] Empêcher une contrainte contradictoire.
-- [ ] Confirmer les contraintes avant de continuer.
-- [ ] Enregistrer les exclusions strictes.
+- [x] Créer la recherche d'allergies et d'interdictions.
+- [x] Proposer les ingrédients les plus fréquents.
+- [x] Permettre l'option « Je n'en ai pas ».
+- [x] Distinguer visuellement allergies, intolérances et interdictions.
+- [x] Expliquer la différence entre sécurité et préférence.
+- [x] Empêcher une contrainte contradictoire.
+- [x] Confirmer les contraintes avant de continuer.
+- [x] Enregistrer les exclusions strictes.
 
 ### 8.3. Étape objectif — P0
 
-- [ ] Afficher les quatre objectifs nutritionnels.
-- [ ] Expliquer brièvement chaque objectif.
-- [ ] Demander le nombre de repas par semaine.
-- [ ] Demander le nombre de personnes.
-- [ ] Valider les limites définies par le produit.
-- [ ] Enregistrer les choix.
+- [x] Afficher les quatre objectifs nutritionnels.
+- [x] Expliquer brièvement chaque objectif.
+- [x] Demander le nombre de repas par semaine.
+- [x] Demander le nombre de personnes.
+- [x] Valider les limites définies par le produit.
+- [x] Enregistrer les choix.
 
 ### 8.4. Premiers goûts — P0
 
-- [ ] Préparer un jeu de cartes de plats.
-- [ ] Afficher 8 à 12 cartes accessibles.
-- [ ] Permettre une sélection multiple.
-- [ ] Permettre de passer l'étape.
-- [ ] Enregistrer les premiers signaux positifs.
-- [ ] Ne pas traiter une carte ignorée comme un dislike.
+- [x] Préparer un jeu de cartes de plats.
+- [x] Afficher 8 à 12 cartes accessibles.
+- [x] Permettre une sélection multiple.
+- [x] Permettre de passer l'étape.
+- [x] Enregistrer les premiers signaux positifs.
+- [x] Ne pas traiter une carte ignorée comme un dislike.
 
 ### 8.5. Progression et reprise — P0
 
-- [ ] Afficher une progression courte.
-- [ ] Enregistrer chaque étape indépendamment.
-- [ ] Permettre de reprendre après interruption.
-- [ ] Empêcher l'accès aux recommandations sans contraintes validées.
-- [ ] Déclencher la première génération après l'onboarding.
-- [ ] Afficher un écran d'attente utile pendant la génération.
-- [ ] Mesurer l'abandon à chaque étape.
+- [x] Afficher une progression courte.
+- [x] Enregistrer chaque étape indépendamment.
+- [x] Permettre de reprendre après interruption.
+- [x] Empêcher l'accès aux recommandations sans contraintes validées.
+- [x] Déclencher la première génération après l'onboarding.
+- [x] Afficher un écran d'attente utile pendant la génération.
+- [x] Mesurer l'abandon à chaque étape.
 
 ### 8.6. Profil progressif — P1
 
-- [ ] Calculer un taux de complétion du profil.
-- [ ] Ajouter les ingrédients appréciés.
-- [ ] Ajouter les ingrédients non appréciés.
-- [ ] Ajouter les cuisines favorites.
-- [ ] Ajouter le niveau en cuisine.
-- [ ] Ajouter le temps maximal de préparation.
-- [ ] Ajouter le budget.
-- [ ] Ajouter les équipements disponibles.
-- [ ] Créer les questions contextuelles.
-- [ ] Permettre d'ignorer chaque question secondaire.
-- [ ] Limiter la fréquence des sollicitations.
+- [x] Calculer un taux de complétion du profil.
+- [x] Ajouter les ingrédients appréciés.
+- [x] Ajouter les ingrédients non appréciés.
+- [x] Ajouter les cuisines favorites.
+- [x] Ajouter le niveau en cuisine.
+- [x] Ajouter le temps maximal de préparation.
+- [x] Ajouter le budget.
+- [x] Ajouter les équipements disponibles.
+- [x] Créer les questions contextuelles.
+- [x] Permettre d'ignorer chaque question secondaire.
+- [x] Limiter la fréquence des sollicitations.
 
 ---
 
@@ -443,16 +443,16 @@ Une fonctionnalité est terminée lorsque :
 
 ### 9.1. Taxonomie des ingrédients — P0
 
-- [ ] Choisir une nomenclature interne stable.
-- [ ] Importer une première liste d'ingrédients.
-- [ ] Ajouter les synonymes français.
-- [ ] Ajouter pluriels et variantes orthographiques.
-- [ ] Ajouter les familles d'ingrédients.
-- [ ] Ajouter les dérivés allergènes.
-- [ ] Ajouter les ingrédients contenant de l'alcool.
-- [ ] Ajouter les interdictions fréquentes.
-- [ ] Ajouter les unités compatibles.
-- [ ] Créer un processus de correction par l'administration.
+- [x] Choisir une nomenclature interne stable.
+- [x] Importer une première liste d'ingrédients.
+- [x] Ajouter les synonymes français.
+- [x] Ajouter pluriels et variantes orthographiques.
+- [x] Ajouter les familles d'ingrédients.
+- [x] Ajouter les dérivés allergènes.
+- [x] Ajouter les ingrédients contenant de l'alcool.
+- [x] Ajouter les interdictions fréquentes.
+- [x] Ajouter les unités compatibles.
+- [x] Créer un processus de correction par l'administration.
 
 ### 9.2. Données Ciqual — P0
 

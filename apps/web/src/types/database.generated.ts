@@ -176,6 +176,7 @@ export type Database = {
       budget_preferences: {
         Row: {
           created_at: string;
+          learned_from: Database["public"]["Enums"]["preference_source"];
           level: Database["public"]["Enums"]["budget_level"];
           max_cost_per_serving_eur: number | null;
           updated_at: string;
@@ -183,6 +184,7 @@ export type Database = {
         };
         Insert: {
           created_at?: string;
+          learned_from?: Database["public"]["Enums"]["preference_source"];
           level: Database["public"]["Enums"]["budget_level"];
           max_cost_per_serving_eur?: number | null;
           updated_at?: string;
@@ -190,6 +192,7 @@ export type Database = {
         };
         Update: {
           created_at?: string;
+          learned_from?: Database["public"]["Enums"]["preference_source"];
           level?: Database["public"]["Enums"]["budget_level"];
           max_cost_per_serving_eur?: number | null;
           updated_at?: string;
@@ -253,6 +256,44 @@ export type Database = {
           {
             foreignKeyName: "content_reports_reporter_id_fkey";
             columns: ["reporter_id"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      contextual_question_state: {
+        Row: {
+          answered_at: string | null;
+          ask_count: number;
+          last_asked_at: string | null;
+          question_key: string;
+          snoozed_until: string | null;
+          updated_at: string;
+          user_id: string;
+        };
+        Insert: {
+          answered_at?: string | null;
+          ask_count?: number;
+          last_asked_at?: string | null;
+          question_key: string;
+          snoozed_until?: string | null;
+          updated_at?: string;
+          user_id: string;
+        };
+        Update: {
+          answered_at?: string | null;
+          ask_count?: number;
+          last_asked_at?: string | null;
+          question_key?: string;
+          snoozed_until?: string | null;
+          updated_at?: string;
+          user_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "contextual_question_state_user_id_fkey";
+            columns: ["user_id"];
             isOneToOne: false;
             referencedRelation: "profiles";
             referencedColumns: ["id"];
@@ -411,6 +452,7 @@ export type Database = {
       duration_preferences: {
         Row: {
           created_at: string;
+          learned_from: Database["public"]["Enums"]["preference_source"];
           max_cooking_minutes: number | null;
           max_preparation_minutes: number | null;
           max_total_minutes: number | null;
@@ -419,6 +461,7 @@ export type Database = {
         };
         Insert: {
           created_at?: string;
+          learned_from?: Database["public"]["Enums"]["preference_source"];
           max_cooking_minutes?: number | null;
           max_preparation_minutes?: number | null;
           max_total_minutes?: number | null;
@@ -427,6 +470,7 @@ export type Database = {
         };
         Update: {
           created_at?: string;
+          learned_from?: Database["public"]["Enums"]["preference_source"];
           max_cooking_minutes?: number | null;
           max_preparation_minutes?: number | null;
           max_total_minutes?: number | null;
@@ -533,26 +577,81 @@ export type Database = {
           },
         ];
       };
+      ingredient_corrections: {
+        Row: {
+          corrected_value: string;
+          created_at: string;
+          field_name: string;
+          id: string;
+          ingredient_id: string;
+          previous_value: string | null;
+          rationale: string;
+          requested_by: string | null;
+          source_url: string;
+        };
+        Insert: {
+          corrected_value: string;
+          created_at?: string;
+          field_name: string;
+          id?: string;
+          ingredient_id: string;
+          previous_value?: string | null;
+          rationale: string;
+          requested_by?: string | null;
+          source_url: string;
+        };
+        Update: {
+          corrected_value?: string;
+          created_at?: string;
+          field_name?: string;
+          id?: string;
+          ingredient_id?: string;
+          previous_value?: string | null;
+          rationale?: string;
+          requested_by?: string | null;
+          source_url?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "ingredient_corrections_ingredient_id_fkey";
+            columns: ["ingredient_id"];
+            isOneToOne: false;
+            referencedRelation: "ingredients";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       ingredient_families: {
         Row: {
           code: string;
           created_at: string;
           id: string;
           name_fr: string;
+          taxonomy_version_id: string;
         };
         Insert: {
           code: string;
           created_at?: string;
           id?: string;
           name_fr: string;
+          taxonomy_version_id?: string;
         };
         Update: {
           code?: string;
           created_at?: string;
           id?: string;
           name_fr?: string;
+          taxonomy_version_id?: string;
         };
-        Relationships: [];
+        Relationships: [
+          {
+            foreignKeyName: "ingredient_families_taxonomy_version_id_fkey";
+            columns: ["taxonomy_version_id"];
+            isOneToOne: false;
+            referencedRelation: "taxonomy_versions";
+            referencedColumns: ["id"];
+          },
+        ];
       };
       ingredient_relations: {
         Row: {
@@ -597,6 +696,7 @@ export type Database = {
           ingredient_id: string;
           name_fr: string;
           search_name: string | null;
+          taxonomy_version_id: string;
         };
         Insert: {
           created_at?: string;
@@ -604,6 +704,7 @@ export type Database = {
           ingredient_id: string;
           name_fr: string;
           search_name?: string | null;
+          taxonomy_version_id?: string;
         };
         Update: {
           created_at?: string;
@@ -611,6 +712,7 @@ export type Database = {
           ingredient_id?: string;
           name_fr?: string;
           search_name?: string | null;
+          taxonomy_version_id?: string;
         };
         Relationships: [
           {
@@ -618,6 +720,49 @@ export type Database = {
             columns: ["ingredient_id"];
             isOneToOne: false;
             referencedRelation: "ingredients";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "ingredient_synonyms_taxonomy_version_id_fkey";
+            columns: ["taxonomy_version_id"];
+            isOneToOne: false;
+            referencedRelation: "taxonomy_versions";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      ingredient_units: {
+        Row: {
+          ingredient_id: string;
+          is_preferred: boolean;
+          taxonomy_version_id: string;
+          unit: string;
+        };
+        Insert: {
+          ingredient_id: string;
+          is_preferred?: boolean;
+          taxonomy_version_id: string;
+          unit: string;
+        };
+        Update: {
+          ingredient_id?: string;
+          is_preferred?: boolean;
+          taxonomy_version_id?: string;
+          unit?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "ingredient_units_ingredient_id_fkey";
+            columns: ["ingredient_id"];
+            isOneToOne: false;
+            referencedRelation: "ingredients";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "ingredient_units_taxonomy_version_id_fkey";
+            columns: ["taxonomy_version_id"];
+            isOneToOne: false;
+            referencedRelation: "taxonomy_versions";
             referencedColumns: ["id"];
           },
         ];
@@ -634,6 +779,8 @@ export type Database = {
           parent_ingredient_id: string | null;
           search_name: string | null;
           slug: string;
+          source_reference: string | null;
+          taxonomy_version_id: string;
           updated_at: string;
         };
         Insert: {
@@ -647,6 +794,8 @@ export type Database = {
           parent_ingredient_id?: string | null;
           search_name?: string | null;
           slug: string;
+          source_reference?: string | null;
+          taxonomy_version_id?: string;
           updated_at?: string;
         };
         Update: {
@@ -660,6 +809,8 @@ export type Database = {
           parent_ingredient_id?: string | null;
           search_name?: string | null;
           slug?: string;
+          source_reference?: string | null;
+          taxonomy_version_id?: string;
           updated_at?: string;
         };
         Relationships: [
@@ -677,7 +828,50 @@ export type Database = {
             referencedRelation: "ingredients";
             referencedColumns: ["id"];
           },
+          {
+            foreignKeyName: "ingredients_taxonomy_version_id_fkey";
+            columns: ["taxonomy_version_id"];
+            isOneToOne: false;
+            referencedRelation: "taxonomy_versions";
+            referencedColumns: ["id"];
+          },
         ];
+      };
+      legal_document_versions: {
+        Row: {
+          content_hash: string;
+          created_at: string;
+          id: string;
+          is_current: boolean;
+          kind: Database["public"]["Enums"]["legal_document_kind"];
+          published_at: string;
+          requires_acceptance: boolean;
+          title: string;
+          version: string;
+        };
+        Insert: {
+          content_hash: string;
+          created_at?: string;
+          id?: string;
+          is_current?: boolean;
+          kind: Database["public"]["Enums"]["legal_document_kind"];
+          published_at: string;
+          requires_acceptance?: boolean;
+          title: string;
+          version: string;
+        };
+        Update: {
+          content_hash?: string;
+          created_at?: string;
+          id?: string;
+          is_current?: boolean;
+          kind?: Database["public"]["Enums"]["legal_document_kind"];
+          published_at?: string;
+          requires_acceptance?: boolean;
+          title?: string;
+          version?: string;
+        };
+        Relationships: [];
       };
       meal_plans: {
         Row: {
@@ -720,6 +914,148 @@ export type Database = {
           },
           {
             foreignKeyName: "meal_plans_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      onboarding_dish_preferences: {
+        Row: {
+          created_at: string;
+          dish_id: string;
+          learned_from: Database["public"]["Enums"]["preference_source"];
+          signal: Database["public"]["Enums"]["preference_signal"];
+          user_id: string;
+        };
+        Insert: {
+          created_at?: string;
+          dish_id: string;
+          learned_from?: Database["public"]["Enums"]["preference_source"];
+          signal: Database["public"]["Enums"]["preference_signal"];
+          user_id: string;
+        };
+        Update: {
+          created_at?: string;
+          dish_id?: string;
+          learned_from?: Database["public"]["Enums"]["preference_source"];
+          signal?: Database["public"]["Enums"]["preference_signal"];
+          user_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "onboarding_dish_preferences_dish_id_fkey";
+            columns: ["dish_id"];
+            isOneToOne: false;
+            referencedRelation: "onboarding_dishes";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "onboarding_dish_preferences_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      onboarding_dishes: {
+        Row: {
+          cuisine_code: string;
+          description_fr: string;
+          display_order: number;
+          id: string;
+          is_active: boolean;
+          slug: string;
+          title_fr: string;
+        };
+        Insert: {
+          cuisine_code: string;
+          description_fr: string;
+          display_order: number;
+          id: string;
+          is_active?: boolean;
+          slug: string;
+          title_fr: string;
+        };
+        Update: {
+          cuisine_code?: string;
+          description_fr?: string;
+          display_order?: number;
+          id?: string;
+          is_active?: boolean;
+          slug?: string;
+          title_fr?: string;
+        };
+        Relationships: [];
+      };
+      onboarding_events: {
+        Row: {
+          duration_bucket: string | null;
+          event: Database["public"]["Enums"]["onboarding_event_kind"];
+          expires_at: string;
+          id: number;
+          occurred_at: string;
+          step: Database["public"]["Enums"]["onboarding_step_key"];
+          user_id: string;
+        };
+        Insert: {
+          duration_bucket?: string | null;
+          event: Database["public"]["Enums"]["onboarding_event_kind"];
+          expires_at?: string;
+          id?: never;
+          occurred_at?: string;
+          step: Database["public"]["Enums"]["onboarding_step_key"];
+          user_id: string;
+        };
+        Update: {
+          duration_bucket?: string | null;
+          event?: Database["public"]["Enums"]["onboarding_event_kind"];
+          expires_at?: string;
+          id?: never;
+          occurred_at?: string;
+          step?: Database["public"]["Enums"]["onboarding_step_key"];
+          user_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "onboarding_events_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      onboarding_steps: {
+        Row: {
+          completed_at: string | null;
+          data_version: number;
+          skipped_at: string | null;
+          step: Database["public"]["Enums"]["onboarding_step_key"];
+          updated_at: string;
+          user_id: string;
+        };
+        Insert: {
+          completed_at?: string | null;
+          data_version?: number;
+          skipped_at?: string | null;
+          step: Database["public"]["Enums"]["onboarding_step_key"];
+          updated_at?: string;
+          user_id: string;
+        };
+        Update: {
+          completed_at?: string | null;
+          data_version?: number;
+          skipped_at?: string | null;
+          step?: Database["public"]["Enums"]["onboarding_step_key"];
+          updated_at?: string;
+          user_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "onboarding_steps_user_id_fkey";
             columns: ["user_id"];
             isOneToOne: false;
             referencedRelation: "profiles";
@@ -790,6 +1126,7 @@ export type Database = {
           country_code: string;
           created_at: string;
           first_name: string;
+          food_safety_confirmed_at: string | null;
           id: string;
           last_name: string;
           meals_per_week: number;
@@ -804,6 +1141,7 @@ export type Database = {
           country_code?: string;
           created_at?: string;
           first_name: string;
+          food_safety_confirmed_at?: string | null;
           id: string;
           last_name: string;
           meals_per_week?: number;
@@ -818,6 +1156,7 @@ export type Database = {
           country_code?: string;
           created_at?: string;
           first_name?: string;
+          food_safety_confirmed_at?: string | null;
           id?: string;
           last_name?: string;
           meals_per_week?: number;
@@ -1530,6 +1869,39 @@ export type Database = {
           },
         ];
       };
+      taxonomy_versions: {
+        Row: {
+          id: string;
+          imported_at: string;
+          is_current: boolean;
+          locale: string;
+          source_checked_at: string;
+          source_name: string;
+          source_url: string;
+          version: string;
+        };
+        Insert: {
+          id: string;
+          imported_at?: string;
+          is_current?: boolean;
+          locale?: string;
+          source_checked_at: string;
+          source_name: string;
+          source_url: string;
+          version: string;
+        };
+        Update: {
+          id?: string;
+          imported_at?: string;
+          is_current?: boolean;
+          locale?: string;
+          source_checked_at?: string;
+          source_name?: string;
+          source_url?: string;
+          version?: string;
+        };
+        Relationships: [];
+      };
       usage_quotas: {
         Row: {
           limit_count: number;
@@ -1573,6 +1945,7 @@ export type Database = {
           available: boolean;
           created_at: string;
           equipment_id: string;
+          learned_from: Database["public"]["Enums"]["preference_source"];
           updated_at: string;
           user_id: string;
         };
@@ -1580,6 +1953,7 @@ export type Database = {
           available?: boolean;
           created_at?: string;
           equipment_id: string;
+          learned_from?: Database["public"]["Enums"]["preference_source"];
           updated_at?: string;
           user_id: string;
         };
@@ -1587,6 +1961,7 @@ export type Database = {
           available?: boolean;
           created_at?: string;
           equipment_id?: string;
+          learned_from?: Database["public"]["Enums"]["preference_source"];
           updated_at?: string;
           user_id?: string;
         };
@@ -1664,6 +2039,89 @@ export type Database = {
             columns: ["user_id"];
             isOneToOne: false;
             referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      user_ingredient_preferences: {
+        Row: {
+          created_at: string;
+          ingredient_id: string;
+          learned_from: Database["public"]["Enums"]["preference_source"];
+          signal: Database["public"]["Enums"]["preference_signal"];
+          updated_at: string;
+          user_id: string;
+        };
+        Insert: {
+          created_at?: string;
+          ingredient_id: string;
+          learned_from?: Database["public"]["Enums"]["preference_source"];
+          signal: Database["public"]["Enums"]["preference_signal"];
+          updated_at?: string;
+          user_id: string;
+        };
+        Update: {
+          created_at?: string;
+          ingredient_id?: string;
+          learned_from?: Database["public"]["Enums"]["preference_source"];
+          signal?: Database["public"]["Enums"]["preference_signal"];
+          updated_at?: string;
+          user_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "user_ingredient_preferences_ingredient_id_fkey";
+            columns: ["ingredient_id"];
+            isOneToOne: false;
+            referencedRelation: "ingredients";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "user_ingredient_preferences_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      user_legal_consents: {
+        Row: {
+          accepted_at: string;
+          created_at: string;
+          document_version_id: string;
+          id: string;
+          source: string;
+          subject_hash: string;
+          user_id: string | null;
+          withdrawn_at: string | null;
+        };
+        Insert: {
+          accepted_at?: string;
+          created_at?: string;
+          document_version_id: string;
+          id?: string;
+          source: string;
+          subject_hash: string;
+          user_id?: string | null;
+          withdrawn_at?: string | null;
+        };
+        Update: {
+          accepted_at?: string;
+          created_at?: string;
+          document_version_id?: string;
+          id?: string;
+          source?: string;
+          subject_hash?: string;
+          user_id?: string | null;
+          withdrawn_at?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "user_legal_consents_document_version_id_fkey";
+            columns: ["document_version_id"];
+            isOneToOne: false;
+            referencedRelation: "legal_document_versions";
             referencedColumns: ["id"];
           },
         ];
@@ -1746,15 +2204,57 @@ export type Database = {
       };
     };
     Functions: {
+      complete_food_safety_onboarding: {
+        Args: { p_constraints: Json; p_no_constraints: boolean };
+        Returns: undefined;
+      };
+      complete_goals_onboarding: {
+        Args: {
+          p_meals_per_week: number;
+          p_nutrition_goal: Database["public"]["Enums"]["nutrition_goal"];
+          p_servings_per_meal: number;
+        };
+        Returns: undefined;
+      };
+      complete_tastes_and_request_plan: {
+        Args: {
+          p_idempotency_key: string;
+          p_liked_dish_ids: string[];
+          p_skipped: boolean;
+        };
+        Returns: string;
+      };
       consume_auth_rate_limit: {
         Args: { p_action: string; p_identifier_hash: string };
         Returns: boolean;
+      };
+      correct_ingredient: {
+        Args: {
+          p_corrected_value: string;
+          p_field_name: string;
+          p_ingredient_id: string;
+          p_rationale: string;
+          p_source_url: string;
+        };
+        Returns: undefined;
       };
       export_my_account: { Args: never; Returns: Json };
       normalize_search_term: { Args: { value: string }; Returns: string };
       request_account_deletion: {
         Args: { p_confirmation: string; p_idempotency_key: string };
         Returns: string;
+      };
+      save_progressive_profile: {
+        Args: {
+          p_budget_level: Database["public"]["Enums"]["budget_level"];
+          p_cooking_skill: Database["public"]["Enums"]["cooking_skill"];
+          p_cuisine_codes: string[];
+          p_dietary_pattern: Database["public"]["Enums"]["dietary_pattern"];
+          p_equipment_ids: string[];
+          p_ingredient_preferences: Json;
+          p_max_preparation_minutes: number;
+        };
+        Returns: undefined;
       };
     };
     Enums: {
@@ -1800,6 +2300,13 @@ export type Database = {
         | "strict_exclusion"
         | "negative_preference";
       ingredient_relation_kind: "derived_from" | "contains";
+      legal_document_kind:
+        | "privacy_policy"
+        | "terms"
+        | "legal_notice"
+        | "cookie_policy"
+        | "nutrition_disclaimer"
+        | "food_safety_notice";
       meal_plan_status: "draft" | "generating" | "ready" | "archived";
       meal_type: "lunch" | "dinner";
       nutrition_goal:
@@ -1807,13 +2314,21 @@ export type Database = {
         | "balanced"
         | "muscle_gain"
         | "no_specific_goal";
+      onboarding_event_kind: "viewed" | "completed" | "skipped" | "abandoned";
       onboarding_status:
         | "account_created"
         | "food_safety_completed"
         | "goals_completed"
         | "initial_tastes_completed"
         | "completed";
+      onboarding_step_key:
+        | "account"
+        | "food_safety"
+        | "goals"
+        | "initial_tastes"
+        | "first_generation";
       preference_signal: "liked" | "disliked";
+      preference_source: "explicit" | "interaction" | "inferred";
       recipe_cost_level: "low" | "moderate" | "high";
       recipe_difficulty: "easy" | "medium" | "advanced";
       recipe_image_status:
@@ -2006,6 +2521,14 @@ export const Constants = {
         "negative_preference",
       ],
       ingredient_relation_kind: ["derived_from", "contains"],
+      legal_document_kind: [
+        "privacy_policy",
+        "terms",
+        "legal_notice",
+        "cookie_policy",
+        "nutrition_disclaimer",
+        "food_safety_notice",
+      ],
       meal_plan_status: ["draft", "generating", "ready", "archived"],
       meal_type: ["lunch", "dinner"],
       nutrition_goal: [
@@ -2014,6 +2537,7 @@ export const Constants = {
         "muscle_gain",
         "no_specific_goal",
       ],
+      onboarding_event_kind: ["viewed", "completed", "skipped", "abandoned"],
       onboarding_status: [
         "account_created",
         "food_safety_completed",
@@ -2021,7 +2545,15 @@ export const Constants = {
         "initial_tastes_completed",
         "completed",
       ],
+      onboarding_step_key: [
+        "account",
+        "food_safety",
+        "goals",
+        "initial_tastes",
+        "first_generation",
+      ],
       preference_signal: ["liked", "disliked"],
+      preference_source: ["explicit", "interaction", "inferred"],
       recipe_cost_level: ["low", "moderate", "high"],
       recipe_difficulty: ["easy", "medium", "advanced"],
       recipe_image_status: [

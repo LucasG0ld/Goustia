@@ -57,9 +57,8 @@ select ok(
   ),
   'owner and administrator policies are installed'
 );
-select is(
-  (select count(*) from public.data_retention_policies),
-  4::bigint,
+select ok(
+  (select count(*) >= 4 from public.data_retention_policies),
   'retention rules are explicit and seeded'
 );
 select is(

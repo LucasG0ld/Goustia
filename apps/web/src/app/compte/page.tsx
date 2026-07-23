@@ -1,6 +1,7 @@
 import { randomUUID } from "node:crypto";
 import Link from "next/link";
 
+import { ContextualProfilePrompt } from "@/components/contextual-profile-prompt";
 import { Button } from "@/components/ui";
 import {
   DeleteAccountForm,
@@ -45,6 +46,7 @@ export default async function AccountPage() {
           </Button>
         </form>
       </header>
+      <ContextualProfilePrompt userId={user.id} />
 
       <div className="mt-10 grid gap-6">
         <section className="rounded-xl border bg-surface p-6 shadow-card">
@@ -68,6 +70,12 @@ export default async function AccountPage() {
         <section className="rounded-xl border bg-surface p-6 shadow-card">
           <h2 className="text-xl font-semibold">Sécurité et données</h2>
           <div className="mt-5 flex flex-wrap gap-3">
+            <Link
+              className="inline-flex min-h-12 items-center rounded-md border px-4 font-semibold hover:bg-surface-muted"
+              href="/profil-alimentaire"
+            >
+              Compléter mon profil alimentaire
+            </Link>
             <Link
               className="inline-flex min-h-12 items-center rounded-md border px-4 font-semibold hover:bg-surface-muted"
               href="/mot-de-passe-oublie"

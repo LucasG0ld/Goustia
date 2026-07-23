@@ -1,10 +1,35 @@
 import { createClient } from "@supabase/supabase-js";
 import assert from "node:assert/strict";
+import { execFileSync } from "node:child_process";
 import { randomUUID } from "node:crypto";
+import path from "node:path";
 
-const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const publishableKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
-const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+function localStatus() {
+  const executable = path.resolve(
+    "node_modules",
+    "supabase",
+    "dist",
+    "supabase.js",
+  );
+  return JSON.parse(
+    execFileSync(process.execPath, [executable, "status", "-o", "json"], {
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    }),
+  );
+}
+
+const status =
+  process.env.NEXT_PUBLIC_SUPABASE_URL &&
+  process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY &&
+  process.env.SUPABASE_SERVICE_ROLE_KEY
+    ? null
+    : localStatus();
+const url = process.env.NEXT_PUBLIC_SUPABASE_URL ?? status?.API_URL;
+const publishableKey =
+  process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? status?.PUBLISHABLE_KEY;
+const serviceRoleKey =
+  process.env.SUPABASE_SERVICE_ROLE_KEY ?? status?.SERVICE_ROLE_KEY;
 
 if (!url || !publishableKey || !serviceRoleKey) {
   throw new Error(
@@ -32,6 +57,8 @@ try {
         first_name: "Parcours",
         last_name: "Auth",
         birth_date: "1990-01-01",
+        legal_acceptance: true,
+        legal_document_version: "2026-07-23-draft.1",
       },
     },
   });
@@ -46,6 +73,12 @@ try {
     .single();
   assert.ifError(profileError);
   assert.deepEqual(profile, { first_name: "Parcours", last_name: "Auth" });
+  const { count: consentCount, error: consentError } = await client
+    .from("user_legal_consents")
+    .select("id", { count: "exact", head: true })
+    .eq("user_id", userId);
+  assert.ifError(consentError);
+  assert.equal(consentCount, 2);
 
   await client.auth.signOut({ scope: "local" });
   const { error: signinError } = await client.auth.signInWithPassword({
@@ -83,6 +116,35 @@ try {
   });
   assert.ifError(updatedSigninError);
 
+  const { error: safetyError } = await client.rpc(
+    "complete_food_safety_onboarding",
+    { p_constraints: [], p_no_constraints: true },
+  );
+  assert.ifError(safetyError);
+  const { error: goalsError } = await client.rpc("complete_goals_onboarding", {
+    p_nutrition_goal: "balanced",
+    p_meals_per_week: 7,
+    p_servings_per_meal: 2,
+  });
+  assert.ifError(goalsError);
+  const { data: generationJobId, error: tastesError } = await client.rpc(
+    "complete_tastes_and_request_plan",
+    {
+      p_liked_dish_ids: [],
+      p_skipped: true,
+      p_idempotency_key: randomUUID(),
+    },
+  );
+  assert.ifError(tastesError);
+  assert.ok(generationJobId);
+  const { data: generationJob, error: generationError } = await client
+    .from("ai_generation_jobs")
+    .select("status,provider")
+    .eq("id", generationJobId)
+    .single();
+  assert.ifError(generationError);
+  assert.deepEqual(generationJob, { status: "succeeded", provider: "fake" });
+
   const idempotencyKey = randomUUID();
   const { data: requestId, error: requestError } = await client.rpc(
     "request_account_deletion",
@@ -100,7 +162,7 @@ try {
   assert.ifError(auditError);
 
   process.stdout.write(
-    "Auth journey passed: signup, profile, signin, recovery, password and deletion.\n",
+    "Auth/onboarding journey passed: signup, legal versions, recovery, safety, goals, fake plan and deletion.\n",
   );
 } finally {
   if (userId) await admin.auth.admin.deleteUser(userId);
