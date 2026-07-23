@@ -1125,6 +1125,47 @@ export type Database = {
           },
         ];
       };
+      learned_preferences: {
+        Row: {
+          corrected_at: string | null;
+          corrected_score: number | null;
+          score: number;
+          signal_count: number;
+          subject_code: string;
+          subject_kind: Database["public"]["Enums"]["learned_preference_subject_kind"];
+          updated_at: string;
+          user_id: string;
+        };
+        Insert: {
+          corrected_at?: string | null;
+          corrected_score?: number | null;
+          score?: number;
+          signal_count?: number;
+          subject_code: string;
+          subject_kind: Database["public"]["Enums"]["learned_preference_subject_kind"];
+          updated_at?: string;
+          user_id: string;
+        };
+        Update: {
+          corrected_at?: string | null;
+          corrected_score?: number | null;
+          score?: number;
+          signal_count?: number;
+          subject_code?: string;
+          subject_kind?: Database["public"]["Enums"]["learned_preference_subject_kind"];
+          updated_at?: string;
+          user_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "learned_preferences_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       legal_document_versions: {
         Row: {
           content_hash: string;
@@ -1167,6 +1208,7 @@ export type Database = {
           generation_job_id: string | null;
           id: string;
           idempotency_key: string;
+          revision: number;
           status: Database["public"]["Enums"]["meal_plan_status"];
           updated_at: string;
           user_id: string;
@@ -1177,6 +1219,7 @@ export type Database = {
           generation_job_id?: string | null;
           id?: string;
           idempotency_key: string;
+          revision?: number;
           status?: Database["public"]["Enums"]["meal_plan_status"];
           updated_at?: string;
           user_id: string;
@@ -1187,6 +1230,7 @@ export type Database = {
           generation_job_id?: string | null;
           id?: string;
           idempotency_key?: string;
+          revision?: number;
           status?: Database["public"]["Enums"]["meal_plan_status"];
           updated_at?: string;
           user_id?: string;
@@ -1393,6 +1437,61 @@ export type Database = {
           },
         ];
       };
+      planned_meal_mutations: {
+        Row: {
+          created_at: string;
+          id: string;
+          idempotency_key: string;
+          kind: Database["public"]["Enums"]["planned_meal_mutation_kind"];
+          meal_plan_id: string;
+          planned_meal_id: string | null;
+          resulting_plan_revision: number;
+          user_id: string;
+        };
+        Insert: {
+          created_at?: string;
+          id?: string;
+          idempotency_key: string;
+          kind: Database["public"]["Enums"]["planned_meal_mutation_kind"];
+          meal_plan_id: string;
+          planned_meal_id?: string | null;
+          resulting_plan_revision: number;
+          user_id: string;
+        };
+        Update: {
+          created_at?: string;
+          id?: string;
+          idempotency_key?: string;
+          kind?: Database["public"]["Enums"]["planned_meal_mutation_kind"];
+          meal_plan_id?: string;
+          planned_meal_id?: string | null;
+          resulting_plan_revision?: number;
+          user_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "planned_meal_mutations_meal_plan_id_fkey";
+            columns: ["meal_plan_id"];
+            isOneToOne: false;
+            referencedRelation: "meal_plans";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "planned_meal_mutations_planned_meal_id_fkey";
+            columns: ["planned_meal_id"];
+            isOneToOne: false;
+            referencedRelation: "planned_meals";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "planned_meal_mutations_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       planned_meals: {
         Row: {
           cooked_at: string | null;
@@ -1403,6 +1502,7 @@ export type Database = {
           meal_plan_id: string;
           meal_type: Database["public"]["Enums"]["meal_type"];
           recipe_version_id: string | null;
+          revision: number;
           servings: number;
           updated_at: string;
           user_id: string;
@@ -1416,6 +1516,7 @@ export type Database = {
           meal_plan_id: string;
           meal_type: Database["public"]["Enums"]["meal_type"];
           recipe_version_id?: string | null;
+          revision?: number;
           servings: number;
           updated_at?: string;
           user_id: string;
@@ -1429,6 +1530,7 @@ export type Database = {
           meal_plan_id?: string;
           meal_type?: Database["public"]["Enums"]["meal_type"];
           recipe_version_id?: string | null;
+          revision?: number;
           servings?: number;
           updated_at?: string;
           user_id?: string;
@@ -1446,6 +1548,72 @@ export type Database = {
             columns: ["recipe_version_id"];
             isOneToOne: false;
             referencedRelation: "recipe_versions";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      preference_learning_events: {
+        Row: {
+          created_at: string;
+          dislike_reason: Database["public"]["Enums"]["dislike_reason"] | null;
+          id: string;
+          idempotency_key: string;
+          interaction_kind: Database["public"]["Enums"]["preference_interaction_kind"];
+          occurred_at: string;
+          processed_at: string | null;
+          recipe_id: string | null;
+          reverted_at: string | null;
+          status: Database["public"]["Enums"]["preference_learning_status"];
+          subject_code: string;
+          subject_kind: Database["public"]["Enums"]["learned_preference_subject_kind"];
+          user_id: string;
+          weight: number;
+        };
+        Insert: {
+          created_at?: string;
+          dislike_reason?: Database["public"]["Enums"]["dislike_reason"] | null;
+          id?: string;
+          idempotency_key: string;
+          interaction_kind: Database["public"]["Enums"]["preference_interaction_kind"];
+          occurred_at?: string;
+          processed_at?: string | null;
+          recipe_id?: string | null;
+          reverted_at?: string | null;
+          status?: Database["public"]["Enums"]["preference_learning_status"];
+          subject_code: string;
+          subject_kind: Database["public"]["Enums"]["learned_preference_subject_kind"];
+          user_id: string;
+          weight: number;
+        };
+        Update: {
+          created_at?: string;
+          dislike_reason?: Database["public"]["Enums"]["dislike_reason"] | null;
+          id?: string;
+          idempotency_key?: string;
+          interaction_kind?: Database["public"]["Enums"]["preference_interaction_kind"];
+          occurred_at?: string;
+          processed_at?: string | null;
+          recipe_id?: string | null;
+          reverted_at?: string | null;
+          status?: Database["public"]["Enums"]["preference_learning_status"];
+          subject_code?: string;
+          subject_kind?: Database["public"]["Enums"]["learned_preference_subject_kind"];
+          user_id?: string;
+          weight?: number;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "preference_learning_events_recipe_id_fkey";
+            columns: ["recipe_id"];
+            isOneToOne: false;
+            referencedRelation: "recipes";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "preference_learning_events_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
             referencedColumns: ["id"];
           },
         ];
@@ -2601,6 +2769,21 @@ export type Database = {
       };
     };
     Functions: {
+      apply_planned_meal_mutation: {
+        Args: {
+          p_expected_plan_revision: number;
+          p_idempotency_key: string;
+          p_is_locked?: boolean;
+          p_kind: Database["public"]["Enums"]["planned_meal_mutation_kind"];
+          p_meal_date?: string;
+          p_meal_plan_id: string;
+          p_meal_type?: Database["public"]["Enums"]["meal_type"];
+          p_planned_meal_id?: string;
+          p_recipe_version_id?: string;
+          p_servings?: number;
+        };
+        Returns: Json;
+      };
       complete_food_safety_onboarding: {
         Args: { p_constraints: Json; p_no_constraints: boolean };
         Returns: undefined;
@@ -2612,6 +2795,15 @@ export type Database = {
           p_servings_per_meal: number;
         };
         Returns: undefined;
+      };
+      complete_plan_regeneration: {
+        Args: {
+          p_expected_plan_revision: number;
+          p_meal_plan_id: string;
+          p_recipe_ids: string[];
+          p_user_id: string;
+        };
+        Returns: number;
       };
       complete_tastes_and_request_plan: {
         Args: {
@@ -2635,6 +2827,14 @@ export type Database = {
         };
         Returns: undefined;
       };
+      correct_learned_preference: {
+        Args: {
+          p_corrected_score: number;
+          p_subject_code: string;
+          p_subject_kind: Database["public"]["Enums"]["learned_preference_subject_kind"];
+        };
+        Returns: boolean;
+      };
       export_my_account: { Args: never; Returns: Json };
       is_ai_cost_circuit_open: {
         Args: { p_daily_cost_limit_usd: number };
@@ -2657,6 +2857,18 @@ export type Database = {
         };
         Returns: boolean;
       };
+      record_preference_learning_signal: {
+        Args: {
+          p_dislike_reason: Database["public"]["Enums"]["dislike_reason"];
+          p_idempotency_key: string;
+          p_interaction_kind: Database["public"]["Enums"]["preference_interaction_kind"];
+          p_recipe_id: string;
+          p_subject_code: string;
+          p_subject_kind: Database["public"]["Enums"]["learned_preference_subject_kind"];
+          p_weight: number;
+        };
+        Returns: string;
+      };
       request_account_deletion: {
         Args: { p_confirmation: string; p_idempotency_key: string };
         Returns: string;
@@ -2672,6 +2884,10 @@ export type Database = {
           p_user_id: string;
         };
         Returns: string;
+      };
+      revert_preference_learning_signal: {
+        Args: { p_event_id: string };
+        Returns: boolean;
       };
       save_progressive_profile: {
         Args: {
@@ -2751,6 +2967,12 @@ export type Database = {
         | "strict_exclusion"
         | "negative_preference";
       ingredient_relation_kind: "derived_from" | "contains";
+      learned_preference_subject_kind:
+        | "ingredient"
+        | "cuisine"
+        | "duration"
+        | "budget"
+        | "dish_type";
       legal_document_kind:
         | "privacy_policy"
         | "terms"
@@ -2778,6 +3000,15 @@ export type Database = {
         | "goals"
         | "initial_tastes"
         | "first_generation";
+      planned_meal_mutation_kind: "add" | "update" | "remove" | "regenerate";
+      preference_interaction_kind:
+        | "like"
+        | "favorite"
+        | "cooked"
+        | "dislike"
+        | "swap"
+        | "ignored";
+      preference_learning_status: "pending" | "processed" | "failed";
       preference_signal: "liked" | "disliked";
       preference_source: "explicit" | "interaction" | "inferred";
       recipe_cost_level: "low" | "moderate" | "high";
@@ -2980,6 +3211,13 @@ export const Constants = {
         "negative_preference",
       ],
       ingredient_relation_kind: ["derived_from", "contains"],
+      learned_preference_subject_kind: [
+        "ingredient",
+        "cuisine",
+        "duration",
+        "budget",
+        "dish_type",
+      ],
       legal_document_kind: [
         "privacy_policy",
         "terms",
@@ -3011,6 +3249,16 @@ export const Constants = {
         "initial_tastes",
         "first_generation",
       ],
+      planned_meal_mutation_kind: ["add", "update", "remove", "regenerate"],
+      preference_interaction_kind: [
+        "like",
+        "favorite",
+        "cooked",
+        "dislike",
+        "swap",
+        "ignored",
+      ],
+      preference_learning_status: ["pending", "processed", "failed"],
       preference_signal: ["liked", "disliked"],
       preference_source: ["explicit", "interaction", "inferred"],
       recipe_cost_level: ["low", "moderate", "high"],

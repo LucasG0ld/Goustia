@@ -13,6 +13,16 @@ recettes cuisinées sont normalisés et munis de clés d’idempotence. Les repa
 verrouillés sont représentés explicitement et un emplacement jour/type ne peut
 apparaître qu’une fois dans un planning.
 
+La migration `20260723233000_recommendations_planning.sql` ajoute une révision
+optimiste aux plannings et repas ainsi qu’un journal de mutations. La fonction
+atomique de mutation rejette une révision obsolète et la finalisation d’une
+régénération ne remplace que les repas non verrouillés.
+
+Les interactions apprises sont stockées dans `preference_learning_events` et
+agrégées dans `learned_preferences`. Ces tables ne partagent ni type ni fonction
+avec les allergies et exclusions strictes. Une correction utilisateur est
+conservée séparément du score calculé.
+
 Les listes de courses, tâches et tentatives IA, quotas, signalements, rôles et
 audit administratif sont séparés. Les erreurs compréhensibles par l’utilisateur
 restent dans la tâche publique ; les détails techniques sont isolés dans le

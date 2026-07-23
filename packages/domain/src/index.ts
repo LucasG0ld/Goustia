@@ -190,6 +190,31 @@ export {
 } from "./recipe-generation-validation";
 
 export {
+  getRecommendationExclusion,
+  rankRecommendations,
+  recommendationCandidateSchema,
+  recommendationContextSchema,
+  recommendationProfileSchema,
+  scoreEligibleRecommendation,
+  type RankedRecommendation,
+  type RecommendationCandidate,
+  type RecommendationContext,
+  type RecommendationExclusion,
+  type RecommendationProfile,
+  type RecommendationScoreBreakdown,
+} from "./recommendation";
+
+export {
+  aggregatePreferenceSignals,
+  getAgedPreferenceSignalWeight,
+  learnedPreferenceSubjectKinds,
+  preferenceInteractionKinds,
+  preferenceSignalSchema,
+  type LearnedPreference,
+  type PreferenceSignal,
+} from "./preference-learning";
+
+export {
   aiCostRatesSchema,
   aiUsageKinds,
   aiUsageSchema,
