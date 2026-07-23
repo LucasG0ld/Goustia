@@ -94,6 +94,23 @@ export function SignUpForm() {
         name="termsAccepted"
         required
       />
+      <p className="text-sm text-muted">
+        Consulte les{" "}
+        <a
+          className="font-semibold text-brand underline"
+          href="/conditions-utilisation"
+        >
+          conditions d’utilisation
+        </a>{" "}
+        et la{" "}
+        <a
+          className="font-semibold text-brand underline"
+          href="/confidentialite"
+        >
+          politique de confidentialité
+        </a>
+        . Ces documents sont encore des brouillons de développement.
+      </p>
       <Button disabled={pending} type="submit">
         {pending ? "Création…" : "Créer mon compte"}
       </Button>

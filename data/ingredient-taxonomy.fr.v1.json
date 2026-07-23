@@ -1,0 +1,256 @@
+{
+  "version": {
+    "id": "81000000-0000-4000-8000-000000000001",
+    "name": "fr-benchmark-v1"
+  },
+  "families": [
+    {
+      "id": "20000000-0000-4000-8000-000000000001",
+      "code": "legumes",
+      "name": "Légumineuses"
+    },
+    {
+      "id": "20000000-0000-4000-8000-000000000002",
+      "code": "nuts",
+      "name": "Fruits à coque"
+    },
+    {
+      "id": "20000000-0000-4000-8000-000000000003",
+      "code": "dairy",
+      "name": "Produits laitiers"
+    },
+    {
+      "id": "20000000-0000-4000-8000-000000000004",
+      "code": "cereals",
+      "name": "Céréales"
+    },
+    {
+      "id": "20000000-0000-4000-8000-000000000005",
+      "code": "meat",
+      "name": "Viandes"
+    },
+    {
+      "id": "20000000-0000-4000-8000-000000000006",
+      "code": "fish",
+      "name": "Poissons"
+    },
+    {
+      "id": "20000000-0000-4000-8000-000000000007",
+      "code": "vegetables",
+      "name": "Légumes"
+    },
+    {
+      "id": "20000000-0000-4000-8000-000000000008",
+      "code": "aromatics",
+      "name": "Aromates et condiments"
+    }
+  ],
+  "ingredients": [
+    {
+      "id": "30000000-0000-4000-8000-000000000001",
+      "slug": "pois-chiche",
+      "name": "Pois chiche",
+      "family": "legumes",
+      "synonyms": ["Pois chiches"],
+      "units": ["g", "kg"]
+    },
+    {
+      "id": "30000000-0000-4000-8000-000000000002",
+      "slug": "cacahuete",
+      "name": "Cacahuète",
+      "family": "nuts",
+      "synonyms": ["Cacahuètes", "Arachide", "Arachides"],
+      "units": ["g"]
+    },
+    {
+      "id": "30000000-0000-4000-8000-000000000003",
+      "slug": "lait-de-vache",
+      "name": "Lait de vache",
+      "family": "dairy",
+      "synonyms": ["Lait", "Lait entier"],
+      "units": ["ml", "l"]
+    },
+    {
+      "id": "30000000-0000-4000-8000-000000000004",
+      "slug": "ble",
+      "name": "Blé",
+      "family": "cereals",
+      "synonyms": ["Farine de blé"],
+      "units": ["g", "kg"]
+    },
+    {
+      "id": "30000000-0000-4000-8000-000000000005",
+      "slug": "vin-blanc",
+      "name": "Vin blanc",
+      "family": null,
+      "containsAlcohol": true,
+      "synonyms": ["Vin de cuisine"],
+      "units": ["ml"]
+    },
+    {
+      "id": "30000000-0000-4000-8000-000000000006",
+      "slug": "beurre-de-cacahuete",
+      "name": "Beurre de cacahuète",
+      "family": "nuts",
+      "synonyms": ["Pâte d'arachide"],
+      "units": ["g", "tablespoon"]
+    },
+    {
+      "id": "30000000-0000-4000-8000-000000000007",
+      "slug": "oeuf",
+      "name": "Œuf",
+      "family": null,
+      "synonyms": ["Œufs", "Oeuf", "Oeufs"],
+      "units": ["piece"]
+    },
+    {
+      "id": "30000000-0000-4000-8000-000000000008",
+      "slug": "saumon",
+      "name": "Saumon",
+      "family": "fish",
+      "synonyms": ["Filet de saumon"],
+      "units": ["g", "slice"]
+    },
+    {
+      "id": "30000000-0000-4000-8000-000000000009",
+      "slug": "poulet",
+      "name": "Poulet",
+      "family": "meat",
+      "synonyms": ["Blanc de poulet", "Filet de poulet"],
+      "units": ["g", "piece"]
+    },
+    {
+      "id": "30000000-0000-4000-8000-000000000010",
+      "slug": "porc",
+      "name": "Porc",
+      "family": "meat",
+      "synonyms": ["Viande de porc"],
+      "units": ["g"]
+    },
+    {
+      "id": "30000000-0000-4000-8000-000000000011",
+      "slug": "tofu",
+      "name": "Tofu",
+      "family": "legumes",
+      "synonyms": ["Fromage de soja"],
+      "units": ["g"]
+    },
+    {
+      "id": "30000000-0000-4000-8000-000000000012",
+      "slug": "tomate",
+      "name": "Tomate",
+      "family": "vegetables",
+      "synonyms": ["Tomates"],
+      "units": ["g", "piece"]
+    },
+    {
+      "id": "30000000-0000-4000-8000-000000000013",
+      "slug": "pomme-de-terre",
+      "name": "Pomme de terre",
+      "family": "vegetables",
+      "synonyms": ["Pommes de terre", "Patate"],
+      "units": ["g", "kg", "piece"]
+    },
+    {
+      "id": "30000000-0000-4000-8000-000000000014",
+      "slug": "riz",
+      "name": "Riz",
+      "family": "cereals",
+      "synonyms": ["Riz blanc"],
+      "units": ["g", "kg"]
+    },
+    {
+      "id": "30000000-0000-4000-8000-000000000015",
+      "slug": "pates",
+      "name": "Pâtes alimentaires",
+      "family": "cereals",
+      "synonyms": ["Pâtes", "Pate"],
+      "units": ["g", "kg"]
+    },
+    {
+      "id": "30000000-0000-4000-8000-000000000016",
+      "slug": "oignon",
+      "name": "Oignon",
+      "family": "aromatics",
+      "synonyms": ["Oignons"],
+      "units": ["g", "piece"]
+    },
+    {
+      "id": "30000000-0000-4000-8000-000000000017",
+      "slug": "ail",
+      "name": "Ail",
+      "family": "aromatics",
+      "synonyms": ["Gousse d'ail", "Gousses d'ail"],
+      "units": ["g", "clove"]
+    },
+    {
+      "id": "30000000-0000-4000-8000-000000000018",
+      "slug": "biere",
+      "name": "Bière",
+      "family": "cereals",
+      "containsAlcohol": true,
+      "synonyms": ["Bière blonde"],
+      "units": ["ml", "l"]
+    },
+    {
+      "id": "30000000-0000-4000-8000-000000000019",
+      "slug": "creme-fraiche",
+      "name": "Crème fraîche",
+      "family": "dairy",
+      "synonyms": ["Crème liquide"],
+      "units": ["g", "ml"]
+    },
+    {
+      "id": "30000000-0000-4000-8000-000000000020",
+      "slug": "parmesan",
+      "name": "Parmesan",
+      "family": "dairy",
+      "synonyms": ["Parmigiano reggiano"],
+      "units": ["g"]
+    }
+  ],
+  "allergenMappings": [
+    {
+      "ingredient": "cacahuete",
+      "allergen": "peanuts",
+      "relation": "contains"
+    },
+    {
+      "ingredient": "beurre-de-cacahuete",
+      "allergen": "peanuts",
+      "relation": "derived_from"
+    },
+    {
+      "ingredient": "lait-de-vache",
+      "allergen": "milk",
+      "relation": "contains"
+    },
+    {
+      "ingredient": "creme-fraiche",
+      "allergen": "milk",
+      "relation": "contains"
+    },
+    { "ingredient": "parmesan", "allergen": "milk", "relation": "contains" },
+    { "ingredient": "ble", "allergen": "gluten", "relation": "contains" },
+    { "ingredient": "pates", "allergen": "gluten", "relation": "contains" },
+    { "ingredient": "biere", "allergen": "gluten", "relation": "contains" },
+    { "ingredient": "oeuf", "allergen": "eggs", "relation": "contains" },
+    { "ingredient": "saumon", "allergen": "fish", "relation": "contains" },
+    { "ingredient": "tofu", "allergen": "soybeans", "relation": "contains" }
+  ],
+  "relations": [
+    {
+      "parent": "cacahuete",
+      "child": "beurre-de-cacahuete",
+      "kind": "derived_from"
+    },
+    {
+      "parent": "lait-de-vache",
+      "child": "creme-fraiche",
+      "kind": "derived_from"
+    },
+    { "parent": "lait-de-vache", "child": "parmesan", "kind": "derived_from" },
+    { "parent": "ble", "child": "pates", "kind": "derived_from" },
+    { "parent": "ble", "child": "biere", "kind": "derived_from" }
+  ]
+}

@@ -1,9 +1,10 @@
-# Modèle de données P12 à P17
+# Modèle de données P12 à P24
 
 Statut : **implémenté et vérifié localement le 23 juillet 2026**
 
-Migrations principales : `supabase/migrations/20260723162000_product_core.sql`
-et `supabase/migrations/20260723170000_planning_operations_security.sql`.
+Migrations principales : `supabase/migrations/20260723162000_product_core.sql`,
+`supabase/migrations/20260723170000_planning_operations_security.sql` et
+`supabase/migrations/20260723190000_onboarding_legal_taxonomy.sql`.
 
 ## Planning, interactions et opérations
 
@@ -16,6 +17,17 @@ Les listes de courses, tâches et tentatives IA, quotas, signalements, rôles et
 audit administratif sont séparés. Les erreurs compréhensibles par l’utilisateur
 restent dans la tâche publique ; les détails techniques sont isolés dans le
 schéma privé `app_private`.
+
+## Onboarding, documents et taxonomie
+
+Les documents légaux et leurs acceptations sont versionnés. Les étapes
+d’onboarding sont reprenables et leurs événements analytiques ne contiennent
+aucune contrainte alimentaire. Les goûts ingrédients disposent de leur propre
+table et ne peuvent donc pas être interprétés comme des exclusions strictes.
+
+La taxonomie française indique sa version source, ses synonymes, unités,
+relations dérivées et corrections administratives auditées. Son contenu
+éditorial est importé séparément par une commande idempotente.
 
 ## Principes
 

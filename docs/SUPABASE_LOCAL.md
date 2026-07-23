@@ -57,9 +57,10 @@ analyse le SQL, exécute les tests pgTAP, puis génère les types dans
 
 La CI effectue la même reconstruction dans un environnement jetable, exécute le
 parcours Auth réel et publie les types générés comme artefact. Les migrations
-P12 à P17, leurs 72 tests pgTAP et le parcours inscription/connexion/
-récupération/suppression ont été validés localement avec Docker Desktop le 23
-juillet 2026.
+P12 à P24, leurs 118 tests pgTAP et le parcours
+inscription/consentements/connexion/récupération/onboarding/génération
+factice/suppression ont été validés localement avec Docker Desktop le 23
+juillet 2026. La vérification importe aussi la taxonomie française versionnée.
 
 ## Restauration
 

@@ -98,6 +98,9 @@ jobs:
       - name: Rebuild an empty database
         run: npm run supabase:reset
 
+      - name: Import versioned ingredient taxonomy
+        run: npm run supabase:taxonomy:import
+
       - name: Lint database
         run: npm run supabase:lint
 

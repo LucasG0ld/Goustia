@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Link from "next/link";
 
 import { WebVitalsReporter } from "@/components/observability/web-vitals-reporter";
 
@@ -35,6 +36,18 @@ export default function RootLayout({
           Aller au contenu principal
         </a>
         {children}
+        <footer className="mt-auto border-t bg-surface px-6 py-6 text-sm text-muted">
+          <nav
+            aria-label="Informations légales"
+            className="mx-auto flex max-w-5xl flex-wrap gap-x-5 gap-y-2"
+          >
+            <Link href="/confidentialite">Confidentialité</Link>
+            <Link href="/conditions-utilisation">Conditions d’utilisation</Link>
+            <Link href="/mentions-legales">Mentions légales</Link>
+            <Link href="/cookies">Traceurs</Link>
+            <Link href="/avertissement">Sécurité et nutrition</Link>
+          </nav>
+        </footer>
         <WebVitalsReporter />
       </body>
     </html>

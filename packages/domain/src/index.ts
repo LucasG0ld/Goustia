@@ -104,3 +104,20 @@ export {
   type SignInInput,
   type SignUpInput,
 } from "./auth";
+
+export {
+  contextualQuestionKeys,
+  foodSafetyConstraintSchema,
+  foodSafetyStepSchema,
+  getProfileCompletion,
+  getSafeAgeContext,
+  goalsStepSchema,
+  progressiveProfileSchema,
+  selectContextualQuestion,
+  tastesStepSchema,
+  type FoodSafetyStep,
+  type GoalsStep,
+  type ProfileCompletionInput,
+  type ProgressiveProfile,
+  type TastesStep,
+} from "./onboarding-flow";

@@ -66,11 +66,13 @@ export async function signUpAction(
     email: parsed.data.email,
     password: parsed.data.password,
     options: {
-      emailRedirectTo: `${serverEnv.NEXT_PUBLIC_APP_URL}/auth/callback?retour=/compte`,
+      emailRedirectTo: `${serverEnv.NEXT_PUBLIC_APP_URL}/auth/callback?retour=/onboarding`,
       data: {
         first_name: parsed.data.firstName,
         last_name: parsed.data.lastName,
         birth_date: parsed.data.birthDate,
+        legal_acceptance: true,
+        legal_document_version: "2026-07-23-draft.1",
       },
     },
   });
@@ -82,7 +84,7 @@ export async function signUpAction(
         "Impossible de créer le compte. L’adresse est peut-être déjà utilisée.",
     };
   }
-  if (data.session) redirect("/compte");
+  if (data.session) redirect("/onboarding");
   return {
     status: "success",
     message:
