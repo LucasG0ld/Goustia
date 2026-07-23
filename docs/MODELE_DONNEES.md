@@ -95,6 +95,24 @@ Une version publiée doit être validée et datée. Une version générée par I
 indiquer fournisseur, modèle et version de prompt. Une image prête doit avoir un
 chemin de stockage et un texte alternatif.
 
+## Orchestration IA, quotas et images
+
+- `ai_generation_jobs` porte la requête pseudonymisée, l’état, l’étape, la
+  progression, le mode dégradé et les recettes produites ;
+- `ai_generation_job_recipes` relie une tâche aux recettes canoniques validées ;
+- `usage_quotas` contient le quota journalier propre à l’utilisateur ;
+- `app_private.ai_quota_reservations` garantit l’idempotence comptable ;
+- `app_private.global_ai_daily_usage` contient compteurs et coûts globaux ;
+- `app_private.ai_usage_events` conserve chaque consommation fournisseur sans
+  donnée personnelle directe ;
+- `recipe_images` référence la recette canonique, la clé de génération, le
+  SHA-256, le format, le poids, les dimensions et la mention illustrative.
+
+La réservation de tâche et des quotas est transactionnelle. Le stockage d’une
+recette validée, de sa version, de ses ingrédients, étapes, valeurs Ciqual et de
+son lien à la tâche est également atomique. Voir
+[`GENERATION_IA.md`](GENERATION_IA.md).
+
 ## Sécurité
 
 RLS est active sur toutes les tables publiques :

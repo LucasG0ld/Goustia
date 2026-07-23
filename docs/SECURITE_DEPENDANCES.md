@@ -22,6 +22,10 @@ npm propose une rétrogradation forcée de Next.js vers 9.3.3. Cette correction
 est incompatible avec l'architecture et n'est pas sûre; elle n'a pas été
 appliquée.
 
+Le pipeline applicatif de traitement des images dépend directement de Sharp
+`0.35.3`, qui corrige l’avis ci-dessus. La version `0.34.5` signalée reste
+uniquement la dépendance interne imposée par Next.js.
+
 Mesures :
 
 - ne pas mettre cette version en production tant qu'une version compatible de

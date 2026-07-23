@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 768" role="img" aria-labelledby="title description">
+  <title id="title">Illustration générique d’un plat</title>
+  <desc id="description">Une assiette stylisée avec des légumes sur un fond crème.</desc>
+  <rect width="1024" height="768" fill="#fffaf3"/>
+  <circle cx="512" cy="390" r="250" fill="#e0f2e8"/>
+  <ellipse cx="512" cy="430" rx="300" ry="185" fill="#ffffff" stroke="#176b45" stroke-width="18"/>
+  <ellipse cx="512" cy="430" rx="225" ry="125" fill="#f4f1e8"/>
+  <circle cx="445" cy="405" r="48" fill="#d55b32"/>
+  <circle cx="565" cy="450" r="55" fill="#176b45"/>
+  <path d="M490 475c42-90 122-102 165-28-50 76-119 91-165 28Z" fill="#8aaf45"/>
+  <path d="M375 445c28-72 93-85 133-25-36 59-92 76-133 25Z" fill="#f2b84b"/>
+  <path d="M512 160c18 34 18 68 0 102M470 174c18 27 18 54 0 81M554 174c18 27 18 54 0 81" fill="none" stroke="#566057" stroke-width="14" stroke-linecap="round"/>
+  <text x="512" y="690" text-anchor="middle" fill="#566057" font-family="system-ui, sans-serif" font-size="28">Image illustrative</text>
+</svg>

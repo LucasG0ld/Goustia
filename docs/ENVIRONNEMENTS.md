@@ -56,6 +56,12 @@ Les modèles et fournisseurs sont configurables par les variables documentées
 dans `.env.example`. Une clé vide signifie « fonctionnalité inactive », jamais «
 utiliser une valeur par défaut secrète ».
 
+Les garde-fous serveur sont configurés par `AI_TEXT_TIMEOUT_MS`,
+`AI_IMAGE_TIMEOUT_MS`, `AI_MAX_ATTEMPTS`, `AI_USER_DAILY_RECIPE_LIMIT`,
+`AI_GLOBAL_DAILY_RECIPE_LIMIT` et `AI_GLOBAL_DAILY_COST_LIMIT_USD`. Le modèle
+image secondaire est défini par `AI_IMAGE_FALLBACK_MODEL`. Ces variables ne
+doivent jamais être préfixées par `NEXT_PUBLIC_`.
+
 La génération réelle reste désactivée tant que `AI_GENERATION_ENABLED=false`. La
 présence des secrets sélectionnés est testée sans effectuer d’appel réseau. La
 création, la rotation et la réponse à incident sont décrites dans

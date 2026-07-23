@@ -156,6 +156,8 @@ export {
 
 export {
   generatedRecipeIngredientSchema,
+  generatedRecipeBatchJsonSchema,
+  generatedRecipeBatchSchema,
   generatedRecipeJsonSchema,
   generatedRecipeSchema,
   generatedRecipeStepSchema,
@@ -171,3 +173,28 @@ export {
   type RecipeGenerationInput,
   type RecipeGenerationReport,
 } from "./recipe-generation-contract";
+
+export {
+  buildRecipeGenerationPrompt,
+  buildRecipeImagePrompt,
+  recipePromptEnvelopeSchema,
+  RECIPE_IMAGE_PROMPT_VERSION,
+  RECIPE_PROMPT_VERSION,
+} from "./recipe-generation-prompts";
+
+export {
+  canonicalRecipeSlug,
+  recipeDeduplicationSignature,
+  validateGeneratedRecipeConsistency,
+  type RecipeConsistencyReport,
+} from "./recipe-generation-validation";
+
+export {
+  aiCostRatesSchema,
+  aiUsageKinds,
+  aiUsageSchema,
+  estimateAiCostUsd,
+  quotaAlertLevel,
+  type AiCostRates,
+  type AiUsage,
+} from "./ai-usage";

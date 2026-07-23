@@ -163,6 +163,12 @@ pour la validation. L'API Cloudflare sera appelée côté serveur pour les image
 Les identifiants de modèles resteront configurables par variables
 d'environnement.
 
+L’implémentation détaillée des adaptateurs, tâches persistées, images et quotas
+est documentée dans [`GENERATION_IA.md`](GENERATION_IA.md). Les tâches sont
+créées par une réservation PostgreSQL atomique puis exécutées après la réponse
+HTTP. Leur état reste consultable par l’API v1, ce qui permettra au futur client
+mobile de reprendre le suivi sans dépendre du cycle de rendu web.
+
 Toute sortie IA passe par :
 
 1. une validation de forme avec Zod ;

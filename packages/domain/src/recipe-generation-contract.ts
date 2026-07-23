@@ -146,6 +146,10 @@ export const recipeGenerationResultSchema = z.strictObject({
   report: recipeGenerationReportSchema,
 });
 
+export const generatedRecipeBatchSchema = z.strictObject({
+  recipes: z.array(generatedRecipeSchema).min(1).max(14),
+});
+
 export const recipeGenerationInputJsonSchema = z.toJSONSchema(
   recipeGenerationInputSchema,
   {
@@ -158,6 +162,14 @@ export const generatedRecipeJsonSchema = z.toJSONSchema(generatedRecipeSchema, {
   target: "draft-7",
   unrepresentable: "throw",
 });
+
+export const generatedRecipeBatchJsonSchema = z.toJSONSchema(
+  generatedRecipeBatchSchema,
+  {
+    target: "draft-7",
+    unrepresentable: "throw",
+  },
+);
 
 export const validRecipeGenerationInputExample = {
   contractVersion: RECIPE_GENERATION_CONTRACT_VERSION,
@@ -179,7 +191,7 @@ export const validRecipeGenerationInputExample = {
     recipeCount: 1,
     mealType: "dinner",
     avoidRecentRecipeIds: [],
-    requiredIngredientIds: ["tomato"],
+    requiredIngredientIds: ["tomate"],
   },
 } as const;
 
@@ -207,10 +219,10 @@ export const validGeneratedRecipeExample = {
     },
     {
       sourceNameFr: "Tomate",
-      canonicalIngredientId: "tomato",
-      quantity: 2,
-      unit: "piece",
-      preparationNoteFr: "coupées en quartiers",
+      canonicalIngredientId: "tomate",
+      quantity: 250,
+      unit: "g",
+      preparationNoteFr: "coupée en quartiers",
       optional: false,
       declaredAllergenCodes: [],
       mayContainAllergenCodes: [],
