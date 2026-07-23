@@ -1,0 +1,21 @@
+name: API availability
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    if: ${{ vars.PRODUCTION_HEALTHCHECK_URL != '' }}
+    steps:
+      - name: Check production health endpoint
+        shell: bash
+        env:
+          HEALTHCHECK_URL: ${{ vars.PRODUCTION_HEALTHCHECK_URL }}
+        run: curl --fail --silent --show-error --max-time 10 "$HEALTHCHECK_URL"

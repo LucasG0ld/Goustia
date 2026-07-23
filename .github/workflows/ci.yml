@@ -1,0 +1,115 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  APP_ENV: test
+  NEXT_PUBLIC_APP_ENV: test
+  NEXT_PUBLIC_APP_URL: http://127.0.0.1:3000
+  NEXT_PUBLIC_SUPABASE_URL: http://127.0.0.1:54321
+  NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: sb_publishable_ci_placeholder
+  OBSERVABILITY_ENABLED: "false"
+  NEXT_PUBLIC_OBSERVABILITY_ENABLED: "false"
+  LOG_LEVEL: warn
+
+jobs:
+  quality:
+    name: Quality, tests and build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Check formatting
+        run: npm run format:check
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Unit tests with coverage
+        run: npm run test:coverage
+
+      - name: Production build
+        run: npm run build
+
+      - name: Upload coverage
+        uses: actions/upload-artifact@v6
+        with:
+          name: coverage-${{ github.run_id }}
+          path: |
+            apps/web/coverage/
+            packages/domain/coverage/
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Future Playwright tests
+        if: ${{ hashFiles('**/playwright.config.*') != '' }}
+        run: npm run test:e2e --workspaces --if-present
+
+  database:
+    name: Supabase migrations
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Start local Supabase
+        run: npm run supabase:start
+
+      - name: Rebuild an empty database
+        run: npm run supabase:reset
+
+      - name: Lint database
+        run: npm run supabase:lint
+
+      - name: Generate database types
+        run: npm run supabase:types
+
+      - name: Upload generated database types
+        uses: actions/upload-artifact@v6
+        with:
+          name: database-types-${{ github.run_id }}
+          path: apps/web/src/types/database.generated.ts
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Stop local Supabase
+        if: always()
+        run: npm run supabase:stop -- --no-backup

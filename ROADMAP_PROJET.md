@@ -127,52 +127,52 @@ Une fonctionnalité est terminée lorsque :
 
 ### 4.2. Intégration continue — P0
 
-- [ ] Créer le workflow de CI.
-- [ ] Exécuter lint, typecheck et tests sur chaque pull request.
-- [ ] Exécuter le build de production en CI.
-- [ ] Mettre en cache les dépendances npm.
+- [x] Créer le workflow de CI.
+- [x] Exécuter lint, typecheck et tests sur chaque pull request.
+- [x] Exécuter le build de production en CI.
+- [x] Mettre en cache les dépendances npm.
 - [ ] Bloquer la fusion lorsqu'un contrôle échoue.
-- [ ] Ajouter les tests de migrations Supabase.
+- [x] Ajouter les tests de migrations Supabase.
 - [ ] Ajouter les tests Playwright lorsqu'ils seront disponibles.
-- [ ] Générer un rapport de couverture des tests.
+- [x] Générer un rapport de couverture des tests.
 
 ### 4.3. Environnements — P0
 
-- [ ] Créer les environnements local, test, staging et production.
+- [x] Créer les environnements local, test, staging et production.
 - [ ] Créer un projet Supabase de développement.
 - [ ] Créer un projet Supabase de staging.
-- [ ] Prévoir un projet Supabase de production séparé.
-- [ ] Choisir l'hébergeur Next.js.
+- [x] Prévoir un projet Supabase de production séparé.
+- [x] Choisir l'hébergeur Next.js.
 - [ ] Créer le projet de déploiement web.
 - [ ] Configurer les domaines de staging et de production.
-- [ ] Configurer les variables d'environnement par environnement.
-- [ ] Documenter la rotation des secrets.
-- [ ] Vérifier qu'aucune clé privée n'est exposée au navigateur.
+- [x] Configurer les variables d'environnement par environnement.
+- [x] Documenter la rotation des secrets.
+- [x] Vérifier qu'aucune clé privée n'est exposée au navigateur.
 - [ ] Configurer des budgets et limites chez les fournisseurs externes.
 
 ### 4.4. Supabase local et migrations — P0
 
-- [ ] Installer et configurer la CLI Supabase.
-- [ ] Initialiser le dossier `supabase/`.
-- [ ] Configurer Supabase en local.
-- [ ] Définir la convention de nommage des migrations.
-- [ ] Ajouter la commande de création d'une migration.
-- [ ] Ajouter la commande de réinitialisation de la base locale.
-- [ ] Ajouter un jeu de données de développement.
+- [x] Installer et configurer la CLI Supabase.
+- [x] Initialiser le dossier `supabase/`.
+- [x] Configurer Supabase en local.
+- [x] Définir la convention de nommage des migrations.
+- [x] Ajouter la commande de création d'une migration.
+- [x] Ajouter la commande de réinitialisation de la base locale.
+- [x] Ajouter un jeu de données de développement.
 - [ ] Générer les types TypeScript depuis PostgreSQL.
 - [ ] Vérifier les migrations dans une base vide.
-- [ ] Documenter la procédure de restauration.
+- [x] Documenter la procédure de restauration.
 
 ### 4.5. Observabilité — P0
 
-- [ ] Choisir un outil de suivi des erreurs.
-- [ ] Configurer le suivi des erreurs côté navigateur.
-- [ ] Configurer le suivi des erreurs côté serveur.
-- [ ] Ajouter des identifiants de corrélation aux requêtes.
-- [ ] Définir un format de logs structurés.
-- [ ] Masquer les données personnelles dans les logs.
-- [ ] Définir les niveaux de logs.
-- [ ] Ajouter un suivi des performances web.
+- [x] Choisir un outil de suivi des erreurs.
+- [x] Configurer le suivi des erreurs côté navigateur.
+- [x] Configurer le suivi des erreurs côté serveur.
+- [x] Ajouter des identifiants de corrélation aux requêtes.
+- [x] Définir un format de logs structurés.
+- [x] Masquer les données personnelles dans les logs.
+- [x] Définir les niveaux de logs.
+- [x] Ajouter un suivi des performances web.
 - [ ] Ajouter un tableau de bord de disponibilité de l'API.
 - [ ] Ajouter des alertes sur les échecs de génération IA.
 
@@ -182,16 +182,16 @@ Une fonctionnalité est terminée lorsque :
 
 ### 5.1. Parcours et wireframes — P0
 
-- [ ] Cartographier le parcours visiteur.
-- [ ] Cartographier le parcours d'inscription.
-- [ ] Cartographier l'onboarding court.
-- [ ] Cartographier la première génération.
-- [ ] Cartographier le like, dislike et remplacement.
-- [ ] Cartographier le planning hebdomadaire.
-- [ ] Cartographier la liste de courses.
-- [ ] Cartographier la modification du profil.
-- [ ] Cartographier les erreurs et interruptions de génération.
-- [ ] Produire les wireframes pour mobile, tablette et ordinateur.
+- [x] Cartographier le parcours visiteur.
+- [x] Cartographier le parcours d'inscription.
+- [x] Cartographier l'onboarding court.
+- [x] Cartographier la première génération.
+- [x] Cartographier le like, dislike et remplacement.
+- [x] Cartographier le planning hebdomadaire.
+- [x] Cartographier la liste de courses.
+- [x] Cartographier la modification du profil.
+- [x] Cartographier les erreurs et interruptions de génération.
+- [x] Produire les wireframes pour mobile, tablette et ordinateur.
 - [ ] Tester les wireframes avec quelques utilisateurs cibles.
 - [ ] Corriger les principaux points de friction.
 

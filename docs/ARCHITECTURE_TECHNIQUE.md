@@ -52,7 +52,8 @@ l'accès futur aux notifications, au partage, à la caméra ou au mode hors lign
 | API du MVP        | Route Handlers Next.js sous `/api/v1`            | API HTTP consommable ensuite par l'application mobile   |
 | Tests unitaires   | Vitest                                           | Tests rapides des règles métier partagées               |
 | Tests de parcours | Playwright, à ajouter avec les premiers parcours | Validation de l'inscription et du planning              |
-| Déploiement web   | Vercel ou hébergeur Node compatible              | Déploiement naturel de Next.js, sans verrou fonctionnel |
+| Déploiement web   | Vercel                                           | Déploiement naturel de Next.js et prévisualisations     |
+| Suivi d'erreurs   | Sentry, inactif sans DSN                         | Erreurs client/serveur et filtrage des données          |
 | Builds mobiles    | Expo Application Services ou builds natifs       | Publication iOS et Android lorsque le mobile démarre    |
 
 ## 4. Organisation du dépôt
@@ -206,10 +207,8 @@ vers un service dédié sans modifier leurs contrats ni les applications cliente
 
 - Fournisseur final de génération de texte
 - Fournisseur final de génération d'images
-- Hébergeur de production
 - Outil de file d'attente pour les générations longues
 - Bibliothèque complète de composants
-- Solution d'observabilité
 - Paiement et modèle économique
 
 Ces choix n'empêchent pas le développement du MVP et doivent être décidés avec
