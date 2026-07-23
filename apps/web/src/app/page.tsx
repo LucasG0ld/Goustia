@@ -17,15 +17,18 @@ const foundations = [
 
 export default function Home() {
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-5xl flex-col justify-center px-6 py-20 sm:px-10">
+    <main
+      className="mx-auto flex min-h-screen w-full max-w-5xl flex-col justify-center px-6 py-20 sm:px-10"
+      id="contenu-principal"
+    >
       <div className="max-w-3xl">
-        <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">
+        <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-brand">
           Goustia
         </p>
-        <h1 className="text-4xl font-semibold tracking-tight text-slate-950 sm:text-6xl">
+        <h1 className="text-4xl font-semibold tracking-tight text-foreground sm:text-6xl">
           Des repas qui apprennent tes goûts, semaine après semaine.
         </h1>
-        <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
+        <p className="mt-6 max-w-2xl text-lg leading-8 text-muted">
           Indique l&apos;essentiel, découvre ton planning et ajuste chaque
           proposition sans questionnaire interminable.
         </p>
@@ -38,15 +41,17 @@ export default function Home() {
         {foundations.map((foundation) => (
           <article
             key={foundation.title}
-            className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+            className="rounded-xl border bg-surface p-6 shadow-card"
           >
-            <h2 className="font-semibold text-slate-950">{foundation.title}</h2>
-            <p className="mt-2 leading-7 text-slate-600">{foundation.detail}</p>
+            <h2 className="font-semibold text-foreground">
+              {foundation.title}
+            </h2>
+            <p className="mt-2 leading-7 text-muted">{foundation.detail}</p>
           </article>
         ))}
       </section>
 
-      <p className="mt-8 text-sm text-slate-500">
+      <p className="mt-8 text-sm text-muted">
         {nutritionGoals.length} profils alimentaires non médicaux seront
         disponibles au lancement.
       </p>

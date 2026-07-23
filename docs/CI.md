@@ -20,9 +20,10 @@ et lancement manuel avec des permissions de lecture uniquement.
 1. démarrage d'une pile Supabase jetable ;
 2. reconstruction d'une base vide et exécution du seed ;
 3. lint SQL bloquant dès le niveau warning ;
-4. génération des types TypeScript ;
-5. publication des types comme artefact pendant 14 jours ;
-6. arrêt et suppression des données locales même en cas d'échec.
+4. tests pgTAP des contrats, contraintes et politiques RLS ;
+5. génération des types TypeScript ;
+6. publication des types comme artefact pendant 14 jours ;
+7. arrêt et suppression des données locales même en cas d'échec.
 
 Les actions GitHub utilisent Node.js 24 et les versions majeures actuelles
 `actions/checkout@v6`, `actions/setup-node@v6` et `actions/upload-artifact@v6`.

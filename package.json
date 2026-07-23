@@ -20,9 +20,10 @@
     "supabase:stop": "supabase stop",
     "supabase:reset": "supabase db reset",
     "supabase:lint": "supabase db lint --local --level warning --fail-on warning",
+    "supabase:test": "supabase test db --local supabase/tests",
     "supabase:migration:new": "supabase migration new",
     "supabase:types": "supabase gen types typescript --local --schema public > apps/web/src/types/database.generated.ts",
-    "supabase:verify": "npm run supabase:reset && npm run supabase:lint && npm run supabase:types",
+    "supabase:verify": "npm run supabase:reset && npm run supabase:lint && npm run supabase:test && npm run supabase:types",
     "check": "npm run lint && npm run typecheck && npm run test",
     "validate": "npm run format:check && npm run check && npm run build"
   },

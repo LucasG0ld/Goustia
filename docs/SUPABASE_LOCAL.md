@@ -12,6 +12,7 @@ npm run supabase:start
 npm run supabase:stop
 npm run supabase:reset
 npm run supabase:lint
+npm run supabase:test
 npm run supabase:types
 npm run supabase:verify
 ```
@@ -51,12 +52,12 @@ npm run supabase:verify
 ```
 
 Cette commande réinitialise la base, rejoue toutes les migrations et le seed,
-analyse le SQL, puis génère les types dans
+analyse le SQL, exécute les tests pgTAP, puis génère les types dans
 `apps/web/src/types/database.generated.ts`.
 
 La CI effectue la même reconstruction dans un environnement jetable et publie
-les types générés comme artefact. Sur le poste actuel, cette vérification reste
-bloquée tant que Docker n'est pas installé.
+les types générés comme artefact. La migration P12 à P14 et ses 35 tests pgTAP
+ont été validés localement avec Docker Desktop le 23 juillet 2026.
 
 ## Restauration
 

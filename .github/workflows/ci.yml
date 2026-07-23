@@ -101,6 +101,9 @@ jobs:
       - name: Lint database
         run: npm run supabase:lint
 
+      - name: Test database contracts
+        run: npm run supabase:test
+
       - name: Generate database types
         run: npm run supabase:types
 
