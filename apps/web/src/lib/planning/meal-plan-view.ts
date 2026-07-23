@@ -55,15 +55,23 @@ const shortExplanation = (recipe: {
 export async function getActiveMealPlanView(
   userId: string,
 ): Promise<MealPlanView | null> {
+  return getMealPlanView(userId);
+}
+
+export async function getMealPlanView(
+  userId: string,
+  weekStart?: string,
+): Promise<MealPlanView | null> {
   const supabase = await createClient();
-  const { data: plan, error: planError } = await supabase
+  let planQuery = supabase
     .from("meal_plans")
     .select("id,week_start,status,revision")
     .eq("user_id", userId)
-    .in("status", ["draft", "generating", "ready"])
-    .order("week_start", { ascending: false })
-    .limit(1)
-    .maybeSingle();
+    .in("status", ["draft", "generating", "ready"]);
+  planQuery = weekStart
+    ? planQuery.eq("week_start", weekStart)
+    : planQuery.order("week_start", { ascending: false }).limit(1);
+  const { data: plan, error: planError } = await planQuery.maybeSingle();
   if (planError) throw new Error("MEAL_PLAN_READ_FAILED", { cause: planError });
   if (!plan) return null;
 
@@ -184,6 +192,21 @@ export async function getActiveMealPlanView(
         : null,
     })),
   };
+}
+
+export async function getMealPlanHistory(userId: string) {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("meal_plans")
+    .select("week_start,status")
+    .eq("user_id", userId)
+    .order("week_start", { ascending: false })
+    .limit(16);
+  if (error) throw new Error("MEAL_PLAN_HISTORY_READ_FAILED", { cause: error });
+  return data.map((plan) => ({
+    weekStart: plan.week_start,
+    status: plan.status,
+  }));
 }
 
 export async function getAvailableRecipeOptions() {

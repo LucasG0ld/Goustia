@@ -215,6 +215,27 @@ export {
 } from "./preference-learning";
 
 export {
+  addDaysToIsoDate,
+  adjacentIsoWeek,
+  currentIsoWeekStart,
+  DEFAULT_PLANNING_TIME_ZONE,
+  isoWeekEnd,
+  isoWeekStartSchema,
+  localIsoDateAt,
+  startOfIsoWeek,
+} from "./week";
+
+export {
+  expandIngredientIds,
+  scaleNutritionValue,
+  scaleRecipeQuantity,
+  swapAlternativeRequestSchema,
+  swapPreservationSchema,
+  type SwapAlternativeRequest,
+  type SwapPreservation,
+} from "./recipe-experience";
+
+export {
   aiCostRatesSchema,
   aiUsageKinds,
   aiUsageSchema,

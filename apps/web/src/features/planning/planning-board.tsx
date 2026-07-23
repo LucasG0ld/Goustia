@@ -1,5 +1,7 @@
 "use client";
 
+import { addDaysToIsoDate, adjacentIsoWeek } from "@recettes/domain";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMemo, useState, useTransition } from "react";
 
@@ -8,6 +10,7 @@ import type {
   MealPlanView,
   PlannedMealView,
 } from "../../lib/planning/meal-plan-view";
+import { RecipeQuickActions } from "../recipes/recipe-quick-actions";
 
 type RecipeOption = {
   recipeVersionId: string;
@@ -27,19 +30,6 @@ const fullDayFormatter = new Intl.DateTimeFormat("fr-FR", {
   month: "long",
   timeZone: "Europe/Paris",
 });
-
-const addDays = (date: string, days: number) => {
-  const value = new Date(`${date}T12:00:00Z`);
-  value.setUTCDate(value.getUTCDate() + days);
-  return value.toISOString().slice(0, 10);
-};
-
-const currentMonday = () => {
-  const now = new Date();
-  const day = now.getUTCDay() || 7;
-  now.setUTCDate(now.getUTCDate() - day + 1);
-  return now.toISOString().slice(0, 10);
-};
 
 async function requestJson(url: string, init: RequestInit) {
   const response = await fetch(url, {
@@ -90,13 +80,30 @@ function MealEditor({
       }}
     >
       <h3 className="font-semibold">
-        {meal.recipe?.title ?? "Recette en attente"}
+        {meal.recipe ? (
+          <Link
+            href={{
+              pathname: `/recettes/${meal.recipe.recipeId}`,
+              query: { repas: meal.id },
+            }}
+          >
+            {meal.recipe.title}
+          </Link>
+        ) : (
+          "Recette en attente"
+        )}
       </h3>
       {meal.recipe ? (
-        <p className="mt-1 text-sm text-muted">
-          {meal.recipe.durationMinutes} min ·{" "}
-          {meal.recipe.recommendationExplanation}
-        </p>
+        <>
+          <p className="mt-1 text-sm text-muted">
+            {meal.recipe.durationMinutes} min ·{" "}
+            {meal.recipe.recommendationExplanation}
+          </p>
+          <RecipeQuickActions
+            recipeId={meal.recipe.recipeId}
+            surface="planning"
+          />
+        </>
       ) : null}
       <div className="mt-4 grid gap-3 sm:grid-cols-2">
         <label className="text-sm font-semibold">
@@ -175,9 +182,13 @@ function MealEditor({
 export function PlanningBoard({
   initialPlan,
   recipes,
+  weekStart,
+  history,
 }: {
   initialPlan: MealPlanView | null;
   recipes: RecipeOption[];
+  weekStart: string;
+  history: { weekStart: string; status: string }[];
 }) {
   const router = useRouter();
   const [selectedDay, setSelectedDay] = useState(0);
@@ -185,12 +196,10 @@ export function PlanningBoard({
   const [isPending, startTransition] = useTransition();
   const days = useMemo(
     () =>
-      initialPlan
-        ? Array.from({ length: 7 }, (_, index) =>
-            addDays(initialPlan.weekStart, index),
-          )
-        : [],
-    [initialPlan],
+      Array.from({ length: 7 }, (_, index) =>
+        addDaysToIsoDate(weekStart, index),
+      ),
+    [weekStart],
   );
 
   const mutate = async (
@@ -210,18 +219,51 @@ export function PlanningBoard({
 
   if (!initialPlan) {
     return (
-      <EmptyState
-        action={
+      <div>
+        <WeekNavigation history={history} weekStart={weekStart} />
+        <EmptyState
+          action={
+            <Button
+              disabled={isPending}
+              onClick={() => {
+                startTransition(async () => {
+                  try {
+                    await requestJson("/api/v1/meal-plans", {
+                      method: "POST",
+                      body: JSON.stringify({
+                        idempotencyKey: crypto.randomUUID(),
+                        weekStart,
+                      }),
+                    });
+                    router.refresh();
+                  } catch (error) {
+                    setMessage(
+                      error instanceof Error
+                        ? error.message
+                        : "Erreur inattendue.",
+                    );
+                  }
+                });
+              }}
+            >
+              Créer cette semaine
+            </Button>
+          }
+          description="Crée ce planning ou recopie les repas de la semaine précédente."
+          title="Aucun planning pour cette semaine"
+        />
+        <div className="mt-4 text-center">
           <Button
             disabled={isPending}
             onClick={() => {
               startTransition(async () => {
                 try {
-                  await requestJson("/api/v1/meal-plans", {
+                  await requestJson("/api/v1/meal-plans/copy", {
                     method: "POST",
                     body: JSON.stringify({
                       idempotencyKey: crypto.randomUUID(),
-                      weekStart: currentMonday(),
+                      sourceWeekStart: adjacentIsoWeek(weekStart, "previous"),
+                      targetWeekStart: weekStart,
                     }),
                   });
                   router.refresh();
@@ -234,18 +276,22 @@ export function PlanningBoard({
                 }
               });
             }}
+            type="button"
+            variant="ghost"
           >
-            Créer ma semaine
+            Recopier la semaine précédente
           </Button>
-        }
-        description="Commence par créer le planning de la semaine en cours."
-        title="Aucun planning actif"
-      />
+          <p aria-live="polite" className="mt-2 text-sm text-muted">
+            {message}
+          </p>
+        </div>
+      </div>
     );
   }
 
   return (
     <div>
+      <WeekNavigation history={history} weekStart={weekStart} />
       <div
         aria-label="Choisir un jour"
         className="flex gap-2 overflow-x-auto pb-2 md:hidden"
@@ -418,5 +464,64 @@ export function PlanningBoard({
         </Button>
       </div>
     </div>
+  );
+}
+
+function WeekNavigation({
+  history,
+  weekStart,
+}: {
+  history: { weekStart: string; status: string }[];
+  weekStart: string;
+}) {
+  return (
+    <nav
+      aria-label="Navigation entre les semaines"
+      className="mb-6 flex flex-wrap items-center gap-3"
+    >
+      <Link
+        className="inline-flex min-h-11 items-center rounded-md border px-4 font-semibold"
+        href={`/planning?semaine=${adjacentIsoWeek(weekStart, "previous")}`}
+      >
+        ← Semaine précédente
+      </Link>
+      <strong className="mr-auto">
+        Semaine du{" "}
+        {new Date(`${weekStart}T12:00:00Z`).toLocaleDateString("fr-FR")}
+      </strong>
+      <Link
+        className="inline-flex min-h-11 items-center rounded-md border px-4 font-semibold"
+        href={`/planning?semaine=${adjacentIsoWeek(weekStart, "next")}`}
+      >
+        Semaine suivante →
+      </Link>
+      {history.length > 0 ? (
+        <label className="w-full text-sm font-semibold sm:w-auto">
+          Historique
+          <select
+            className="ml-2 min-h-11 rounded-md border bg-surface px-3"
+            onChange={(event) => {
+              if (event.target.value) {
+                window.location.assign(
+                  `/planning?semaine=${event.target.value}`,
+                );
+              }
+            }}
+            value={
+              history.some((item) => item.weekStart === weekStart)
+                ? weekStart
+                : ""
+            }
+          >
+            <option value="">Choisir…</option>
+            {history.map((item) => (
+              <option key={item.weekStart} value={item.weekStart}>
+                {item.weekStart} · {item.status}
+              </option>
+            ))}
+          </select>
+        </label>
+      ) : null}
+    </nav>
   );
 }

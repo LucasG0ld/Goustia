@@ -53,15 +53,29 @@ describe("planning board", () => {
   });
 
   it("renders a useful empty state", () => {
-    render(<PlanningBoard initialPlan={null} recipes={[]} />);
-    expect(screen.getByText("Aucun planning actif")).toBeTruthy();
+    render(
+      <PlanningBoard
+        history={[]}
+        initialPlan={null}
+        recipes={[]}
+        weekStart="2026-07-20"
+      />,
+    );
+    expect(screen.getByText("Aucun planning pour cette semaine")).toBeTruthy();
     expect(
-      screen.getByRole("button", { name: "Créer ma semaine" }),
+      screen.getByRole("button", { name: "Créer cette semaine" }),
     ).toBeTruthy();
   });
 
   it("offers keyboard-accessible alternatives to drag and drop", () => {
-    render(<PlanningBoard initialPlan={plan} recipes={[]} />);
+    render(
+      <PlanningBoard
+        history={[]}
+        initialPlan={plan}
+        recipes={[]}
+        weekStart={plan.weekStart}
+      />,
+    );
     expect(screen.getByRole("tablist")).toBeTruthy();
     expect(screen.getByLabelText("Jour")).toBeTruthy();
     expect(screen.getByLabelText("Repas")).toBeTruthy();
@@ -75,7 +89,12 @@ describe("planning board", () => {
     const { container } = render(
       <main>
         <h1>Planning</h1>
-        <PlanningBoard initialPlan={plan} recipes={[]} />
+        <PlanningBoard
+          history={[]}
+          initialPlan={plan}
+          recipes={[]}
+          weekStart={plan.weekStart}
+        />
       </main>,
     );
     const result = await axe.run(container, {

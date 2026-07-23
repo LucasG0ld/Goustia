@@ -545,6 +545,48 @@ export type Database = {
           },
         ];
       };
+      cooking_sessions: {
+        Row: {
+          checked_steps: number[];
+          recipe_version_id: string;
+          requested_servings: number;
+          timer_ends_at: string | null;
+          updated_at: string;
+          user_id: string;
+        };
+        Insert: {
+          checked_steps?: number[];
+          recipe_version_id: string;
+          requested_servings: number;
+          timer_ends_at?: string | null;
+          updated_at?: string;
+          user_id: string;
+        };
+        Update: {
+          checked_steps?: number[];
+          recipe_version_id?: string;
+          requested_servings?: number;
+          timer_ends_at?: string | null;
+          updated_at?: string;
+          user_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "cooking_sessions_recipe_version_id_fkey";
+            columns: ["recipe_version_id"];
+            isOneToOne: false;
+            referencedRelation: "recipe_versions";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "cooking_sessions_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       cuisine_preferences: {
         Row: {
           created_at: string;
@@ -1666,6 +1708,61 @@ export type Database = {
         };
         Relationships: [];
       };
+      recipe_action_events: {
+        Row: {
+          action: Database["public"]["Enums"]["recipe_action_kind"];
+          created_at: string;
+          expires_at: string;
+          id: string;
+          idempotency_key: string;
+          reason_category: Database["public"]["Enums"]["dislike_reason"] | null;
+          recipe_id: string;
+          surface: string;
+          user_id: string;
+        };
+        Insert: {
+          action: Database["public"]["Enums"]["recipe_action_kind"];
+          created_at?: string;
+          expires_at?: string;
+          id?: string;
+          idempotency_key: string;
+          reason_category?:
+            | Database["public"]["Enums"]["dislike_reason"]
+            | null;
+          recipe_id: string;
+          surface: string;
+          user_id: string;
+        };
+        Update: {
+          action?: Database["public"]["Enums"]["recipe_action_kind"];
+          created_at?: string;
+          expires_at?: string;
+          id?: string;
+          idempotency_key?: string;
+          reason_category?:
+            | Database["public"]["Enums"]["dislike_reason"]
+            | null;
+          recipe_id?: string;
+          surface?: string;
+          user_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "recipe_action_events_recipe_id_fkey";
+            columns: ["recipe_id"];
+            isOneToOne: false;
+            referencedRelation: "recipes";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "recipe_action_events_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       recipe_categories: {
         Row: {
           created_at: string;
@@ -1713,6 +1810,42 @@ export type Database = {
             columns: ["recipe_id"];
             isOneToOne: false;
             referencedRelation: "recipes";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      recipe_equipment_requirements: {
+        Row: {
+          equipment_id: string;
+          notes: string | null;
+          optional: boolean;
+          recipe_version_id: string;
+        };
+        Insert: {
+          equipment_id: string;
+          notes?: string | null;
+          optional?: boolean;
+          recipe_version_id: string;
+        };
+        Update: {
+          equipment_id?: string;
+          notes?: string | null;
+          optional?: boolean;
+          recipe_version_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "recipe_equipment_requirements_equipment_id_fkey";
+            columns: ["equipment_id"];
+            isOneToOne: false;
+            referencedRelation: "equipment";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "recipe_equipment_requirements_recipe_version_id_fkey";
+            columns: ["recipe_version_id"];
+            isOneToOne: false;
+            referencedRelation: "recipe_versions";
             referencedColumns: ["id"];
           },
         ];
@@ -1969,6 +2102,7 @@ export type Database = {
           idempotency_key: string;
           reaction: Database["public"]["Enums"]["recipe_reaction_kind"];
           reason: Database["public"]["Enums"]["dislike_reason"] | null;
+          reason_detail: string | null;
           recipe_id: string;
           updated_at: string;
           user_id: string;
@@ -1979,6 +2113,7 @@ export type Database = {
           idempotency_key: string;
           reaction: Database["public"]["Enums"]["recipe_reaction_kind"];
           reason?: Database["public"]["Enums"]["dislike_reason"] | null;
+          reason_detail?: string | null;
           recipe_id: string;
           updated_at?: string;
           user_id: string;
@@ -1989,6 +2124,7 @@ export type Database = {
           idempotency_key?: string;
           reaction?: Database["public"]["Enums"]["recipe_reaction_kind"];
           reason?: Database["public"]["Enums"]["dislike_reason"] | null;
+          reason_detail?: string | null;
           recipe_id?: string;
           updated_at?: string;
           user_id?: string;
@@ -2045,6 +2181,49 @@ export type Database = {
           },
         ];
       };
+      recipe_substitutions: {
+        Row: {
+          ingredient_id: string;
+          note: string | null;
+          recipe_version_id: string;
+          substitute_ingredient_id: string;
+        };
+        Insert: {
+          ingredient_id: string;
+          note?: string | null;
+          recipe_version_id: string;
+          substitute_ingredient_id: string;
+        };
+        Update: {
+          ingredient_id?: string;
+          note?: string | null;
+          recipe_version_id?: string;
+          substitute_ingredient_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "recipe_substitutions_ingredient_id_fkey";
+            columns: ["ingredient_id"];
+            isOneToOne: false;
+            referencedRelation: "ingredients";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "recipe_substitutions_recipe_version_id_fkey";
+            columns: ["recipe_version_id"];
+            isOneToOne: false;
+            referencedRelation: "recipe_versions";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "recipe_substitutions_substitute_ingredient_id_fkey";
+            columns: ["substitute_ingredient_id"];
+            isOneToOne: false;
+            referencedRelation: "ingredients";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       recipe_swaps: {
         Row: {
           completed_at: string | null;
@@ -2052,6 +2231,11 @@ export type Database = {
           id: string;
           idempotency_key: string;
           planned_meal_id: string;
+          preserve_budget: boolean;
+          preserve_calories: boolean;
+          preserve_duration: boolean;
+          preserve_protein: boolean;
+          quota_counted: boolean;
           reason: Database["public"]["Enums"]["dislike_reason"] | null;
           request_summary: string | null;
           requested_at: string;
@@ -2065,6 +2249,11 @@ export type Database = {
           id?: string;
           idempotency_key: string;
           planned_meal_id: string;
+          preserve_budget?: boolean;
+          preserve_calories?: boolean;
+          preserve_duration?: boolean;
+          preserve_protein?: boolean;
+          quota_counted?: boolean;
           reason?: Database["public"]["Enums"]["dislike_reason"] | null;
           request_summary?: string | null;
           requested_at?: string;
@@ -2078,6 +2267,11 @@ export type Database = {
           id?: string;
           idempotency_key?: string;
           planned_meal_id?: string;
+          preserve_budget?: boolean;
+          preserve_calories?: boolean;
+          preserve_duration?: boolean;
+          preserve_protein?: boolean;
+          quota_counted?: boolean;
           reason?: Database["public"]["Enums"]["dislike_reason"] | null;
           request_summary?: string | null;
           requested_at?: string;
@@ -2185,13 +2379,17 @@ export type Database = {
           publication_status: Database["public"]["Enums"]["recipe_publication_status"];
           published_at: string | null;
           recipe_id: string;
+          reheating_instructions: string | null;
           resting_minutes: number;
           servings: number;
+          storage_instructions: string | null;
+          tips: string[];
           title: string;
           updated_at: string;
           validated_at: string | null;
           validation_notes: string | null;
           validation_status: Database["public"]["Enums"]["recipe_validation_status"];
+          variants: string[];
           version_number: number;
           visual_alt_text: string | null;
           visual_prompt: string | null;
@@ -2213,13 +2411,17 @@ export type Database = {
           publication_status?: Database["public"]["Enums"]["recipe_publication_status"];
           published_at?: string | null;
           recipe_id: string;
+          reheating_instructions?: string | null;
           resting_minutes?: number;
           servings: number;
+          storage_instructions?: string | null;
+          tips?: string[];
           title: string;
           updated_at?: string;
           validated_at?: string | null;
           validation_notes?: string | null;
           validation_status?: Database["public"]["Enums"]["recipe_validation_status"];
+          variants?: string[];
           version_number: number;
           visual_alt_text?: string | null;
           visual_prompt?: string | null;
@@ -2241,13 +2443,17 @@ export type Database = {
           publication_status?: Database["public"]["Enums"]["recipe_publication_status"];
           published_at?: string | null;
           recipe_id?: string;
+          reheating_instructions?: string | null;
           resting_minutes?: number;
           servings?: number;
+          storage_instructions?: string | null;
+          tips?: string[];
           title?: string;
           updated_at?: string;
           validated_at?: string | null;
           validation_notes?: string | null;
           validation_status?: Database["public"]["Enums"]["recipe_validation_status"];
+          variants?: string[];
           version_number?: number;
           visual_alt_text?: string | null;
           visual_prompt?: string | null;
@@ -2805,6 +3011,20 @@ export type Database = {
         };
         Returns: number;
       };
+      complete_recipe_swap: {
+        Args: {
+          p_from_recipe_version_id: string;
+          p_idempotency_key: string;
+          p_planned_meal_id: string;
+          p_preserve_budget: boolean;
+          p_preserve_calories: boolean;
+          p_preserve_duration: boolean;
+          p_preserve_protein: boolean;
+          p_request_summary: string;
+          p_to_recipe_version_id: string;
+        };
+        Returns: Json;
+      };
       complete_tastes_and_request_plan: {
         Args: {
           p_idempotency_key: string;
@@ -2816,6 +3036,14 @@ export type Database = {
       consume_auth_rate_limit: {
         Args: { p_action: string; p_identifier_hash: string };
         Returns: boolean;
+      };
+      copy_meal_plan_week: {
+        Args: {
+          p_idempotency_key: string;
+          p_source_week_start: string;
+          p_target_week_start: string;
+        };
+        Returns: Json;
       };
       correct_ingredient: {
         Args: {
@@ -3011,6 +3239,15 @@ export type Database = {
       preference_learning_status: "pending" | "processed" | "failed";
       preference_signal: "liked" | "disliked";
       preference_source: "explicit" | "interaction" | "inferred";
+      recipe_action_kind:
+        | "like"
+        | "dislike"
+        | "clear_reaction"
+        | "favorite"
+        | "unfavorite"
+        | "cooked"
+        | "shopping"
+        | "report";
       recipe_cost_level: "low" | "moderate" | "high";
       recipe_difficulty: "easy" | "medium" | "advanced";
       recipe_image_status:
@@ -3261,6 +3498,16 @@ export const Constants = {
       preference_learning_status: ["pending", "processed", "failed"],
       preference_signal: ["liked", "disliked"],
       preference_source: ["explicit", "interaction", "inferred"],
+      recipe_action_kind: [
+        "like",
+        "dislike",
+        "clear_reaction",
+        "favorite",
+        "unfavorite",
+        "cooked",
+        "shopping",
+        "report",
+      ],
       recipe_cost_level: ["low", "moderate", "high"],
       recipe_difficulty: ["easy", "medium", "advanced"],
       recipe_image_status: [
