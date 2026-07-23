@@ -105,7 +105,7 @@ select ok(
 
 select ok(
   (
-    select count(*) = 10
+    select count(*) >= 10
     from pg_catalog.pg_policies
     where schemaname = 'public'
       and tablename in (

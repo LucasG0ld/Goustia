@@ -1,4 +1,5 @@
 import { nutritionGoals } from "@recettes/domain";
+import Link from "next/link";
 
 const foundations = [
   {
@@ -55,6 +56,20 @@ export default function Home() {
         {nutritionGoals.length} profils alimentaires non médicaux seront
         disponibles au lancement.
       </p>
+      <div className="mt-8 flex flex-wrap gap-3">
+        <Link
+          className="inline-flex min-h-12 items-center rounded-md bg-brand px-5 font-semibold text-white hover:bg-brand-hover"
+          href="/inscription"
+        >
+          Créer mon compte
+        </Link>
+        <Link
+          className="inline-flex min-h-12 items-center rounded-md border bg-surface px-5 font-semibold hover:bg-brand-soft"
+          href="/connexion"
+        >
+          Se connecter
+        </Link>
+      </div>
     </main>
   );
 }

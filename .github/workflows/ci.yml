@@ -104,6 +104,15 @@ jobs:
       - name: Test database contracts
         run: npm run supabase:test
 
+      - name: Test authentication journey
+        shell: bash
+        run: |
+          eval "$(npx supabase status -o env)"
+          export NEXT_PUBLIC_SUPABASE_URL="$API_URL"
+          export NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY="$PUBLISHABLE_KEY"
+          export SUPABASE_SERVICE_ROLE_KEY="$SERVICE_ROLE_KEY"
+          npm run supabase:test:auth
+
       - name: Generate database types
         run: npm run supabase:types
 

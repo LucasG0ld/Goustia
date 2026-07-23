@@ -55,9 +55,11 @@ Cette commande réinitialise la base, rejoue toutes les migrations et le seed,
 analyse le SQL, exécute les tests pgTAP, puis génère les types dans
 `apps/web/src/types/database.generated.ts`.
 
-La CI effectue la même reconstruction dans un environnement jetable et publie
-les types générés comme artefact. La migration P12 à P14 et ses 35 tests pgTAP
-ont été validés localement avec Docker Desktop le 23 juillet 2026.
+La CI effectue la même reconstruction dans un environnement jetable, exécute le
+parcours Auth réel et publie les types générés comme artefact. Les migrations
+P12 à P17, leurs 72 tests pgTAP et le parcours inscription/connexion/
+récupération/suppression ont été validés localement avec Docker Desktop le 23
+juillet 2026.
 
 ## Restauration
 

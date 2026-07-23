@@ -278,31 +278,31 @@ Une fonctionnalité est terminée lorsque :
 
 ### 6.4. Planning et interactions — P0
 
-- [ ] Créer la table des plannings.
-- [ ] Créer la table des repas planifiés.
-- [ ] Stocker le jour et le type de repas.
-- [ ] Stocker le nombre de portions par repas.
-- [ ] Stocker le verrouillage d'un repas.
-- [ ] Créer la table des réactions.
-- [ ] Stocker likes et dislikes.
-- [ ] Stocker les motifs de dislike.
-- [ ] Stocker les remplacements.
-- [ ] Stocker les recettes cuisinées.
-- [ ] Créer la table des favoris.
-- [ ] Empêcher les favoris en double.
+- [x] Créer la table des plannings.
+- [x] Créer la table des repas planifiés.
+- [x] Stocker le jour et le type de repas.
+- [x] Stocker le nombre de portions par repas.
+- [x] Stocker le verrouillage d'un repas.
+- [x] Créer la table des réactions.
+- [x] Stocker likes et dislikes.
+- [x] Stocker les motifs de dislike.
+- [x] Stocker les remplacements.
+- [x] Stocker les recettes cuisinées.
+- [x] Créer la table des favoris.
+- [x] Empêcher les favoris en double.
 
 ### 6.5. Courses, IA et administration — P0
 
-- [ ] Créer la table des listes de courses.
-- [ ] Créer la table des éléments de courses.
-- [ ] Stocker la quantité, l'unité et l'état coché.
-- [ ] Créer la table des tâches de génération IA.
-- [ ] Stocker statut, tentatives et erreurs techniques.
-- [ ] Stocker fournisseur, modèle, durée et consommation.
-- [ ] Créer les tables de quotas.
-- [ ] Créer la table des signalements.
-- [ ] Créer une piste d'audit d'administration.
-- [ ] Définir les rôles utilisateur et administrateur.
+- [x] Créer la table des listes de courses.
+- [x] Créer la table des éléments de courses.
+- [x] Stocker la quantité, l'unité et l'état coché.
+- [x] Créer la table des tâches de génération IA.
+- [x] Stocker statut, tentatives et erreurs techniques.
+- [x] Stocker fournisseur, modèle, durée et consommation.
+- [x] Créer les tables de quotas.
+- [x] Créer la table des signalements.
+- [x] Créer une piste d'audit d'administration.
+- [x] Définir les rôles utilisateur et administrateur.
 
 ### 6.6. Sécurité PostgreSQL — P0
 
@@ -311,11 +311,11 @@ Une fonctionnalité est terminée lorsque :
 - [x] Écrire les politiques d'insertion par propriétaire.
 - [x] Écrire les politiques de modification par propriétaire.
 - [x] Écrire les politiques de suppression par propriétaire.
-- [ ] Écrire les politiques propres aux administrateurs.
+- [x] Écrire les politiques propres aux administrateurs.
 - [x] Révoquer les droits inutiles des rôles `anon` et `authenticated`.
 - [x] Tester les tentatives d'accès entre deux utilisateurs.
 - [x] Tester les accès sans session.
-- [ ] Tester les fonctions et vues avec RLS.
+- [x] Tester les fonctions et vues avec RLS.
 - [x] Ajouter les index nécessaires aux politiques.
 
 ---
@@ -324,33 +324,33 @@ Une fonctionnalité est terminée lorsque :
 
 ### 7.1. Authentification — P0
 
-- [ ] Configurer Supabase Auth pour le web.
-- [ ] Ajouter le client navigateur.
-- [ ] Finaliser le client serveur.
-- [ ] Ajouter le proxy de rafraîchissement de session.
-- [ ] Implémenter l'inscription par e-mail et mot de passe.
-- [ ] Implémenter la connexion.
-- [ ] Implémenter la déconnexion.
-- [ ] Implémenter la vérification d'adresse e-mail.
-- [ ] Implémenter le mot de passe oublié.
-- [ ] Implémenter la réinitialisation du mot de passe.
-- [ ] Protéger les routes authentifiées avec des claims vérifiés.
-- [ ] Rediriger correctement après authentification.
-- [ ] Gérer session expirée et compte supprimé.
-- [ ] Ajouter une limitation de débit sur les routes d'authentification.
-- [ ] Tester tous les flux d'authentification.
+- [x] Configurer Supabase Auth pour le web.
+- [x] Ajouter le client navigateur.
+- [x] Finaliser le client serveur.
+- [x] Ajouter le proxy de rafraîchissement de session.
+- [x] Implémenter l'inscription par e-mail et mot de passe.
+- [x] Implémenter la connexion.
+- [x] Implémenter la déconnexion.
+- [x] Implémenter la vérification d'adresse e-mail.
+- [x] Implémenter le mot de passe oublié.
+- [x] Implémenter la réinitialisation du mot de passe.
+- [x] Protéger les routes authentifiées avec des claims vérifiés.
+- [x] Rediriger correctement après authentification.
+- [x] Gérer session expirée et compte supprimé.
+- [x] Ajouter une limitation de débit sur les routes d'authentification.
+- [x] Tester tous les flux d'authentification.
 
 ### 7.2. Gestion du compte — P0
 
-- [ ] Afficher les informations du compte.
-- [ ] Permettre la modification du nom et du prénom.
-- [ ] Permettre la modification de l'adresse e-mail.
-- [ ] Permettre la modification du mot de passe.
-- [ ] Permettre la déconnexion de toutes les sessions.
-- [ ] Implémenter la suppression du compte.
-- [ ] Définir le délai et la méthode de suppression.
-- [ ] Supprimer ou anonymiser les données associées.
-- [ ] Implémenter l'export des données personnelles.
+- [x] Afficher les informations du compte.
+- [x] Permettre la modification du nom et du prénom.
+- [x] Permettre la modification de l'adresse e-mail.
+- [x] Permettre la modification du mot de passe.
+- [x] Permettre la déconnexion de toutes les sessions.
+- [x] Implémenter la suppression du compte.
+- [x] Définir le délai et la méthode de suppression.
+- [x] Supprimer ou anonymiser les données associées.
+- [x] Implémenter l'export des données personnelles.
 
 ### 7.3. RGPD et documents légaux — P0
 
