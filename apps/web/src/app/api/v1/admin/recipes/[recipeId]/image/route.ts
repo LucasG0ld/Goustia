@@ -2,7 +2,7 @@ import { RECIPE_IMAGE_PROMPT_VERSION } from "@recettes/domain";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
-import { getVerifiedUser } from "@/lib/auth/current-user";
+import { getAdminUser } from "@/lib/auth/admin";
 import {
   DeterministicImageProcessor,
   RecipeImagePipeline,
@@ -20,7 +20,7 @@ export async function POST(
   _request: Request,
   context: { params: Promise<{ recipeId: string }> },
 ) {
-  const user = await getVerifiedUser();
+  const user = await getAdminUser();
   if (!user) {
     return NextResponse.json(
       { error: "authentication_required" },
@@ -32,15 +32,6 @@ export async function POST(
     return NextResponse.json({ error: "invalid_recipe_id" }, { status: 400 });
   }
   const supabase = createAdminClient();
-  const { data: role } = await supabase
-    .from("user_roles")
-    .select("role")
-    .eq("user_id", user.id)
-    .eq("role", "admin")
-    .maybeSingle();
-  if (!role) {
-    return NextResponse.json({ error: "admin_required" }, { status: 403 });
-  }
   const { data: version, error: versionError } = await supabase
     .from("recipe_versions")
     .select("title, description, visual_prompt, visual_alt_text")

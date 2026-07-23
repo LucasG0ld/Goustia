@@ -236,6 +236,14 @@ export {
 } from "./recipe-experience";
 
 export {
+  aggregateShoppingItems,
+  shoppingListToText,
+  shoppingSourceLineSchema,
+  type AggregatedShoppingItem,
+  type ShoppingSourceLine,
+} from "./shopping";
+
+export {
   aiCostRatesSchema,
   aiUsageKinds,
   aiUsageSchema,

@@ -805,34 +805,34 @@ Une fonctionnalité est terminée lorsque :
 
 ### 15.1. Génération — P0
 
-- [ ] Générer la liste depuis le planning actif.
-- [ ] Agréger les ingrédients identiques.
-- [ ] Convertir les unités compatibles.
-- [ ] Ne pas fusionner des unités incompatibles.
-- [ ] Ajuster selon les portions.
-- [ ] Classer les produits par rayon.
-- [ ] Conserver la provenance par recette.
-- [ ] Mettre à jour la liste après changement du planning.
-- [ ] Préserver les éléments ajoutés manuellement.
+- [x] Générer la liste depuis le planning actif.
+- [x] Agréger les ingrédients identiques.
+- [x] Convertir les unités compatibles.
+- [x] Ne pas fusionner des unités incompatibles.
+- [x] Ajuster selon les portions.
+- [x] Classer les produits par rayon.
+- [x] Conserver la provenance par recette.
+- [x] Mettre à jour la liste après changement du planning.
+- [x] Préserver les éléments ajoutés manuellement.
 
 ### 15.2. Utilisation — P0
 
-- [ ] Afficher la liste par rayon.
-- [ ] Cocher et décocher un élément.
-- [ ] Ajouter un produit manuel.
-- [ ] Modifier quantité et unité.
-- [ ] Supprimer un élément.
-- [ ] Indiquer un produit déjà disponible.
-- [ ] Masquer ou afficher les éléments cochés.
-- [ ] Réinitialiser la liste avec confirmation.
-- [ ] Optimiser l'interface pour un usage en magasin.
+- [x] Afficher la liste par rayon.
+- [x] Cocher et décocher un élément.
+- [x] Ajouter un produit manuel.
+- [x] Modifier quantité et unité.
+- [x] Supprimer un élément.
+- [x] Indiquer un produit déjà disponible.
+- [x] Masquer ou afficher les éléments cochés.
+- [x] Réinitialiser la liste avec confirmation.
+- [x] Optimiser l'interface pour un usage en magasin.
 
 ### 15.3. Partage et export — P1
 
-- [ ] Copier la liste en texte.
-- [ ] Utiliser le partage natif lorsqu'il est disponible.
-- [ ] Imprimer la liste.
-- [ ] Exporter la liste.
+- [x] Copier la liste en texte.
+- [x] Utiliser le partage natif lorsqu'il est disponible.
+- [x] Imprimer la liste.
+- [x] Exporter la liste.
 - [ ] Ajouter une estimation facultative du prix.
 
 ---
@@ -841,38 +841,38 @@ Une fonctionnalité est terminée lorsque :
 
 ### 16.1. Favoris — P0
 
-- [ ] Créer la page des favoris.
-- [ ] Ajouter la recherche.
-- [ ] Ajouter les filtres.
-- [ ] Trier par date, durée et type.
-- [ ] Ouvrir la fiche recette.
-- [ ] Ajouter un favori au planning.
-- [ ] Gérer un favori devenu incompatible avec une nouvelle allergie.
+- [x] Créer la page des favoris.
+- [x] Ajouter la recherche.
+- [x] Ajouter les filtres.
+- [x] Trier par date, durée et type.
+- [x] Ouvrir la fiche recette.
+- [x] Ajouter un favori au planning.
+- [x] Gérer un favori devenu incompatible avec une nouvelle allergie.
 
 ### 16.2. Historique — P1
 
-- [ ] Afficher les recettes proposées.
-- [ ] Afficher les recettes cuisinées.
-- [ ] Afficher likes, dislikes et remplacements.
-- [ ] Filtrer par période.
-- [ ] Réutiliser une ancienne recette.
-- [ ] Expliquer pourquoi une recette n'est plus éligible.
+- [x] Afficher les recettes proposées.
+- [x] Afficher les recettes cuisinées.
+- [x] Afficher likes, dislikes et remplacements.
+- [x] Filtrer par période.
+- [x] Réutiliser une ancienne recette.
+- [x] Expliquer pourquoi une recette n'est plus éligible.
 
 ### 16.3. Profil et préférences — P0
 
-- [ ] Afficher les informations personnelles.
-- [ ] Modifier l'objectif alimentaire.
-- [ ] Modifier le nombre de repas.
-- [ ] Modifier le nombre de portions.
-- [ ] Modifier allergies et exclusions.
-- [ ] Demander une confirmation renforcée avant de retirer une allergie.
-- [ ] Modifier aliments aimés et non aimés.
-- [ ] Modifier budget et durée.
-- [ ] Modifier niveau et équipements.
+- [x] Afficher les informations personnelles.
+- [x] Modifier l'objectif alimentaire.
+- [x] Modifier le nombre de repas.
+- [x] Modifier le nombre de portions.
+- [x] Modifier allergies et exclusions.
+- [x] Demander une confirmation renforcée avant de retirer une allergie.
+- [x] Modifier aliments aimés et non aimés.
+- [x] Modifier budget et durée.
+- [x] Modifier niveau et équipements.
 - [ ] Modifier les préférences de notification.
-- [ ] Afficher le niveau de complétion.
-- [ ] Afficher les préférences déduites.
-- [ ] Permettre de corriger les préférences déduites.
+- [x] Afficher le niveau de complétion.
+- [x] Afficher les préférences déduites.
+- [x] Permettre de corriger les préférences déduites.
 
 ---
 
@@ -880,33 +880,33 @@ Une fonctionnalité est terminée lorsque :
 
 ### 17.1. Accès administrateur — P0
 
-- [ ] Définir le rôle administrateur.
-- [ ] Protéger toutes les routes d'administration.
-- [ ] Ajouter une authentification renforcée.
-- [ ] Journaliser les actions sensibles.
-- [ ] Empêcher l'utilisation de clés de service dans le navigateur.
+- [x] Définir le rôle administrateur.
+- [x] Protéger toutes les routes d'administration.
+- [x] Ajouter une authentification renforcée.
+- [x] Journaliser les actions sensibles.
+- [x] Empêcher l'utilisation de clés de service dans le navigateur.
 
 ### 17.2. Utilisateurs — P1
 
-- [ ] Lister les utilisateurs.
-- [ ] Rechercher un utilisateur.
-- [ ] Consulter les informations strictement nécessaires.
-- [ ] Consulter le statut du compte.
-- [ ] Suspendre un compte.
-- [ ] Traiter une demande de suppression.
-- [ ] Ne pas afficher les données sensibles sans besoin.
+- [x] Lister les utilisateurs.
+- [x] Rechercher un utilisateur.
+- [x] Consulter les informations strictement nécessaires.
+- [x] Consulter le statut du compte.
+- [x] Suspendre un compte.
+- [x] Traiter une demande de suppression.
+- [x] Ne pas afficher les données sensibles sans besoin.
 
 ### 17.3. Recettes et signalements — P0
 
-- [ ] Lister les recettes générées.
-- [ ] Filtrer les recettes non validées.
-- [ ] Consulter les erreurs de validation.
-- [ ] Dépublier une recette.
-- [ ] Corriger une recette.
-- [ ] Relancer une image.
-- [ ] Lister les signalements.
-- [ ] Traiter et clôturer un signalement.
-- [ ] Bloquer un ingrédient ou une combinaison.
+- [x] Lister les recettes générées.
+- [x] Filtrer les recettes non validées.
+- [x] Consulter les erreurs de validation.
+- [x] Dépublier une recette.
+- [x] Corriger une recette.
+- [x] Relancer une image.
+- [x] Lister les signalements.
+- [x] Traiter et clôturer un signalement.
+- [x] Bloquer un ingrédient ou une combinaison.
 
 ### 17.4. IA, quotas et coûts — P0
 
