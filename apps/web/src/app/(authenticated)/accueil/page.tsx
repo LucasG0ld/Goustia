@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { Alert, EmptyState, FoodBadge, RecipeCard } from "@/components/ui";
+import { RecipeQuickActions } from "@/features/recipes/recipe-quick-actions";
 import { requireVerifiedUser } from "@/lib/auth/current-user";
 import { getActiveMealPlanView } from "@/lib/planning/meal-plan-view";
 
@@ -99,11 +100,15 @@ export default async function HomePage() {
                         : "Avancée"
                   }
                   durationMinutes={meal.recipe.durationMinutes}
-                  href={`/recettes/${meal.recipe.recipeId}`}
+                  href={`/recettes/${meal.recipe.recipeId}?repas=${meal.id}`}
                   image={meal.recipe.imageUrl ?? undefined}
                   imageAlt={meal.recipe.imageAlt ?? undefined}
                   reason={meal.recipe.recommendationExplanation}
                   title={meal.recipe.title}
+                />
+                <RecipeQuickActions
+                  recipeId={meal.recipe.recipeId}
+                  surface="home"
                 />
                 {meal.recipe.caloriesKcal !== null ? (
                   <p className="mt-2 text-xs text-muted">

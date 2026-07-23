@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import { currentIsoWeekStart, isoWeekStartSchema } from "@recettes/domain";
 
 import { PlanningBoard } from "@/features/planning/planning-board";
 import { requireVerifiedUser } from "@/lib/auth/current-user";
 import {
-  getActiveMealPlanView,
+  getMealPlanHistory,
+  getMealPlanView,
   getAvailableRecipeOptions,
 } from "@/lib/planning/meal-plan-view";
 
@@ -12,11 +14,20 @@ export const metadata: Metadata = {
   description: "Organise les déjeuners et dîners de ta semaine.",
 };
 
-export default async function PlanningPage() {
+export default async function PlanningPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ semaine?: string }>;
+}) {
   const user = await requireVerifiedUser();
-  const [plan, recipes] = await Promise.all([
-    getActiveMealPlanView(user.id),
+  const requestedWeek = (await searchParams).semaine;
+  const weekStart =
+    isoWeekStartSchema.safeParse(requestedWeek).data ??
+    currentIsoWeekStart(new Date(), "Europe/Paris");
+  const [plan, recipes, history] = await Promise.all([
+    getMealPlanView(user.id, weekStart),
     getAvailableRecipeOptions(),
+    getMealPlanHistory(user.id),
   ]);
   return (
     <main
@@ -34,7 +45,12 @@ export default async function PlanningPage() {
         </p>
       </header>
       <div className="mt-8">
-        <PlanningBoard initialPlan={plan} recipes={recipes} />
+        <PlanningBoard
+          history={history}
+          initialPlan={plan}
+          recipes={recipes}
+          weekStart={weekStart}
+        />
       </div>
     </main>
   );
