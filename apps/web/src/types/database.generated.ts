@@ -9,6 +9,146 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      account_deletion_requests: {
+        Row: {
+          completed_at: string | null;
+          expires_at: string;
+          failure_code: string | null;
+          id: string;
+          idempotency_key: string;
+          requested_at: string;
+          scheduled_for: string;
+          status: Database["public"]["Enums"]["account_deletion_status"];
+          subject_hash: string;
+          user_id: string | null;
+        };
+        Insert: {
+          completed_at?: string | null;
+          expires_at?: string;
+          failure_code?: string | null;
+          id?: string;
+          idempotency_key: string;
+          requested_at?: string;
+          scheduled_for?: string;
+          status?: Database["public"]["Enums"]["account_deletion_status"];
+          subject_hash: string;
+          user_id?: string | null;
+        };
+        Update: {
+          completed_at?: string | null;
+          expires_at?: string;
+          failure_code?: string | null;
+          id?: string;
+          idempotency_key?: string;
+          requested_at?: string;
+          scheduled_for?: string;
+          status?: Database["public"]["Enums"]["account_deletion_status"];
+          subject_hash?: string;
+          user_id?: string | null;
+        };
+        Relationships: [];
+      };
+      admin_audit_log: {
+        Row: {
+          action: string;
+          admin_user_id: string | null;
+          correlation_id: string | null;
+          expires_at: string;
+          id: number;
+          metadata: Json;
+          occurred_at: string;
+          target_id: string | null;
+          target_type: string;
+        };
+        Insert: {
+          action: string;
+          admin_user_id?: string | null;
+          correlation_id?: string | null;
+          expires_at?: string;
+          id?: never;
+          metadata?: Json;
+          occurred_at?: string;
+          target_id?: string | null;
+          target_type: string;
+        };
+        Update: {
+          action?: string;
+          admin_user_id?: string | null;
+          correlation_id?: string | null;
+          expires_at?: string;
+          id?: never;
+          metadata?: Json;
+          occurred_at?: string;
+          target_id?: string | null;
+          target_type?: string;
+        };
+        Relationships: [];
+      };
+      ai_generation_jobs: {
+        Row: {
+          attempt_count: number;
+          completed_at: string | null;
+          created_at: string;
+          expires_at: string;
+          id: string;
+          idempotency_key: string;
+          kind: Database["public"]["Enums"]["ai_job_kind"];
+          model: string | null;
+          prompt_version: string;
+          provider: string | null;
+          started_at: string | null;
+          status: Database["public"]["Enums"]["ai_job_status"];
+          updated_at: string;
+          user_error_code: string | null;
+          user_error_message: string | null;
+          user_id: string | null;
+        };
+        Insert: {
+          attempt_count?: number;
+          completed_at?: string | null;
+          created_at?: string;
+          expires_at?: string;
+          id?: string;
+          idempotency_key: string;
+          kind: Database["public"]["Enums"]["ai_job_kind"];
+          model?: string | null;
+          prompt_version: string;
+          provider?: string | null;
+          started_at?: string | null;
+          status?: Database["public"]["Enums"]["ai_job_status"];
+          updated_at?: string;
+          user_error_code?: string | null;
+          user_error_message?: string | null;
+          user_id?: string | null;
+        };
+        Update: {
+          attempt_count?: number;
+          completed_at?: string | null;
+          created_at?: string;
+          expires_at?: string;
+          id?: string;
+          idempotency_key?: string;
+          kind?: Database["public"]["Enums"]["ai_job_kind"];
+          model?: string | null;
+          prompt_version?: string;
+          provider?: string | null;
+          started_at?: string | null;
+          status?: Database["public"]["Enums"]["ai_job_status"];
+          updated_at?: string;
+          user_error_code?: string | null;
+          user_error_message?: string | null;
+          user_id?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "ai_generation_jobs_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       allergens: {
         Row: {
           code: string;
@@ -60,6 +200,112 @@ export type Database = {
             foreignKeyName: "budget_preferences_user_id_fkey";
             columns: ["user_id"];
             isOneToOne: true;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      content_reports: {
+        Row: {
+          assigned_admin_id: string | null;
+          created_at: string;
+          id: string;
+          kind: Database["public"]["Enums"]["report_kind"];
+          recipe_id: string | null;
+          reporter_id: string | null;
+          resolved_at: string | null;
+          status: Database["public"]["Enums"]["report_status"];
+          updated_at: string;
+          user_message: string;
+        };
+        Insert: {
+          assigned_admin_id?: string | null;
+          created_at?: string;
+          id?: string;
+          kind: Database["public"]["Enums"]["report_kind"];
+          recipe_id?: string | null;
+          reporter_id?: string | null;
+          resolved_at?: string | null;
+          status?: Database["public"]["Enums"]["report_status"];
+          updated_at?: string;
+          user_message: string;
+        };
+        Update: {
+          assigned_admin_id?: string | null;
+          created_at?: string;
+          id?: string;
+          kind?: Database["public"]["Enums"]["report_kind"];
+          recipe_id?: string | null;
+          reporter_id?: string | null;
+          resolved_at?: string | null;
+          status?: Database["public"]["Enums"]["report_status"];
+          updated_at?: string;
+          user_message?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "content_reports_recipe_id_fkey";
+            columns: ["recipe_id"];
+            isOneToOne: false;
+            referencedRelation: "recipes";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "content_reports_reporter_id_fkey";
+            columns: ["reporter_id"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      cooked_recipes: {
+        Row: {
+          cooked_at: string;
+          id: string;
+          idempotency_key: string;
+          planned_meal_id: string | null;
+          recipe_version_id: string;
+          servings: number;
+          user_id: string;
+        };
+        Insert: {
+          cooked_at?: string;
+          id?: string;
+          idempotency_key: string;
+          planned_meal_id?: string | null;
+          recipe_version_id: string;
+          servings: number;
+          user_id: string;
+        };
+        Update: {
+          cooked_at?: string;
+          id?: string;
+          idempotency_key?: string;
+          planned_meal_id?: string | null;
+          recipe_version_id?: string;
+          servings?: number;
+          user_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "cooked_recipes_planned_meal_id_fkey";
+            columns: ["planned_meal_id"];
+            isOneToOne: false;
+            referencedRelation: "planned_meals";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "cooked_recipes_recipe_version_id_fkey";
+            columns: ["recipe_version_id"];
+            isOneToOne: false;
+            referencedRelation: "recipe_versions";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "cooked_recipes_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
             referencedRelation: "profiles";
             referencedColumns: ["id"];
           },
@@ -141,6 +387,27 @@ export type Database = {
           },
         ];
       };
+      data_retention_policies: {
+        Row: {
+          data_category: string;
+          rationale: string;
+          retention_days: number;
+          updated_at: string;
+        };
+        Insert: {
+          data_category: string;
+          rationale: string;
+          retention_days: number;
+          updated_at?: string;
+        };
+        Update: {
+          data_category?: string;
+          rationale?: string;
+          retention_days?: number;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
       duration_preferences: {
         Row: {
           created_at: string;
@@ -196,6 +463,39 @@ export type Database = {
           name_fr?: string;
         };
         Relationships: [];
+      };
+      favorite_recipes: {
+        Row: {
+          created_at: string;
+          recipe_id: string;
+          user_id: string;
+        };
+        Insert: {
+          created_at?: string;
+          recipe_id: string;
+          user_id: string;
+        };
+        Update: {
+          created_at?: string;
+          recipe_id?: string;
+          user_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "favorite_recipes_recipe_id_fkey";
+            columns: ["recipe_id"];
+            isOneToOne: false;
+            referencedRelation: "recipes";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "favorite_recipes_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+        ];
       };
       ingredient_allergens: {
         Row: {
@@ -375,6 +675,111 @@ export type Database = {
             columns: ["parent_ingredient_id"];
             isOneToOne: false;
             referencedRelation: "ingredients";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      meal_plans: {
+        Row: {
+          created_at: string;
+          generation_job_id: string | null;
+          id: string;
+          idempotency_key: string;
+          status: Database["public"]["Enums"]["meal_plan_status"];
+          updated_at: string;
+          user_id: string;
+          week_start: string;
+        };
+        Insert: {
+          created_at?: string;
+          generation_job_id?: string | null;
+          id?: string;
+          idempotency_key: string;
+          status?: Database["public"]["Enums"]["meal_plan_status"];
+          updated_at?: string;
+          user_id: string;
+          week_start: string;
+        };
+        Update: {
+          created_at?: string;
+          generation_job_id?: string | null;
+          id?: string;
+          idempotency_key?: string;
+          status?: Database["public"]["Enums"]["meal_plan_status"];
+          updated_at?: string;
+          user_id?: string;
+          week_start?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "meal_plans_generation_job_id_fkey";
+            columns: ["generation_job_id"];
+            isOneToOne: false;
+            referencedRelation: "ai_generation_jobs";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "meal_plans_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      planned_meals: {
+        Row: {
+          cooked_at: string | null;
+          created_at: string;
+          id: string;
+          is_locked: boolean;
+          meal_date: string;
+          meal_plan_id: string;
+          meal_type: Database["public"]["Enums"]["meal_type"];
+          recipe_version_id: string | null;
+          servings: number;
+          updated_at: string;
+          user_id: string;
+        };
+        Insert: {
+          cooked_at?: string | null;
+          created_at?: string;
+          id?: string;
+          is_locked?: boolean;
+          meal_date: string;
+          meal_plan_id: string;
+          meal_type: Database["public"]["Enums"]["meal_type"];
+          recipe_version_id?: string | null;
+          servings: number;
+          updated_at?: string;
+          user_id: string;
+        };
+        Update: {
+          cooked_at?: string | null;
+          created_at?: string;
+          id?: string;
+          is_locked?: boolean;
+          meal_date?: string;
+          meal_plan_id?: string;
+          meal_type?: Database["public"]["Enums"]["meal_type"];
+          recipe_version_id?: string | null;
+          servings?: number;
+          updated_at?: string;
+          user_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "planned_meals_meal_plan_id_user_id_fkey";
+            columns: ["meal_plan_id", "user_id"];
+            isOneToOne: false;
+            referencedRelation: "meal_plans";
+            referencedColumns: ["id", "user_id"];
+          },
+          {
+            foreignKeyName: "planned_meals_recipe_version_id_fkey";
+            columns: ["recipe_version_id"];
+            isOneToOne: false;
+            referencedRelation: "recipe_versions";
             referencedColumns: ["id"];
           },
         ];
@@ -644,6 +1049,102 @@ export type Database = {
           },
         ];
       };
+      recipe_reaction_events: {
+        Row: {
+          id: string;
+          idempotency_key: string;
+          occurred_at: string;
+          reaction: Database["public"]["Enums"]["recipe_reaction_kind"];
+          reason: Database["public"]["Enums"]["dislike_reason"] | null;
+          recipe_id: string;
+          source: string;
+          user_id: string;
+        };
+        Insert: {
+          id?: string;
+          idempotency_key: string;
+          occurred_at?: string;
+          reaction: Database["public"]["Enums"]["recipe_reaction_kind"];
+          reason?: Database["public"]["Enums"]["dislike_reason"] | null;
+          recipe_id: string;
+          source?: string;
+          user_id: string;
+        };
+        Update: {
+          id?: string;
+          idempotency_key?: string;
+          occurred_at?: string;
+          reaction?: Database["public"]["Enums"]["recipe_reaction_kind"];
+          reason?: Database["public"]["Enums"]["dislike_reason"] | null;
+          recipe_id?: string;
+          source?: string;
+          user_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "recipe_reaction_events_recipe_id_fkey";
+            columns: ["recipe_id"];
+            isOneToOne: false;
+            referencedRelation: "recipes";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "recipe_reaction_events_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      recipe_reactions: {
+        Row: {
+          created_at: string;
+          id: string;
+          idempotency_key: string;
+          reaction: Database["public"]["Enums"]["recipe_reaction_kind"];
+          reason: Database["public"]["Enums"]["dislike_reason"] | null;
+          recipe_id: string;
+          updated_at: string;
+          user_id: string;
+        };
+        Insert: {
+          created_at?: string;
+          id?: string;
+          idempotency_key: string;
+          reaction: Database["public"]["Enums"]["recipe_reaction_kind"];
+          reason?: Database["public"]["Enums"]["dislike_reason"] | null;
+          recipe_id: string;
+          updated_at?: string;
+          user_id: string;
+        };
+        Update: {
+          created_at?: string;
+          id?: string;
+          idempotency_key?: string;
+          reaction?: Database["public"]["Enums"]["recipe_reaction_kind"];
+          reason?: Database["public"]["Enums"]["dislike_reason"] | null;
+          recipe_id?: string;
+          updated_at?: string;
+          user_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "recipe_reactions_recipe_id_fkey";
+            columns: ["recipe_id"];
+            isOneToOne: false;
+            referencedRelation: "recipes";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "recipe_reactions_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       recipe_steps: {
         Row: {
           created_at: string;
@@ -675,6 +1176,77 @@ export type Database = {
             columns: ["recipe_version_id"];
             isOneToOne: false;
             referencedRelation: "recipe_versions";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      recipe_swaps: {
+        Row: {
+          completed_at: string | null;
+          from_recipe_version_id: string;
+          id: string;
+          idempotency_key: string;
+          planned_meal_id: string;
+          reason: Database["public"]["Enums"]["dislike_reason"] | null;
+          request_summary: string | null;
+          requested_at: string;
+          status: Database["public"]["Enums"]["swap_status"];
+          to_recipe_version_id: string | null;
+          user_id: string;
+        };
+        Insert: {
+          completed_at?: string | null;
+          from_recipe_version_id: string;
+          id?: string;
+          idempotency_key: string;
+          planned_meal_id: string;
+          reason?: Database["public"]["Enums"]["dislike_reason"] | null;
+          request_summary?: string | null;
+          requested_at?: string;
+          status?: Database["public"]["Enums"]["swap_status"];
+          to_recipe_version_id?: string | null;
+          user_id: string;
+        };
+        Update: {
+          completed_at?: string | null;
+          from_recipe_version_id?: string;
+          id?: string;
+          idempotency_key?: string;
+          planned_meal_id?: string;
+          reason?: Database["public"]["Enums"]["dislike_reason"] | null;
+          request_summary?: string | null;
+          requested_at?: string;
+          status?: Database["public"]["Enums"]["swap_status"];
+          to_recipe_version_id?: string | null;
+          user_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "recipe_swaps_from_recipe_version_id_fkey";
+            columns: ["from_recipe_version_id"];
+            isOneToOne: false;
+            referencedRelation: "recipe_versions";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "recipe_swaps_planned_meal_id_user_id_fkey";
+            columns: ["planned_meal_id", "user_id"];
+            isOneToOne: false;
+            referencedRelation: "planned_meals";
+            referencedColumns: ["id", "user_id"];
+          },
+          {
+            foreignKeyName: "recipe_swaps_to_recipe_version_id_fkey";
+            columns: ["to_recipe_version_id"];
+            isOneToOne: false;
+            referencedRelation: "recipe_versions";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "recipe_swaps_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
             referencedColumns: ["id"];
           },
         ];
@@ -843,6 +1415,159 @@ export type Database = {
         };
         Relationships: [];
       };
+      shopping_list_items: {
+        Row: {
+          aisle: string | null;
+          checked_at: string | null;
+          created_at: string;
+          id: string;
+          ingredient_id: string | null;
+          manual_label: string | null;
+          quantity: number | null;
+          shopping_list_id: string;
+          source_recipe_version_id: string | null;
+          unit: string | null;
+          updated_at: string;
+          user_id: string;
+        };
+        Insert: {
+          aisle?: string | null;
+          checked_at?: string | null;
+          created_at?: string;
+          id?: string;
+          ingredient_id?: string | null;
+          manual_label?: string | null;
+          quantity?: number | null;
+          shopping_list_id: string;
+          source_recipe_version_id?: string | null;
+          unit?: string | null;
+          updated_at?: string;
+          user_id: string;
+        };
+        Update: {
+          aisle?: string | null;
+          checked_at?: string | null;
+          created_at?: string;
+          id?: string;
+          ingredient_id?: string | null;
+          manual_label?: string | null;
+          quantity?: number | null;
+          shopping_list_id?: string;
+          source_recipe_version_id?: string | null;
+          unit?: string | null;
+          updated_at?: string;
+          user_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "shopping_list_items_ingredient_id_fkey";
+            columns: ["ingredient_id"];
+            isOneToOne: false;
+            referencedRelation: "ingredients";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "shopping_list_items_shopping_list_id_user_id_fkey";
+            columns: ["shopping_list_id", "user_id"];
+            isOneToOne: false;
+            referencedRelation: "shopping_lists";
+            referencedColumns: ["id", "user_id"];
+          },
+          {
+            foreignKeyName: "shopping_list_items_source_recipe_version_id_fkey";
+            columns: ["source_recipe_version_id"];
+            isOneToOne: false;
+            referencedRelation: "recipe_versions";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      shopping_lists: {
+        Row: {
+          created_at: string;
+          id: string;
+          idempotency_key: string;
+          meal_plan_id: string | null;
+          status: Database["public"]["Enums"]["shopping_list_status"];
+          title: string;
+          updated_at: string;
+          user_id: string;
+        };
+        Insert: {
+          created_at?: string;
+          id?: string;
+          idempotency_key: string;
+          meal_plan_id?: string | null;
+          status?: Database["public"]["Enums"]["shopping_list_status"];
+          title: string;
+          updated_at?: string;
+          user_id: string;
+        };
+        Update: {
+          created_at?: string;
+          id?: string;
+          idempotency_key?: string;
+          meal_plan_id?: string | null;
+          status?: Database["public"]["Enums"]["shopping_list_status"];
+          title?: string;
+          updated_at?: string;
+          user_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "shopping_lists_meal_plan_id_fkey";
+            columns: ["meal_plan_id"];
+            isOneToOne: false;
+            referencedRelation: "meal_plans";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "shopping_lists_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      usage_quotas: {
+        Row: {
+          limit_count: number;
+          quota_key: string;
+          updated_at: string;
+          used_count: number;
+          user_id: string;
+          window_end: string;
+          window_start: string;
+        };
+        Insert: {
+          limit_count: number;
+          quota_key: string;
+          updated_at?: string;
+          used_count?: number;
+          user_id: string;
+          window_end: string;
+          window_start: string;
+        };
+        Update: {
+          limit_count?: number;
+          quota_key?: string;
+          updated_at?: string;
+          used_count?: number;
+          user_id?: string;
+          window_end?: string;
+          window_start?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "usage_quotas_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       user_equipment: {
         Row: {
           available: boolean;
@@ -943,14 +1668,109 @@ export type Database = {
           },
         ];
       };
+      user_roles: {
+        Row: {
+          granted_at: string;
+          granted_by: string | null;
+          role: Database["public"]["Enums"]["app_role"];
+          user_id: string;
+        };
+        Insert: {
+          granted_at?: string;
+          granted_by?: string | null;
+          role?: Database["public"]["Enums"]["app_role"];
+          user_id: string;
+        };
+        Update: {
+          granted_at?: string;
+          granted_by?: string | null;
+          role?: Database["public"]["Enums"]["app_role"];
+          user_id?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: {
-      [_ in never]: never;
+      admin_ai_attempts: {
+        Row: {
+          attempt_number: number | null;
+          created_at: string | null;
+          duration_ms: number | null;
+          estimated_cost_usd: number | null;
+          id: string | null;
+          image_count: number | null;
+          input_tokens: number | null;
+          job_id: string | null;
+          model: string | null;
+          output_tokens: number | null;
+          provider: string | null;
+          technical_error_code: string | null;
+        };
+        Insert: {
+          attempt_number?: number | null;
+          created_at?: string | null;
+          duration_ms?: number | null;
+          estimated_cost_usd?: number | null;
+          id?: string | null;
+          image_count?: number | null;
+          input_tokens?: number | null;
+          job_id?: string | null;
+          model?: string | null;
+          output_tokens?: number | null;
+          provider?: string | null;
+          technical_error_code?: string | null;
+        };
+        Update: {
+          attempt_number?: number | null;
+          created_at?: string | null;
+          duration_ms?: number | null;
+          estimated_cost_usd?: number | null;
+          id?: string | null;
+          image_count?: number | null;
+          input_tokens?: number | null;
+          job_id?: string | null;
+          model?: string | null;
+          output_tokens?: number | null;
+          provider?: string | null;
+          technical_error_code?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "ai_generation_attempts_job_id_fkey";
+            columns: ["job_id"];
+            isOneToOne: false;
+            referencedRelation: "ai_generation_jobs";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
     };
     Functions: {
+      consume_auth_rate_limit: {
+        Args: { p_action: string; p_identifier_hash: string };
+        Returns: boolean;
+      };
+      export_my_account: { Args: never; Returns: Json };
       normalize_search_term: { Args: { value: string }; Returns: string };
+      request_account_deletion: {
+        Args: { p_confirmation: string; p_idempotency_key: string };
+        Returns: string;
+      };
     };
     Enums: {
+      account_deletion_status:
+        | "requested"
+        | "processing"
+        | "completed"
+        | "failed";
+      ai_job_kind: "meal_plan" | "recipe" | "recipe_swap" | "recipe_image";
+      ai_job_status:
+        | "queued"
+        | "running"
+        | "succeeded"
+        | "failed"
+        | "cancelled";
+      app_role: "user" | "admin";
       budget_level: "low" | "moderate" | "flexible";
       constraint_severity:
         | "none"
@@ -966,12 +1786,22 @@ export type Database = {
         | "pescatarian"
         | "pork_free"
         | "other";
+      dislike_reason:
+        | "ingredient"
+        | "too_long"
+        | "too_complex"
+        | "too_expensive"
+        | "recently_eaten"
+        | "dish_type"
+        | "other";
       food_constraint_kind:
         | "allergy"
         | "intolerance"
         | "strict_exclusion"
         | "negative_preference";
       ingredient_relation_kind: "derived_from" | "contains";
+      meal_plan_status: "draft" | "generating" | "ready" | "archived";
+      meal_type: "lunch" | "dinner";
       nutrition_goal:
         | "weight_loss"
         | "balanced"
@@ -998,7 +1828,12 @@ export type Database = {
         | "unlisted"
         | "published"
         | "archived";
+      recipe_reaction_kind: "like" | "dislike";
       recipe_validation_status: "draft" | "pending" | "validated" | "rejected";
+      report_kind: "food_safety" | "recipe_error" | "image" | "other";
+      report_status: "open" | "investigating" | "resolved" | "dismissed";
+      shopping_list_status: "draft" | "active" | "completed" | "archived";
+      swap_status: "requested" | "completed" | "failed" | "cancelled";
     };
     CompositeTypes: {
       [_ in never]: never;
@@ -1129,6 +1964,15 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
+      account_deletion_status: [
+        "requested",
+        "processing",
+        "completed",
+        "failed",
+      ],
+      ai_job_kind: ["meal_plan", "recipe", "recipe_swap", "recipe_image"],
+      ai_job_status: ["queued", "running", "succeeded", "failed", "cancelled"],
+      app_role: ["user", "admin"],
       budget_level: ["low", "moderate", "flexible"],
       constraint_severity: [
         "none",
@@ -1146,6 +1990,15 @@ export const Constants = {
         "pork_free",
         "other",
       ],
+      dislike_reason: [
+        "ingredient",
+        "too_long",
+        "too_complex",
+        "too_expensive",
+        "recently_eaten",
+        "dish_type",
+        "other",
+      ],
       food_constraint_kind: [
         "allergy",
         "intolerance",
@@ -1153,6 +2006,8 @@ export const Constants = {
         "negative_preference",
       ],
       ingredient_relation_kind: ["derived_from", "contains"],
+      meal_plan_status: ["draft", "generating", "ready", "archived"],
+      meal_type: ["lunch", "dinner"],
       nutrition_goal: [
         "weight_loss",
         "balanced",
@@ -1183,7 +2038,12 @@ export const Constants = {
         "published",
         "archived",
       ],
+      recipe_reaction_kind: ["like", "dislike"],
       recipe_validation_status: ["draft", "pending", "validated", "rejected"],
+      report_kind: ["food_safety", "recipe_error", "image", "other"],
+      report_status: ["open", "investigating", "resolved", "dismissed"],
+      shopping_list_status: ["draft", "active", "completed", "archived"],
+      swap_status: ["requested", "completed", "failed", "cancelled"],
     },
   },
 } as const;

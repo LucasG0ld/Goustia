@@ -1,8 +1,21 @@
-# Modèle de données P12 à P14
+# Modèle de données P12 à P17
 
 Statut : **implémenté et vérifié localement le 23 juillet 2026**
 
-Migration principale : `supabase/migrations/20260723162000_product_core.sql`.
+Migrations principales : `supabase/migrations/20260723162000_product_core.sql`
+et `supabase/migrations/20260723170000_planning_operations_security.sql`.
+
+## Planning, interactions et opérations
+
+Les plannings hebdomadaires, repas, réactions, remplacements, favoris et
+recettes cuisinées sont normalisés et munis de clés d’idempotence. Les repas
+verrouillés sont représentés explicitement et un emplacement jour/type ne peut
+apparaître qu’une fois dans un planning.
+
+Les listes de courses, tâches et tentatives IA, quotas, signalements, rôles et
+audit administratif sont séparés. Les erreurs compréhensibles par l’utilisateur
+restent dans la tâche publique ; les détails techniques sont isolés dans le
+schéma privé `app_private`.
 
 ## Principes
 
