@@ -16,9 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Recettes personnalisées",
-  description:
-    "Planifiez des repas adaptés à vos goûts et à vos contraintes alimentaires.",
+  title: "Goustia",
+  description: "Des repas qui apprennent tes goûts, semaine après semaine.",
 };
 
 export default function RootLayout({

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { canReceiveAlcoholRecipes, getAgeAt } from "./age";
+import { canCreateAccount, canReceiveAlcoholRecipes, getAgeAt } from "./age";
 
 describe("age rules", () => {
   it("calculates age before and after the birthday", () => {
@@ -24,6 +24,17 @@ describe("age rules", () => {
         new Date("2000-01-01T00:00:00.000Z"),
         referenceDate,
       ),
+    ).toBe(true);
+  });
+
+  it("allows account creation from the eighteenth birthday", () => {
+    const birthDate = new Date("2008-08-10T00:00:00.000Z");
+
+    expect(
+      canCreateAccount(birthDate, new Date("2026-08-09T12:00:00.000Z")),
+    ).toBe(false);
+    expect(
+      canCreateAccount(birthDate, new Date("2026-08-10T12:00:00.000Z")),
     ).toBe(true);
   });
 });

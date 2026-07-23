@@ -63,33 +63,33 @@ Une fonctionnalité est terminée lorsque :
 
 ### 3.1. Identité du produit — P0
 
-- [ ] Choisir le nom définitif de l'application.
+- [x] Choisir le nom définitif de l'application.
 - [ ] Vérifier la disponibilité du nom de domaine.
 - [ ] Vérifier la disponibilité du nom sur les stores mobiles.
 - [ ] Définir le logo et l'icône.
-- [ ] Définir les couleurs, typographies et principes visuels.
-- [ ] Définir le ton éditorial de l'application.
-- [ ] Définir la manière de présenter les images générées comme illustratives.
+- [x] Définir les couleurs, typographies et principes visuels.
+- [x] Définir le ton éditorial de l'application.
+- [x] Définir la manière de présenter les images générées comme illustratives.
 
 ### 3.2. Décisions produit — P0
 
-- [ ] Définir précisément le public cible initial.
-- [ ] Définir l'âge minimum autorisé pour créer un compte.
-- [ ] Décider si un mineur doit obtenir une autorisation parentale.
-- [ ] Définir les pays accessibles lors du lancement.
-- [ ] Définir les types de repas disponibles dans le MVP.
-- [ ] Définir le nombre maximal de repas générés par semaine.
-- [ ] Définir le nombre maximal de personnes par repas.
-- [ ] Définir la fréquence maximale de régénération.
-- [ ] Définir les critères exacts des objectifs perte de poids, équilibre et
+- [x] Définir précisément le public cible initial.
+- [x] Définir l'âge minimum autorisé pour créer un compte.
+- [x] Décider si un mineur doit obtenir une autorisation parentale.
+- [x] Définir les pays accessibles lors du lancement.
+- [x] Définir les types de repas disponibles dans le MVP.
+- [x] Définir le nombre maximal de repas générés par semaine.
+- [x] Définir le nombre maximal de personnes par repas.
+- [x] Définir la fréquence maximale de régénération.
+- [x] Définir les critères exacts des objectifs perte de poids, équilibre et
       prise de masse.
-- [ ] Décider si les objectifs nutritionnels utilisent des fourchettes ou des
+- [x] Décider si les objectifs nutritionnels utilisent des fourchettes ou des
       valeurs précises.
-- [ ] Définir la politique de répétition des recettes.
-- [ ] Définir le comportement d'un dislike sans motif.
-- [ ] Définir le comportement d'un remplacement demandé plusieurs fois.
-- [ ] Définir les fonctionnalités disponibles sans compte.
-- [ ] Décider si l'adresse e-mail doit être vérifiée avant la génération.
+- [x] Définir la politique de répétition des recettes.
+- [x] Définir le comportement d'un dislike sans motif.
+- [x] Définir le comportement d'un remplacement demandé plusieurs fois.
+- [x] Définir les fonctionnalités disponibles sans compte.
+- [x] Décider si l'adresse e-mail doit être vérifiée avant la génération.
 
 ### 3.3. Mesure du succès — P0
 
