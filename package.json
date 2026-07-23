@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^3.2.7",
-    "prettier": "^3.6.2",
+    "prettier": "^3.9.6",
     "read-excel-file": "^9.3.4",
     "supabase": "^2.109.1"
   }
