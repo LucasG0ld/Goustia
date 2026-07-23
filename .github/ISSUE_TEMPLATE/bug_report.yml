@@ -1,0 +1,41 @@
+name: Rapport de bug
+description: Signaler un comportement reproductible
+title: "fix: "
+labels:
+  - bug
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Problème
+      description:
+        Décrivez le résultat observé sans inclure de donnée personnelle.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Donnez les étapes minimales.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Résultat attendu
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environnement
+      placeholder: local, staging ou production; navigateur et version
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Sécurité
+      options:
+        - label: Le rapport ne contient ni secret ni donnée personnelle.
+          required: true

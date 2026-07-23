@@ -1,0 +1,26 @@
+name: Proposition de fonctionnalité
+description: Proposer une amélioration du produit
+title: "feat: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: Besoin utilisateur
+      description: Quel problème concret faut-il résoudre ?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposition
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Critères d'acceptation
+      description: Comment saura-t-on que la fonctionnalité est terminée ?
+    validations:
+      required: true

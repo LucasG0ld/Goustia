@@ -1,0 +1,28 @@
+{
+  "name": "recettes-personnalisees",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace @recettes/web",
+    "build": "npm run build --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "audit": "npm audit --audit-level=high",
+    "check": "npm run lint && npm run typecheck && npm run test",
+    "validate": "npm run format:check && npm run check && npm run build"
+  },
+  "packageManager": "npm@11.16.0",
+  "engines": {
+    "node": ">=24.0.0 <25"
+  },
+  "devDependencies": {
+    "prettier": "^3.6.2"
+  }
+}

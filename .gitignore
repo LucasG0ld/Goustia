@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Builds and test reports
+.next/
+dist/
+coverage/
+playwright-report/
+test-results/
+
+# Environment variables and secrets
+.env
+.env.local
+.env.*.local
+
+# Editors and operating systems
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Logs
+*.log
+
+# Local Supabase state
+supabase/.branches/
+supabase/.temp/
