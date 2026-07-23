@@ -61,3 +61,10 @@ Le point de contrôle de l'API est disponible sur
 Les règles de contribution et les exceptions de sécurité connues se trouvent
 dans [`CONTRIBUTING.md`](CONTRIBUTING.md) et
 [`docs/SECURITE_DEPENDANCES.md`](docs/SECURITE_DEPENDANCES.md).
+
+Les procédures d'infrastructure sont documentées dans :
+
+- [`docs/CI.md`](docs/CI.md)
+- [`docs/ENVIRONNEMENTS.md`](docs/ENVIRONNEMENTS.md)
+- [`docs/SUPABASE_LOCAL.md`](docs/SUPABASE_LOCAL.md)
+- [`docs/OBSERVABILITE.md`](docs/OBSERVABILITE.md)

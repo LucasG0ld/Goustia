@@ -1,7 +1,10 @@
+import { serverEnv } from "@/lib/env/server";
+
 export function GET() {
   return Response.json({
     status: "ok",
-    service: "recettes-web",
+    service: "goustia-web",
     apiVersion: "v1",
+    environment: serverEnv.APP_ENV,
   });
 }
