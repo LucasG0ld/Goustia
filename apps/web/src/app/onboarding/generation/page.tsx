@@ -35,8 +35,8 @@ export default async function GenerationPage({
       {ready ? (
         <Alert title="Première génération simulée terminée" tone="success">
           Tes choix sont enregistrés.{" "}
-          <Link className="font-semibold underline" href="/compte">
-            Accéder à mon compte
+          <Link className="font-semibold underline" href="/accueil">
+            Accéder à mes recettes
           </Link>
         </Alert>
       ) : data?.status === "failed" ? (

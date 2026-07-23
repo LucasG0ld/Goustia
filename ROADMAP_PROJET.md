@@ -604,21 +604,21 @@ Une fonctionnalité est terminée lorsque :
 
 ### 10.8. Benchmark IA — P0
 
-- [ ] Créer au moins 50 profils fictifs.
-- [ ] Inclure allergies simples et multiples.
-- [ ] Inclure mineurs et adultes.
-- [ ] Inclure les différents objectifs.
-- [ ] Inclure les différents nombres de portions.
-- [ ] Mesurer le respect du schéma.
-- [ ] Mesurer le respect des exclusions.
-- [ ] Mesurer la cohérence des quantités.
-- [ ] Mesurer la cohérence ingrédients/étapes.
-- [ ] Évaluer la qualité du français.
-- [ ] Évaluer la diversité des recettes.
-- [ ] Mesurer latence et coût.
+- [x] Créer au moins 50 profils fictifs.
+- [x] Inclure allergies simples et multiples.
+- [x] Inclure mineurs et adultes.
+- [x] Inclure les différents objectifs.
+- [x] Inclure les différents nombres de portions.
+- [x] Mesurer le respect du schéma.
+- [x] Mesurer le respect des exclusions.
+- [x] Mesurer la cohérence des quantités.
+- [x] Mesurer la cohérence ingrédients/étapes.
+- [x] Évaluer la qualité du français.
+- [x] Évaluer la diversité des recettes.
+- [x] Mesurer latence et coût.
 - [ ] Comparer Groq et le secours Cloudflare.
 - [ ] Évaluer les images sur plusieurs familles de plats.
-- [ ] Documenter les résultats.
+- [x] Documenter les résultats.
 - [ ] Fixer les seuils minimums avant la bêta.
 
 ---
@@ -627,33 +627,33 @@ Une fonctionnalité est terminée lorsque :
 
 ### 11.1. Version déterministe — P0
 
-- [ ] Définir les critères d'éligibilité absolus.
-- [ ] Exclure allergies, intolérances strictes et interdictions.
-- [ ] Exclure l'alcool pour les mineurs.
-- [ ] Filtrer selon le type de régime.
-- [ ] Définir le score des ingrédients aimés.
-- [ ] Définir le score des cuisines aimées.
-- [ ] Définir la pénalité des ingrédients non appréciés.
-- [ ] Définir la pénalité des recettes récentes.
-- [ ] Définir le bonus de durée.
-- [ ] Définir le bonus de budget.
-- [ ] Définir le bonus lié à l'objectif.
-- [ ] Définir la diversité dans une même semaine.
-- [ ] Expliquer les principaux facteurs de recommandation.
-- [ ] Écrire des tests déterministes.
+- [x] Définir les critères d'éligibilité absolus.
+- [x] Exclure allergies, intolérances strictes et interdictions.
+- [x] Exclure l'alcool pour les mineurs.
+- [x] Filtrer selon le type de régime.
+- [x] Définir le score des ingrédients aimés.
+- [x] Définir le score des cuisines aimées.
+- [x] Définir la pénalité des ingrédients non appréciés.
+- [x] Définir la pénalité des recettes récentes.
+- [x] Définir le bonus de durée.
+- [x] Définir le bonus de budget.
+- [x] Définir le bonus lié à l'objectif.
+- [x] Définir la diversité dans une même semaine.
+- [x] Expliquer les principaux facteurs de recommandation.
+- [x] Écrire des tests déterministes.
 
 ### 11.2. Apprentissage par interaction — P0
 
-- [ ] Traiter un like comme un signal positif.
-- [ ] Traiter un favori comme un signal positif fort.
-- [ ] Traiter « cuisiné » comme un intérêt confirmé.
-- [ ] Traiter un dislike selon son motif.
-- [ ] Traiter un swap comme un signal contextuel.
-- [ ] Traiter une recette ignorée comme un signal faible.
-- [ ] Empêcher une préférence apprise de contourner une allergie.
-- [ ] Mettre à jour le profil de préférence.
-- [ ] Conserver l'historique des signaux.
-- [ ] Permettre à l'utilisateur de corriger les préférences déduites.
+- [x] Traiter un like comme un signal positif.
+- [x] Traiter un favori comme un signal positif fort.
+- [x] Traiter « cuisiné » comme un intérêt confirmé.
+- [x] Traiter un dislike selon son motif.
+- [x] Traiter un swap comme un signal contextuel.
+- [x] Traiter une recette ignorée comme un signal faible.
+- [x] Empêcher une préférence apprise de contourner une allergie.
+- [x] Mettre à jour le profil de préférence.
+- [x] Conserver l'historique des signaux.
+- [x] Permettre à l'utilisateur de corriger les préférences déduites.
 
 ### 11.3. Évolution sémantique — P2
 
@@ -671,42 +671,42 @@ Une fonctionnalité est terminée lorsque :
 
 ### 12.1. Structure de l'application — P0
 
-- [ ] Créer le layout authentifié.
-- [ ] Créer la navigation principale.
-- [ ] Créer la navigation mobile responsive.
-- [ ] Ajouter accueil, planning, courses, favoris et profil.
-- [ ] Ajouter les titres et métadonnées des pages.
-- [ ] Ajouter les garde-fous d'accès.
+- [x] Créer le layout authentifié.
+- [x] Créer la navigation principale.
+- [x] Créer la navigation mobile responsive.
+- [x] Ajouter accueil, planning, courses, favoris et profil.
+- [x] Ajouter les titres et métadonnées des pages.
+- [x] Ajouter les garde-fous d'accès.
 
 ### 12.2. Accueil — P0
 
-- [ ] Afficher la semaine active.
-- [ ] Afficher les recettes par jour.
-- [ ] Afficher image, nom et description.
-- [ ] Afficher durée, difficulté et portions.
-- [ ] Afficher calories et macronutriments estimés.
-- [ ] Afficher les tags.
-- [ ] Expliquer brièvement la recommandation.
-- [ ] Afficher l'état de génération en cours.
-- [ ] Afficher un état vide.
-- [ ] Afficher une erreur récupérable.
-- [ ] Ajouter la navigation vers la recette.
+- [x] Afficher la semaine active.
+- [x] Afficher les recettes par jour.
+- [x] Afficher image, nom et description.
+- [x] Afficher durée, difficulté et portions.
+- [x] Afficher calories et macronutriments estimés.
+- [x] Afficher les tags.
+- [x] Expliquer brièvement la recommandation.
+- [x] Afficher l'état de génération en cours.
+- [x] Afficher un état vide.
+- [x] Afficher une erreur récupérable.
+- [x] Ajouter la navigation vers la recette.
 
 ### 12.3. Planning — P0
 
-- [ ] Créer la vue hebdomadaire.
-- [ ] Gérer déjeuner, dîner et autres types retenus.
-- [ ] Ajouter un repas.
-- [ ] Supprimer un repas.
-- [ ] Déplacer un repas.
-- [ ] Modifier le jour.
-- [ ] Modifier le type de repas.
-- [ ] Modifier le nombre de portions.
-- [ ] Verrouiller une recette.
-- [ ] Régénérer les éléments non verrouillés.
-- [ ] Confirmer les opérations coûteuses.
-- [ ] Gérer les conflits de modification.
-- [ ] Ajouter une vue adaptée aux petits écrans.
+- [x] Créer la vue hebdomadaire.
+- [x] Gérer déjeuner, dîner et autres types retenus.
+- [x] Ajouter un repas.
+- [x] Supprimer un repas.
+- [x] Déplacer un repas.
+- [x] Modifier le jour.
+- [x] Modifier le type de repas.
+- [x] Modifier le nombre de portions.
+- [x] Verrouiller une recette.
+- [x] Régénérer les éléments non verrouillés.
+- [x] Confirmer les opérations coûteuses.
+- [x] Gérer les conflits de modification.
+- [x] Ajouter une vue adaptée aux petits écrans.
 
 ### 12.4. Changement de semaine — P1
 

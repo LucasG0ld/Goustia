@@ -124,3 +124,9 @@ AI_IMAGE_PROVIDER=fake
 Pour les fournisseurs réels, suivre
 [`RUNBOOK_FOURNISSEURS_IA.md`](RUNBOOK_FOURNISSEURS_IA.md). Ne jamais activer la
 production avant le benchmark P35 et la validation humaine des seuils.
+
+Le corpus et le runner de P35 sont disponibles avec `npm run benchmark:ai`. La
+baseline locale est documentée dans
+[`benchmarks/2026-07-23-fake-baseline.md`](benchmarks/2026-07-23-fake-baseline.md).
+La comparaison réelle Groq/Cloudflare et l’acceptation humaine des seuils
+restent obligatoires avant toute activation de production.

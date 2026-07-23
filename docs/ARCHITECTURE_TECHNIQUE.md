@@ -205,6 +205,12 @@ Les endpoints applicatifs sont versionnés dès le départ :
 /api/v1/recommendations
 ```
 
+Le shell web authentifié repose sur des Server Components pour la semaine et les
+recettes. Les formulaires interactifs du planning utilisent des Route Handlers
+v1, des clés d’idempotence et une révision optimiste. Le moteur de
+recommandation et l’apprentissage pondéré restent dans `@recettes/domain` afin
+d’être réutilisables par le futur client mobile.
+
 Pour le MVP, ces endpoints peuvent être hébergés par Next.js. Si la charge IA ou
 les traitements asynchrones deviennent importants, ils pourront être déplacés
 vers un service dédié sans modifier leurs contrats ni les applications clientes.
