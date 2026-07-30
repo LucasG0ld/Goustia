@@ -154,6 +154,22 @@ export class SupabaseGenerationRepository implements GenerationRepository {
       })
       .eq("id", jobId);
     if (error) throw new Error("AI_JOB_COMPLETION_FAILED", { cause: error });
+    const { data: job } = await this.supabase
+      .from("ai_generation_jobs")
+      .select("user_id")
+      .eq("id", jobId)
+      .maybeSingle();
+    if (job?.user_id) {
+      await this.supabase.rpc("enqueue_product_notification", {
+        p_user_id: job.user_id,
+        p_kind: "planning_ready",
+        p_deduplication_key: `planning:${jobId}`,
+        p_title: "Ton planning est prêt",
+        p_body: "Tes nouvelles propositions sont disponibles dans Goustia.",
+        p_action_url: "/planning",
+        p_scheduled_for: new Date().toISOString(),
+      });
+    }
   }
 
   async failJob(jobId: string, code: string, message: string): Promise<void> {

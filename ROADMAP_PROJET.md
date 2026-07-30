@@ -910,25 +910,25 @@ Une fonctionnalité est terminée lorsque :
 
 ### 17.4. IA, quotas et coûts — P0
 
-- [ ] Afficher les générations par jour.
-- [ ] Afficher les erreurs par fournisseur.
-- [ ] Afficher la latence moyenne.
-- [ ] Afficher les consommations et coûts estimés.
-- [ ] Afficher les quotas restants.
-- [ ] Activer ou désactiver un fournisseur.
-- [ ] Changer le modèle actif par configuration contrôlée.
-- [ ] Consulter la version des prompts.
-- [ ] Relancer une tâche échouée.
-- [ ] Purger une tâche sans donnée personnelle persistante.
+- [x] Afficher les générations par jour.
+- [x] Afficher les erreurs par fournisseur.
+- [x] Afficher la latence moyenne.
+- [x] Afficher les consommations et coûts estimés.
+- [x] Afficher les quotas restants.
+- [x] Activer ou désactiver un fournisseur.
+- [x] Changer le modèle actif par configuration contrôlée.
+- [x] Consulter la version des prompts.
+- [x] Relancer une tâche échouée.
+- [x] Purger une tâche sans donnée personnelle persistante.
 
 ### 17.5. Référentiel alimentaire — P1
 
-- [ ] Lister les ingrédients.
-- [ ] Ajouter ou corriger un synonyme.
-- [ ] Gérer les relations allergènes.
-- [ ] Gérer les ingrédients contenant de l'alcool.
-- [ ] Consulter les correspondances Ciqual.
-- [ ] Traiter les ingrédients sans correspondance.
+- [x] Lister les ingrédients.
+- [x] Ajouter ou corriger un synonyme.
+- [x] Gérer les relations allergènes.
+- [x] Gérer les ingrédients contenant de l'alcool.
+- [x] Consulter les correspondances Ciqual.
+- [x] Traiter les ingrédients sans correspondance.
 
 ---
 
@@ -936,22 +936,22 @@ Une fonctionnalité est terminée lorsque :
 
 ### 18.1. E-mails transactionnels — P0
 
-- [ ] Personnaliser l'e-mail de vérification.
-- [ ] Personnaliser l'e-mail de réinitialisation.
+- [x] Personnaliser l'e-mail de vérification.
+- [x] Personnaliser l'e-mail de réinitialisation.
 - [ ] Configurer un domaine d'envoi.
 - [ ] Configurer SPF, DKIM et DMARC.
 - [ ] Tester la délivrabilité.
-- [ ] Ne jamais inclure de donnée alimentaire sensible dans un e-mail.
+- [x] Ne jamais inclure de donnée alimentaire sensible dans un e-mail.
 
 ### 18.2. Notifications produit — P1
 
-- [ ] Définir les notifications utiles.
-- [ ] Prévenir lorsque le planning est prêt.
-- [ ] Proposer un rappel de courses.
-- [ ] Permettre l'activation et la désactivation.
-- [ ] Respecter le fuseau horaire.
-- [ ] Ajouter une fréquence maximale.
-- [ ] Ajouter un lien de désinscription.
+- [x] Définir les notifications utiles.
+- [x] Prévenir lorsque le planning est prêt.
+- [x] Proposer un rappel de courses.
+- [x] Permettre l'activation et la désactivation.
+- [x] Respecter le fuseau horaire.
+- [x] Ajouter une fréquence maximale.
+- [x] Ajouter un lien de désinscription.
 
 ---
 
@@ -960,43 +960,43 @@ Une fonctionnalité est terminée lorsque :
 ### 19.1. Tests unitaires — P0
 
 - [x] Tester la règle de majorité.
-- [ ] Tester tous les schémas Zod.
+- [x] Tester tous les schémas Zod.
 - [x] Tester les conversions d'unités.
 - [x] Tester les calculs nutritionnels.
 - [x] Tester le moteur d'allergènes.
-- [ ] Tester le score de recommandation.
-- [ ] Tester les quotas.
-- [ ] Tester la déduplication.
-- [ ] Tester la génération de la liste de courses.
+- [x] Tester le score de recommandation.
+- [x] Tester les quotas.
+- [x] Tester la déduplication.
+- [x] Tester la génération de la liste de courses.
 
 ### 19.2. Tests d'intégration — P0
 
 - [x] Tester les migrations.
 - [x] Tester les politiques RLS.
-- [ ] Tester l'inscription et la création du profil.
-- [ ] Tester l'onboarding complet.
-- [ ] Tester une génération avec fournisseur factice.
-- [ ] Tester un résultat IA invalide.
-- [ ] Tester une recette contenant un allergène.
-- [ ] Tester une recette alcoolisée pour un mineur.
-- [ ] Tester le remplacement.
-- [ ] Tester la liste de courses.
-- [ ] Tester la suppression du compte.
+- [x] Tester l'inscription et la création du profil.
+- [x] Tester l'onboarding complet.
+- [x] Tester une génération avec fournisseur factice.
+- [x] Tester un résultat IA invalide.
+- [x] Tester une recette contenant un allergène.
+- [x] Tester une recette alcoolisée pour un mineur.
+- [x] Tester le remplacement.
+- [x] Tester la liste de courses.
+- [x] Tester la suppression du compte.
 
 ### 19.3. Tests de parcours Playwright — P0
 
-- [ ] Configurer Playwright.
+- [x] Configurer Playwright.
 - [ ] Tester inscription → onboarding → planning.
 - [ ] Tester connexion et déconnexion.
 - [ ] Tester mot de passe oublié.
-- [ ] Tester like et dislike.
+- [x] Tester like et dislike.
 - [ ] Tester remplacement.
-- [ ] Tester ouverture d'une recette.
-- [ ] Tester favoris.
-- [ ] Tester liste de courses.
+- [x] Tester ouverture d'une recette.
+- [x] Tester favoris.
+- [x] Tester liste de courses.
 - [ ] Tester modification des allergies.
-- [ ] Tester les parcours administrateur essentiels.
-- [ ] Tester les tailles d'écran principales.
+- [x] Tester les parcours administrateur essentiels.
+- [x] Tester les tailles d'écran principales.
 
 ### 19.4. Tests manuels — P0
 

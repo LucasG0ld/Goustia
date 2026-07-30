@@ -81,6 +81,12 @@ export default async function ProfileHubPage() {
         >
           Goûts, durée, budget et matériel
         </Link>
+        <Link
+          className="font-semibold text-brand underline"
+          href={"/notifications" as Route}
+        >
+          Notifications
+        </Link>
       </nav>
       <ProfileSettings
         allergens={(allergensResult.data ?? []).map((item) => ({

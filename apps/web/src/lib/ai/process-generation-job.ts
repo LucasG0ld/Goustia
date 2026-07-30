@@ -5,7 +5,7 @@ import {
   RecipeImagePipeline,
 } from "./image-pipeline";
 import { orchestrateRecipeGeneration } from "./orchestration";
-import { configuredAiProviders } from "./providers/configured";
+import { getConfiguredAiProviders } from "./providers/configured";
 import { SharpRecipeImageProcessor } from "./sharp-image-processor";
 import { SupabaseRecipeValidator } from "./supabase-generation-context";
 import {
@@ -22,6 +22,17 @@ export async function processGenerationJob(options: {
   input: RecipeGenerationInput;
 }): Promise<void> {
   const repository = new SupabaseGenerationRepository();
+  let configuredAiProviders;
+  try {
+    configuredAiProviders = await getConfiguredAiProviders();
+  } catch (error) {
+    await repository.failJob(
+      options.jobId,
+      error instanceof Error ? error.message : "AI_PROVIDER_DISABLED",
+      "Le service est temporairement indisponible.",
+    );
+    return;
+  }
   try {
     await assertAiCostCircuitClosed();
   } catch (error) {
