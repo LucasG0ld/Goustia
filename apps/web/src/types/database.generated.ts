@@ -347,6 +347,47 @@ export type Database = {
         };
         Relationships: [];
       };
+      beta_feedback: {
+        Row: {
+          created_at: string;
+          id: string;
+          kind: Database["public"]["Enums"]["beta_feedback_kind"];
+          message: string;
+          page_path: string | null;
+          status: Database["public"]["Enums"]["beta_feedback_status"];
+          updated_at: string;
+          user_id: string;
+        };
+        Insert: {
+          created_at?: string;
+          id?: string;
+          kind: Database["public"]["Enums"]["beta_feedback_kind"];
+          message: string;
+          page_path?: string | null;
+          status?: Database["public"]["Enums"]["beta_feedback_status"];
+          updated_at?: string;
+          user_id: string;
+        };
+        Update: {
+          created_at?: string;
+          id?: string;
+          kind?: Database["public"]["Enums"]["beta_feedback_kind"];
+          message?: string;
+          page_path?: string | null;
+          status?: Database["public"]["Enums"]["beta_feedback_status"];
+          updated_at?: string;
+          user_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "beta_feedback_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       blocked_food_rules: {
         Row: {
           active: boolean;
@@ -1671,6 +1712,7 @@ export type Database = {
           description_fr: string;
           display_order: number;
           id: string;
+          image_path: string | null;
           is_active: boolean;
           slug: string;
           title_fr: string;
@@ -1680,6 +1722,7 @@ export type Database = {
           description_fr: string;
           display_order: number;
           id: string;
+          image_path?: string | null;
           is_active?: boolean;
           slug: string;
           title_fr: string;
@@ -1689,6 +1732,7 @@ export type Database = {
           description_fr?: string;
           display_order?: number;
           id?: string;
+          image_path?: string | null;
           is_active?: boolean;
           slug?: string;
           title_fr?: string;
@@ -3481,6 +3525,14 @@ export type Database = {
         };
         Returns: boolean;
       };
+      admin_recover_stale_ai_jobs: {
+        Args: {
+          p_confirmation: string;
+          p_idempotency_key: string;
+          p_stale_minutes?: number;
+        };
+        Returns: number;
+      };
       admin_resolve_report: {
         Args: {
           p_confirmation: string;
@@ -3606,6 +3658,15 @@ export type Database = {
           p_skipped: boolean;
         };
         Returns: string;
+      };
+      consume_api_rate_limit: {
+        Args: {
+          p_bucket_key: string;
+          p_limit: number;
+          p_subject_id: string;
+          p_window_seconds: number;
+        };
+        Returns: boolean;
       };
       consume_auth_rate_limit: {
         Args: { p_action: string; p_identifier_hash: string };
@@ -3786,6 +3847,12 @@ export type Database = {
         | "cancelled";
       ai_runtime_kind: "text" | "image";
       app_role: "user" | "admin";
+      beta_feedback_kind:
+        | "bug"
+        | "suggestion"
+        | "recipe_quality"
+        | "food_safety";
+      beta_feedback_status: "open" | "triaged" | "resolved" | "dismissed";
       budget_level: "low" | "moderate" | "flexible";
       ciqual_mapping_status: "exact" | "approximate" | "unmatched";
       ciqual_value_status:
@@ -4039,6 +4106,13 @@ export const Constants = {
       ai_job_status: ["queued", "running", "succeeded", "failed", "cancelled"],
       ai_runtime_kind: ["text", "image"],
       app_role: ["user", "admin"],
+      beta_feedback_kind: [
+        "bug",
+        "suggestion",
+        "recipe_quality",
+        "food_safety",
+      ],
+      beta_feedback_status: ["open", "triaged", "resolved", "dismissed"],
       budget_level: ["low", "moderate", "flexible"],
       ciqual_mapping_status: ["exact", "approximate", "unmatched"],
       ciqual_value_status: [

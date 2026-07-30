@@ -9,16 +9,18 @@
 - Avant chaque mise en production : installation verrouillée, audit, tests et
   build depuis un environnement propre.
 
-## Exceptions ouvertes au 23 juillet 2026
+## Exceptions ouvertes au 30 juillet 2026
 
-`npm audit` remonte trois vulnérabilités transitives depuis Next.js 16.2.11 :
+`npm audit` remonte des vulnérabilités transitives depuis Next.js 16.2.11 et les
+outils de lint/test :
 
-| Composant          | Avis                                                                                                                                               | Sévérité | Décision                             |
-| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ------------------------------------ |
-| PostCSS `<=8.5.11` | [GHSA-qx2v-qp2m-jg93](https://github.com/advisories/GHSA-qx2v-qp2m-jg93), [GHSA-6g55-p6wh-862q](https://github.com/advisories/GHSA-6g55-p6wh-862q) | Haute    | Acceptée uniquement en développement |
-| Sharp `<0.35.0`    | [GHSA-f88m-g3jw-g9cj](https://github.com/advisories/GHSA-f88m-g3jw-g9cj)                                                                           | Haute    | Acceptée uniquement en développement |
+| Composant                       | Avis                                                                                                                                                                                                                         | Sévérité | Décision                                                          |
+| ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ----------------------------------------------------------------- |
+| PostCSS `<=8.5.17`              | [GHSA-qx2v-qp2m-jg93](https://github.com/advisories/GHSA-qx2v-qp2m-jg93), [GHSA-6g55-p6wh-862q](https://github.com/advisories/GHSA-6g55-p6wh-862q), [GHSA-r28c-9q8g-f849](https://github.com/advisories/GHSA-r28c-9q8g-f849) | Haute    | Acceptée uniquement en développement                              |
+| Sharp `<0.35.0`                 | [GHSA-f88m-g3jw-g9cj](https://github.com/advisories/GHSA-f88m-g3jw-g9cj)                                                                                                                                                     | Haute    | Acceptée uniquement en développement                              |
+| `brace-expansion` / `minimatch` | avis transitifs de l’outillage ESLint/Vitest                                                                                                                                                                                 | Haute    | Acceptée uniquement en développement, correction majeure à tester |
 
-npm propose une rétrogradation forcée de Next.js vers 9.3.3. Cette correction
+npm propose une rétrogradation forcée de Next.js vers 14.2.35. Cette correction
 est incompatible avec l'architecture et n'est pas sûre; elle n'a pas été
 appliquée.
 
@@ -33,7 +35,7 @@ Mesures :
   n'est pas documentée ;
 - ne pas transformer du CSS ou des images non fiables hors des contrôles prévus
   ;
-- réévaluer après chaque publication Next.js et au plus tard le 23 août 2026 ;
+- réévaluer après chaque publication Next.js et au plus tard le 30 août 2026 ;
 - fermer l'exception seulement après `npm run audit` et `npm run build`
   concluants.
 

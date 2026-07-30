@@ -1,5 +1,6 @@
-import type { Metadata } from "next";
+import type { Metadata, Route } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { headers } from "next/headers";
 import Link from "next/link";
 
 import { WebVitalsReporter } from "@/components/observability/web-vitals-reporter";
@@ -21,11 +22,13 @@ export const metadata: Metadata = {
   description: "Des repas qui apprennent tes goûts, semaine après semaine.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // La lecture des en-têtes force le rendu dynamique requis par la CSP à nonce.
+  await headers();
   return (
     <html
       lang="fr"
@@ -46,6 +49,7 @@ export default function RootLayout({
             <Link href="/mentions-legales">Mentions légales</Link>
             <Link href="/cookies">Traceurs</Link>
             <Link href="/avertissement">Sécurité et nutrition</Link>
+            <Link href={"/aide" as Route}>Aide et FAQ</Link>
           </nav>
         </footer>
         <WebVitalsReporter />

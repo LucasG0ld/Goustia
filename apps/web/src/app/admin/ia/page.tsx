@@ -62,6 +62,15 @@ export default async function AdminAiPage() {
       <p className="mt-2 text-muted">
         Aucun secret ni contenu de prompt n’est exposé dans cette interface.
       </p>
+      <div className="mt-4">
+        <AdminActionButton
+          body={{ action: "recover_stale", staleMinutes: 15 }}
+          confirmation="RECUPERER LES TACHES"
+          endpoint="/api/v1/admin/ai"
+        >
+          Marquer les tâches bloquées
+        </AdminActionButton>
+      </div>
       <section className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <Metric label="Générations récentes" value={jobs.length.toString()} />
         <Metric

@@ -1,0 +1,84 @@
+openapi: 3.1.0
+info:
+  title: Goustia API
+  version: 1.0.0
+  description: Contrat gelé candidat pour les futurs clients Expo.
+servers:
+  - url: https://example.invalid/api/v1
+    description: URL illustrative, à remplacer après autorisation de production.
+paths:
+  /meta:
+    get:
+      summary: Capacités et version du contrat
+      responses:
+        "200":
+          description: Métadonnées publiques
+  /health:
+    get:
+      summary: Santé applicative
+      responses:
+        "200":
+          description: Service disponible
+  /recipes:
+    get:
+      summary: Catalogue public validé
+      parameters:
+        - in: query
+          name: cursor
+          schema: { type: string, format: date-time }
+        - in: query
+          name: limit
+          schema: { type: integer, minimum: 1, maximum: 50, default: 20 }
+      responses:
+        "200":
+          description: Page de recettes
+        "400":
+          $ref: "#/components/responses/BadRequest"
+  /recipes/{recipeId}:
+    get:
+      summary: Recette publique validée
+      parameters:
+        - in: path
+          name: recipeId
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200": { description: Recette, ingrédients, étapes et nutrition }
+        "404": { description: Recette absente ou non publique }
+  /profile:
+    get:
+      summary: Profil de la session authentifiée
+      security: [{ cookieSession: [] }]
+      responses:
+        "200": { description: Profil courant, jamais caché publiquement }
+        "401": { description: Authentification requise }
+  /feedback:
+    post:
+      summary: Retour de bêta authentifié
+      security: [{ cookieSession: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [kind, message]
+              properties:
+                kind:
+                  enum: [bug, suggestion, recipe_quality, food_safety]
+                message: { type: string, minLength: 10, maxLength: 2000 }
+                pagePath: { type: [string, "null"], maxLength: 300 }
+      responses:
+        "201": { description: Retour enregistré }
+        "400":
+          $ref: "#/components/responses/BadRequest"
+components:
+  securitySchemes:
+    cookieSession:
+      type: apiKey
+      in: cookie
+      name: sb-access-token
+  responses:
+    BadRequest:
+      description: Requête invalide

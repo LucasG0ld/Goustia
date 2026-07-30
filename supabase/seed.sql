@@ -161,6 +161,110 @@ values
 on conflict (id) do update
 set slug = excluded.slug, name_fr = excluded.name_fr;
 
+-- Petit catalogue éditorial local, validé et déterministe pour les parcours.
+insert into public.recipes (
+  id, canonical_slug, deduplication_hash
+)
+values
+  (
+    '91000000-0000-4000-8000-000000000001',
+    'pois-chiches-rotis',
+    repeat('c', 64)
+  ),
+  (
+    '91000000-0000-4000-8000-000000000002',
+    'galettes-pois-chiches',
+    repeat('d', 64)
+  )
+on conflict (id) do update set canonical_slug = excluded.canonical_slug;
+
+insert into public.recipe_versions (
+  id, recipe_id, version_number, title, description, servings,
+  preparation_minutes, cooking_minutes, difficulty, cost_level, origin,
+  validation_status, publication_status, validation_notes,
+  validated_at, published_at
+)
+values
+  (
+    '92000000-0000-4000-8000-000000000001',
+    '91000000-0000-4000-8000-000000000001',
+    1, 'Pois chiches rôtis aux épices',
+    'Un plat éditorial simple à compléter avec des légumes de saison.',
+    2, 10, 25, 'easy', 'low', 'editorial', 'validated', 'published',
+    'Fixture éditoriale locale contrôlée : sans alcool, allergènes référencés.',
+    timezone('utc', now()), timezone('utc', now())
+  ),
+  (
+    '92000000-0000-4000-8000-000000000002',
+    '91000000-0000-4000-8000-000000000002',
+    1, 'Galettes de pois chiches',
+    'Des galettes dorées et économiques pour un déjeuner rapide.',
+    2, 15, 15, 'easy', 'low', 'editorial', 'validated', 'published',
+    'Fixture éditoriale locale contrôlée : sans alcool, allergènes référencés.',
+    timezone('utc', now()), timezone('utc', now())
+  )
+on conflict (id) do update set
+  title = excluded.title,
+  description = excluded.description,
+  validation_status = excluded.validation_status,
+  publication_status = excluded.publication_status;
+
+insert into public.recipe_ingredients (
+  id, recipe_version_id, ingredient_id, position, quantity, unit
+)
+values
+  (
+    '93000000-0000-4000-8000-000000000001',
+    '92000000-0000-4000-8000-000000000001',
+    '30000000-0000-4000-8000-000000000001',
+    1, 400, 'g'
+  ),
+  (
+    '93000000-0000-4000-8000-000000000002',
+    '92000000-0000-4000-8000-000000000002',
+    '30000000-0000-4000-8000-000000000001',
+    1, 300, 'g'
+  )
+on conflict (id) do update set quantity = excluded.quantity;
+
+insert into public.recipe_steps (
+  id, recipe_version_id, position, instruction, timer_seconds
+)
+values
+  (
+    '94000000-0000-4000-8000-000000000001',
+    '92000000-0000-4000-8000-000000000001',
+    1, 'Égoutter les pois chiches et les répartir sur une plaque.', 300
+  ),
+  (
+    '94000000-0000-4000-8000-000000000002',
+    '92000000-0000-4000-8000-000000000001',
+    2, 'Assaisonner puis cuire au four jusqu’à ce qu’ils soient dorés.', 1500
+  ),
+  (
+    '94000000-0000-4000-8000-000000000003',
+    '92000000-0000-4000-8000-000000000002',
+    1, 'Écraser les pois chiches afin d’obtenir une pâte homogène.', 300
+  ),
+  (
+    '94000000-0000-4000-8000-000000000004',
+    '92000000-0000-4000-8000-000000000002',
+    2, 'Former les galettes et les dorer à la poêle sur chaque face.', 900
+  )
+on conflict (id) do update set instruction = excluded.instruction;
+
+insert into public.recipe_category_assignments (recipe_id, category_id)
+values
+  (
+    '91000000-0000-4000-8000-000000000001',
+    '60000000-0000-4000-8000-000000000002'
+  ),
+  (
+    '91000000-0000-4000-8000-000000000002',
+    '60000000-0000-4000-8000-000000000001'
+  )
+on conflict do nothing;
+
 insert into public.recipe_tags (id, slug, name_fr)
 values
   ('70000000-0000-4000-8000-000000000001', 'rapide', 'Rapide'),
@@ -169,3 +273,15 @@ values
   ('70000000-0000-4000-8000-000000000004', 'economique', 'Économique')
 on conflict (id) do update
 set slug = excluded.slug, name_fr = excluded.name_fr;
+
+insert into public.recipe_tag_assignments (recipe_id, tag_id)
+values
+  (
+    '91000000-0000-4000-8000-000000000001',
+    '70000000-0000-4000-8000-000000000002'
+  ),
+  (
+    '91000000-0000-4000-8000-000000000002',
+    '70000000-0000-4000-8000-000000000004'
+  )
+on conflict do nothing;

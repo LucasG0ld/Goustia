@@ -8,7 +8,12 @@ import { initialActionState } from "@/features/auth/state";
 import { saveTastesAction } from "./actions";
 import { markOnboardingStepSubmitted } from "./step-tracker";
 
-type Dish = { id: string; title_fr: string; description_fr: string };
+type Dish = {
+  id: string;
+  title_fr: string;
+  description_fr: string;
+  image_path: string | null;
+};
 
 export function TastesForm({
   dishes,
@@ -52,6 +57,17 @@ export function TastesForm({
               }
               type="button"
             >
+              {dish.image_path ? (
+                // Asset local, versionné et sans suivi tiers.
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  alt=""
+                  className="mb-4 aspect-video w-full rounded-lg object-cover"
+                  height="180"
+                  src={dish.image_path}
+                  width="320"
+                />
+              ) : null}
               <span className="text-lg font-semibold">{dish.title_fr}</span>
               <span className="mt-2 block text-sm text-muted">
                 {dish.description_fr}
