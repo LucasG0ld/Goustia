@@ -1018,46 +1018,46 @@ Une fonctionnalité est terminée lorsque :
 
 ### 20.1. Sécurité applicative — P0
 
-- [ ] Réaliser une revue OWASP.
-- [ ] Valider toutes les entrées serveur.
-- [ ] Protéger contre les injections SQL.
-- [ ] Protéger contre les XSS.
-- [ ] Protéger les actions sensibles contre les requêtes frauduleuses.
-- [ ] Ajouter des en-têtes de sécurité.
-- [ ] Ajouter une Content Security Policy.
-- [ ] Limiter la taille des requêtes.
-- [ ] Limiter le débit des endpoints coûteux.
-- [ ] Protéger les prompts contre les instructions utilisateur malveillantes.
-- [ ] Ne jamais interpoler une clé dans un prompt ou une réponse.
-- [ ] Analyser les dépendances.
-- [ ] Tester les permissions Supabase.
-- [ ] Réaliser une revue des secrets.
-- [ ] Préparer un plan de réponse à incident.
+- [x] Réaliser une revue OWASP.
+- [x] Valider toutes les entrées serveur.
+- [x] Protéger contre les injections SQL.
+- [x] Protéger contre les XSS.
+- [x] Protéger les actions sensibles contre les requêtes frauduleuses.
+- [x] Ajouter des en-têtes de sécurité.
+- [x] Ajouter une Content Security Policy.
+- [x] Limiter la taille des requêtes.
+- [x] Limiter le débit des endpoints coûteux.
+- [x] Protéger les prompts contre les instructions utilisateur malveillantes.
+- [x] Ne jamais interpoler une clé dans un prompt ou une réponse.
+- [x] Analyser les dépendances.
+- [x] Tester les permissions Supabase.
+- [x] Réaliser une revue des secrets.
+- [x] Préparer un plan de réponse à incident.
 
 ### 20.2. Résilience — P0
 
-- [ ] Définir les timeouts de chaque service.
-- [ ] Définir les stratégies de retry.
-- [ ] Définir les coupe-circuits.
-- [ ] Rendre les écritures importantes idempotentes.
-- [ ] Gérer les tâches bloquées.
-- [ ] Ajouter une reprise manuelle en administration.
-- [ ] Prévoir une sauvegarde des données.
+- [x] Définir les timeouts de chaque service.
+- [x] Définir les stratégies de retry.
+- [x] Définir les coupe-circuits.
+- [x] Rendre les écritures importantes idempotentes.
+- [x] Gérer les tâches bloquées.
+- [x] Ajouter une reprise manuelle en administration.
+- [x] Prévoir une sauvegarde des données.
 - [ ] Tester la restauration.
-- [ ] Définir la politique de disponibilité.
+- [x] Définir la politique de disponibilité.
 
 ### 20.3. Performance — P0
 
-- [ ] Définir les budgets de performance web.
-- [ ] Optimiser les images.
-- [ ] Utiliser les Server Components par défaut.
-- [ ] Limiter le JavaScript envoyé au navigateur.
-- [ ] Ajouter pagination ou chargement progressif.
-- [ ] Indexer les requêtes PostgreSQL critiques.
+- [x] Définir les budgets de performance web.
+- [x] Optimiser les images.
+- [x] Utiliser les Server Components par défaut.
+- [x] Limiter le JavaScript envoyé au navigateur.
+- [x] Ajouter pagination ou chargement progressif.
+- [x] Indexer les requêtes PostgreSQL critiques.
 - [ ] Analyser les requêtes lentes.
-- [ ] Mettre en cache les recettes publiques compatibles.
-- [ ] Ne jamais mettre en cache publiquement une session utilisateur.
-- [ ] Mesurer les Core Web Vitals.
+- [x] Mettre en cache les recettes publiques compatibles.
+- [x] Ne jamais mettre en cache publiquement une session utilisateur.
+- [x] Mesurer les Core Web Vitals.
 - [ ] Tester avec un volume de données réaliste.
 
 ---
@@ -1066,14 +1066,14 @@ Une fonctionnalité est terminée lorsque :
 
 ### 21.1. Données et contenu — P0
 
-- [ ] Créer les catégories initiales.
-- [ ] Créer les ingrédients initiaux.
-- [ ] Importer Ciqual.
-- [ ] Valider un premier catalogue de recettes.
-- [ ] Préparer les cartes visuelles d'onboarding.
-- [ ] Préparer les images génériques.
-- [ ] Préparer les textes d'aide.
-- [ ] Préparer la FAQ.
+- [x] Créer les catégories initiales.
+- [x] Créer les ingrédients initiaux.
+- [x] Importer Ciqual.
+- [x] Valider un premier catalogue de recettes.
+- [x] Préparer les cartes visuelles d'onboarding.
+- [x] Préparer les images génériques.
+- [x] Préparer les textes d'aide.
+- [x] Préparer la FAQ.
 
 ### 21.2. Déploiement staging — P0
 
@@ -1090,7 +1090,7 @@ Une fonctionnalité est terminée lorsque :
 
 - [ ] Recruter un petit groupe de testeurs.
 - [ ] Recueillir leur consentement pour le test.
-- [ ] Préparer un canal de feedback.
+- [x] Préparer un canal de feedback.
 - [ ] Suivre les abandons d'onboarding.
 - [ ] Suivre les recettes rejetées ou remplacées.
 - [ ] Examiner les signalements de sécurité alimentaire en priorité.
@@ -1102,13 +1102,13 @@ Une fonctionnalité est terminée lorsque :
 
 - [ ] Aucun allergène connu ne traverse le moteur de contrôle.
 - [ ] Aucun alcool n'est proposé à un mineur.
-- [ ] Les politiques RLS sont validées.
-- [ ] Les parcours critiques passent automatiquement.
+- [x] Les politiques RLS sont validées.
+- [x] Les parcours critiques passent automatiquement.
 - [ ] Le taux d'erreur IA est sous le seuil défini.
 - [ ] Les coûts restent sous le budget défini.
 - [ ] Les documents légaux sont validés.
-- [ ] La suppression et l'export des données fonctionnent.
-- [ ] Les erreurs critiques sont surveillées.
+- [x] La suppression et l'export des données fonctionnent.
+- [x] Les erreurs critiques sont surveillées.
 - [ ] Les performances respectent les budgets fixés.
 
 ---
@@ -1132,9 +1132,9 @@ Une fonctionnalité est terminée lorsque :
 
 ### 22.2. Mise en ligne — P0
 
-- [ ] Préparer une checklist de mise en ligne.
+- [x] Préparer une checklist de mise en ligne.
 - [ ] Définir une fenêtre de lancement.
-- [ ] Prévoir une procédure de retour arrière.
+- [x] Prévoir une procédure de retour arrière.
 - [ ] Ouvrir progressivement les inscriptions.
 - [ ] Surveiller erreurs, latence et coûts.
 - [ ] Vérifier les premières générations.
@@ -1151,8 +1151,8 @@ Une fonctionnalité est terminée lorsque :
 - [ ] Améliorer les écrans avec fort abandon.
 - [ ] Augmenter la couverture des tests.
 - [ ] Finaliser les fonctionnalités P1.
-- [ ] Geler les contrats d'API nécessaires au mobile.
-- [ ] Produire un bilan de stabilité avant le portage mobile.
+- [x] Geler les contrats d'API nécessaires au mobile.
+- [x] Produire un bilan de stabilité avant le portage mobile.
 
 ---
 

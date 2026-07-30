@@ -9,6 +9,7 @@ import { buildPseudonymousGenerationInput } from "@/lib/ai/supabase-generation-c
 import { reserveGenerationJob } from "@/lib/ai/supabase-generation-repository";
 import { processGenerationJob } from "@/lib/ai/process-generation-job";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { HttpRequestError, parseBoundedJson } from "@/lib/security/http";
 
 export const runtime = "nodejs";
 export const maxDuration = 180;
@@ -32,13 +33,19 @@ export async function POST(request: Request) {
       { status: 401 },
     );
   }
-  const parsed = requestSchema.safeParse(
-    await request.json().catch(() => null),
-  );
-  if (!parsed.success) {
+  let input: z.infer<typeof requestSchema>;
+  try {
+    input = await parseBoundedJson(request, requestSchema, 16_384);
+  } catch (error) {
+    const requestError = error instanceof HttpRequestError ? error : null;
     return NextResponse.json(
-      { error: "invalid_generation_request" },
-      { status: 400 },
+      {
+        error:
+          requestError?.code === "request_too_large"
+            ? requestError.code
+            : "invalid_generation_request",
+      },
+      { status: requestError?.status ?? 400 },
     );
   }
   const readiness = getAiConfigurationReadiness(serverEnv);
@@ -50,21 +57,38 @@ export async function POST(request: Request) {
   }
 
   try {
+    const { data: allowed, error: rateLimitError } =
+      await createAdminClient().rpc("consume_api_rate_limit", {
+        p_subject_id: user.id,
+        p_bucket_key: "recipe_generation",
+        p_limit: 6,
+        p_window_seconds: 3600,
+      });
+    if (rateLimitError) throw new Error("RATE_LIMIT_CHECK_FAILED");
+    if (!allowed) {
+      return NextResponse.json(
+        { error: "generation_rate_limited" },
+        {
+          status: 429,
+          headers: { "retry-after": "3600" },
+        },
+      );
+    }
     const generationInput = recipeGenerationInputSchema.parse(
       await buildPseudonymousGenerationInput({
         userId: user.id,
-        requestId: parsed.data.idempotencyKey,
-        recipeCount: parsed.data.recipeCount,
-        mealType: parsed.data.mealType,
-        avoidRecentRecipeIds: parsed.data.avoidRecentRecipeIds,
-        requiredIngredientIds: parsed.data.requiredIngredientIds,
+        requestId: input.idempotencyKey,
+        recipeCount: input.recipeCount,
+        mealType: input.mealType,
+        avoidRecentRecipeIds: input.avoidRecentRecipeIds,
+        requiredIngredientIds: input.requiredIngredientIds,
       }),
     );
     const jobId = await reserveGenerationJob({
       userId: user.id,
-      idempotencyKey: parsed.data.idempotencyKey,
+      idempotencyKey: input.idempotencyKey,
       requestPayload: generationInput,
-      recipeCount: parsed.data.recipeCount,
+      recipeCount: input.recipeCount,
     });
     const { data: job, error } = await createAdminClient()
       .from("ai_generation_jobs")

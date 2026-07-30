@@ -47,6 +47,9 @@ jobs:
       - name: Check formatting
         run: npm run format:check
 
+      - name: Scan tracked files for secrets
+        run: npm run security:secrets
+
       - name: Lint
         run: npm run lint
 
@@ -58,6 +61,9 @@ jobs:
 
       - name: Production build
         run: npm run build
+
+      - name: Enforce JavaScript performance budgets
+        run: npm run performance:budget
 
       - name: Upload coverage
         uses: actions/upload-artifact@v6

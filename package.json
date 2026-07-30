@@ -16,6 +16,9 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "audit": "npm audit --audit-level=high",
+    "security:secrets": "node scripts/scan-secrets.mjs",
+    "performance:budget": "node scripts/check-performance-budgets.mjs",
+    "performance:load": "node scripts/run-load-smoke.mjs",
     "supabase:start": "supabase start",
     "supabase:stop": "supabase stop",
     "supabase:reset": "supabase db reset",
@@ -32,7 +35,7 @@
     "test:e2e": "node scripts/run-playwright-local.mjs",
     "test:e2e:install": "playwright install chromium",
     "check": "npm run lint && npm run typecheck && npm run test",
-    "validate": "npm run format:check && npm run check && npm run build"
+    "validate": "npm run format:check && npm run security:secrets && npm run check && npm run build && npm run performance:budget"
   },
   "packageManager": "npm@11.16.0",
   "engines": {

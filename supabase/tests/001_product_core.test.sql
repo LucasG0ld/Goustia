@@ -74,8 +74,8 @@ select is(
 );
 select is(
   (select count(*) from public.recipe_categories),
-  2::bigint,
-  'MVP meal categories are seeded'
+  7::bigint,
+  'initial meal categories are seeded'
 );
 select is(
   (select count(*) from public.recipe_tags),

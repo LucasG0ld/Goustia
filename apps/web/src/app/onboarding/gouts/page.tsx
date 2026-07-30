@@ -18,7 +18,7 @@ export default async function TastesPage() {
       .single(),
     supabase
       .from("onboarding_dishes")
-      .select("id,title_fr,description_fr")
+      .select("id,title_fr,description_fr,image_path")
       .order("display_order"),
   ]);
   if (!profile?.food_safety_confirmed_at)
