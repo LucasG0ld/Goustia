@@ -7,7 +7,7 @@ import {
   DeterministicImageProcessor,
   RecipeImagePipeline,
 } from "@/lib/ai/image-pipeline";
-import { configuredAiProviders } from "@/lib/ai/providers/configured";
+import { getConfiguredAiProviders } from "@/lib/ai/providers/configured";
 import { SharpRecipeImageProcessor } from "@/lib/ai/sharp-image-processor";
 import { SupabaseGenerationRepository } from "@/lib/ai/supabase-generation-repository";
 import { SupabaseRecipeImageStorage } from "@/lib/ai/supabase-image-storage";
@@ -67,6 +67,7 @@ export async function POST(
 
   const repository = new SupabaseGenerationRepository();
   const storage = new SupabaseRecipeImageStorage();
+  const configuredAiProviders = await getConfiguredAiProviders();
   const pipeline = new RecipeImagePipeline(
     configuredAiProviders.images,
     configuredAiProviders.images.provider === "fake"

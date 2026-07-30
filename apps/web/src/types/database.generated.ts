@@ -261,6 +261,68 @@ export type Database = {
           },
         ];
       };
+      ai_prompt_registry: {
+        Row: {
+          content_hash: string;
+          created_at: string;
+          kind: Database["public"]["Enums"]["ai_runtime_kind"];
+          status: string;
+          version: string;
+        };
+        Insert: {
+          content_hash: string;
+          created_at?: string;
+          kind: Database["public"]["Enums"]["ai_runtime_kind"];
+          status?: string;
+          version: string;
+        };
+        Update: {
+          content_hash?: string;
+          created_at?: string;
+          kind?: Database["public"]["Enums"]["ai_runtime_kind"];
+          status?: string;
+          version?: string;
+        };
+        Relationships: [];
+      };
+      ai_runtime_settings: {
+        Row: {
+          active_model: string;
+          allowed_models: string[];
+          enabled: boolean;
+          kind: Database["public"]["Enums"]["ai_runtime_kind"];
+          provider: string;
+          updated_at: string;
+          updated_by: string | null;
+        };
+        Insert: {
+          active_model: string;
+          allowed_models: string[];
+          enabled?: boolean;
+          kind: Database["public"]["Enums"]["ai_runtime_kind"];
+          provider: string;
+          updated_at?: string;
+          updated_by?: string | null;
+        };
+        Update: {
+          active_model?: string;
+          allowed_models?: string[];
+          enabled?: boolean;
+          kind?: Database["public"]["Enums"]["ai_runtime_kind"];
+          provider?: string;
+          updated_at?: string;
+          updated_by?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "ai_runtime_settings_updated_by_fkey";
+            columns: ["updated_by"];
+            isOneToOne: false;
+            referencedRelation: "admin_user_directory";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       allergens: {
         Row: {
           code: string;
@@ -1420,6 +1482,103 @@ export type Database = {
             foreignKeyName: "meal_plans_user_id_fkey";
             columns: ["user_id"];
             isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      notification_deliveries: {
+        Row: {
+          action_url: string;
+          body: string;
+          channel: Database["public"]["Enums"]["notification_channel"];
+          created_at: string;
+          deduplication_key: string;
+          failure_code: string | null;
+          id: string;
+          kind: Database["public"]["Enums"]["notification_kind"];
+          scheduled_for: string;
+          sent_at: string | null;
+          status: Database["public"]["Enums"]["notification_delivery_status"];
+          title: string;
+          user_id: string;
+        };
+        Insert: {
+          action_url: string;
+          body: string;
+          channel: Database["public"]["Enums"]["notification_channel"];
+          created_at?: string;
+          deduplication_key: string;
+          failure_code?: string | null;
+          id?: string;
+          kind: Database["public"]["Enums"]["notification_kind"];
+          scheduled_for?: string;
+          sent_at?: string | null;
+          status?: Database["public"]["Enums"]["notification_delivery_status"];
+          title: string;
+          user_id: string;
+        };
+        Update: {
+          action_url?: string;
+          body?: string;
+          channel?: Database["public"]["Enums"]["notification_channel"];
+          created_at?: string;
+          deduplication_key?: string;
+          failure_code?: string | null;
+          id?: string;
+          kind?: Database["public"]["Enums"]["notification_kind"];
+          scheduled_for?: string;
+          sent_at?: string | null;
+          status?: Database["public"]["Enums"]["notification_delivery_status"];
+          title?: string;
+          user_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "notification_deliveries_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      notification_preferences: {
+        Row: {
+          email_enabled: boolean;
+          max_per_week: number;
+          planning_ready_enabled: boolean;
+          shopping_reminder_enabled: boolean;
+          timezone: string;
+          unsubscribed_at: string | null;
+          updated_at: string;
+          user_id: string;
+        };
+        Insert: {
+          email_enabled?: boolean;
+          max_per_week?: number;
+          planning_ready_enabled?: boolean;
+          shopping_reminder_enabled?: boolean;
+          timezone?: string;
+          unsubscribed_at?: string | null;
+          updated_at?: string;
+          user_id: string;
+        };
+        Update: {
+          email_enabled?: boolean;
+          max_per_week?: number;
+          planning_ready_enabled?: boolean;
+          shopping_reminder_enabled?: boolean;
+          timezone?: string;
+          unsubscribed_at?: string | null;
+          updated_at?: string;
+          user_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "notification_preferences_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: true;
             referencedRelation: "profiles";
             referencedColumns: ["id"];
           },
@@ -3291,6 +3450,20 @@ export type Database = {
         };
         Returns: string;
       };
+      admin_mutate_food_reference: {
+        Args: {
+          p_action: string;
+          p_confidence: number;
+          p_confirmation: string;
+          p_idempotency_key: string;
+          p_ingredient_id: string;
+          p_rationale: string;
+          p_related_id: string;
+          p_relation: string;
+          p_value: string;
+        };
+        Returns: boolean;
+      };
       admin_process_deletion_request: {
         Args: {
           p_confirmation: string;
@@ -3300,12 +3473,28 @@ export type Database = {
         };
         Returns: boolean;
       };
+      admin_purge_ai_job: {
+        Args: {
+          p_confirmation: string;
+          p_idempotency_key: string;
+          p_job_id: string;
+        };
+        Returns: boolean;
+      };
       admin_resolve_report: {
         Args: {
           p_confirmation: string;
           p_idempotency_key: string;
           p_report_id: string;
           p_status: Database["public"]["Enums"]["report_status"];
+        };
+        Returns: boolean;
+      };
+      admin_retry_ai_job: {
+        Args: {
+          p_confirmation: string;
+          p_idempotency_key: string;
+          p_job_id: string;
         };
         Returns: boolean;
       };
@@ -3325,6 +3514,17 @@ export type Database = {
           p_reason: string;
           p_status: Database["public"]["Enums"]["account_state_kind"];
           p_user_id: string;
+        };
+        Returns: boolean;
+      };
+      admin_set_ai_runtime: {
+        Args: {
+          p_confirmation: string;
+          p_enabled: boolean;
+          p_idempotency_key: string;
+          p_kind: Database["public"]["Enums"]["ai_runtime_kind"];
+          p_model: string;
+          p_provider: string;
         };
         Returns: boolean;
       };
@@ -3437,6 +3637,18 @@ export type Database = {
         };
         Returns: boolean;
       };
+      enqueue_product_notification: {
+        Args: {
+          p_action_url: string;
+          p_body: string;
+          p_deduplication_key: string;
+          p_kind: Database["public"]["Enums"]["notification_kind"];
+          p_scheduled_for: string;
+          p_title: string;
+          p_user_id: string;
+        };
+        Returns: number;
+      };
       export_my_account: { Args: never; Returns: Json };
       is_ai_cost_circuit_open: {
         Args: { p_daily_cost_limit_usd: number };
@@ -3547,6 +3759,16 @@ export type Database = {
         };
         Returns: string;
       };
+      update_notification_preferences: {
+        Args: {
+          p_email_enabled: boolean;
+          p_max_per_week: number;
+          p_planning_ready: boolean;
+          p_shopping_reminder: boolean;
+          p_timezone: string;
+        };
+        Returns: boolean;
+      };
     };
     Enums: {
       account_deletion_status:
@@ -3562,6 +3784,7 @@ export type Database = {
         | "succeeded"
         | "failed"
         | "cancelled";
+      ai_runtime_kind: "text" | "image";
       app_role: "user" | "admin";
       budget_level: "low" | "moderate" | "flexible";
       ciqual_mapping_status: "exact" | "approximate" | "unmatched";
@@ -3614,6 +3837,9 @@ export type Database = {
         | "food_safety_notice";
       meal_plan_status: "draft" | "generating" | "ready" | "archived";
       meal_type: "lunch" | "dinner";
+      notification_channel: "web" | "email";
+      notification_delivery_status: "queued" | "sent" | "skipped" | "failed";
+      notification_kind: "planning_ready" | "shopping_reminder";
       nutrition_goal:
         | "weight_loss"
         | "balanced"
@@ -3811,6 +4037,7 @@ export const Constants = {
       account_state_kind: ["active", "suspended"],
       ai_job_kind: ["meal_plan", "recipe", "recipe_swap", "recipe_image"],
       ai_job_status: ["queued", "running", "succeeded", "failed", "cancelled"],
+      ai_runtime_kind: ["text", "image"],
       app_role: ["user", "admin"],
       budget_level: ["low", "moderate", "flexible"],
       ciqual_mapping_status: ["exact", "approximate", "unmatched"],
@@ -3870,6 +4097,9 @@ export const Constants = {
       ],
       meal_plan_status: ["draft", "generating", "ready", "archived"],
       meal_type: ["lunch", "dinner"],
+      notification_channel: ["web", "email"],
+      notification_delivery_status: ["queued", "sent", "skipped", "failed"],
+      notification_kind: ["planning_ready", "shopping_reminder"],
       nutrition_goal: [
         "weight_loss",
         "balanced",

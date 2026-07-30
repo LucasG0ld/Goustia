@@ -252,3 +252,11 @@ export {
   type AiCostRates,
   type AiUsage,
 } from "./ai-usage";
+
+export {
+  notificationKinds,
+  notificationMessageSchema,
+  notificationPreferenceSchema,
+  type NotificationMessage,
+  type NotificationPreference,
+} from "./notification";

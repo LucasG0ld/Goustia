@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="fr">
+  <body
+    style="
+      background: #f7f5ef;
+      color: #25231f;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 24px;
+    "
+  >
+    <main
+      style="
+        background: #fff;
+        border: 1px solid #ded9ce;
+        border-radius: 12px;
+        margin: auto;
+        max-width: 560px;
+        padding: 32px;
+      "
+    >
+      <h1 style="font-size: 24px; margin-top: 0">
+        Réinitialisation du mot de passe
+      </h1>
+      <p>
+        Une demande de réinitialisation a été reçue pour ton compte Goustia.
+      </p>
+      <p>
+        <a
+          href="{{ .ConfirmationURL }}"
+          style="
+            background: #256b4a;
+            border-radius: 8px;
+            color: #fff;
+            display: inline-block;
+            font-weight: bold;
+            padding: 12px 18px;
+            text-decoration: none;
+          "
+        >
+          Choisir un nouveau mot de passe
+        </a>
+      </p>
+      <p style="color: #68645d; font-size: 13px">
+        Si tu n’es pas à l’origine de cette demande, ignore ce message. Aucune
+        donnée alimentaire n’est incluse.
+      </p>
+    </main>
+  </body>
+</html>

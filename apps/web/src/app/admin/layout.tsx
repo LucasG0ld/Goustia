@@ -27,6 +27,18 @@ export default async function AdminLayout({
             >
               Recettes et signalements
             </Link>
+            <Link
+              className="font-semibold text-brand"
+              href={"/admin/ia" as Route}
+            >
+              IA
+            </Link>
+            <Link
+              className="font-semibold text-brand"
+              href={"/admin/referentiel" as Route}
+            >
+              Référentiel
+            </Link>
             <Link href="/">Retour à l’application</Link>
           </nav>
         </div>

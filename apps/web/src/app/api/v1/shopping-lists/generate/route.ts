@@ -6,6 +6,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 
 import { getVerifiedUser } from "@/lib/auth/current-user";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
 
 const generateSchema = z.strictObject({
@@ -145,5 +146,22 @@ export async function POST(request: Request) {
       { status: error.message.includes("changed") ? 409 : 500 },
     );
   }
+
+  // Une notification ne doit jamais bloquer la création de la liste. La
+  // fonction SQL applique les préférences, la fréquence et la déduplication.
+  try {
+    await createAdminClient().rpc("enqueue_product_notification", {
+      p_user_id: user.id,
+      p_kind: "shopping_reminder",
+      p_title: "Ta liste est prête",
+      p_body: "Pense à consulter ta liste avant de faire les courses.",
+      p_action_url: "/courses",
+      p_deduplication_key: `shopping:${plan.id}:${plan.revision}`,
+      p_scheduled_for: new Date().toISOString(),
+    });
+  } catch {
+    // Le parcours principal reste disponible si le canal est indisponible.
+  }
+
   return NextResponse.json(data, { status: 201 });
 }
