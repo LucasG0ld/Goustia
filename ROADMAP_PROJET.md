@@ -4,7 +4,7 @@ Ce document transforme le [cahier des charges](CAHIER_DES_CHARGES.md),
 l'[architecture technique](docs/ARCHITECTURE_TECHNIQUE.md) et
 l'[étude des solutions IA](docs/ETUDE_IA_FREEMIUM.md) en tâches exécutables.
 
-Dernière mise à jour : 23 juillet 2026
+Dernière mise à jour : 31 juillet 2026
 
 ---
 
@@ -93,14 +93,14 @@ Une fonctionnalité est terminée lorsque :
 
 ### 3.3. Mesure du succès — P0
 
-- [ ] Choisir les indicateurs du MVP.
-- [ ] Définir le taux cible de fin d'onboarding.
+- [x] Choisir les indicateurs du MVP.
+- [x] Définir le taux cible de fin d'onboarding.
 - [ ] Mesurer le délai entre inscription et premières recettes.
 - [ ] Mesurer likes, dislikes et remplacements.
 - [ ] Mesurer le nombre de recettes réellement cuisinées.
 - [ ] Mesurer le taux de retour d'une semaine à l'autre.
 - [ ] Mesurer le coût IA par utilisateur actif.
-- [ ] Définir les seuils d'alerte sur les erreurs et les coûts.
+- [x] Définir les seuils d'alerte sur les erreurs et les coûts.
 
 ---
 
@@ -133,7 +133,7 @@ Une fonctionnalité est terminée lorsque :
 - [x] Mettre en cache les dépendances npm.
 - [x] Bloquer la fusion lorsqu'un contrôle échoue.
 - [x] Ajouter les tests de migrations Supabase.
-- [ ] Ajouter les tests Playwright lorsqu'ils seront disponibles.
+- [x] Ajouter les tests Playwright lorsqu'ils seront disponibles.
 - [x] Générer un rapport de couverture des tests.
 
 ### 4.3. Environnements — P0
@@ -710,12 +710,12 @@ Une fonctionnalité est terminée lorsque :
 
 ### 12.4. Changement de semaine — P1
 
-- [ ] Naviguer vers la semaine précédente.
-- [ ] Naviguer vers la semaine suivante.
-- [ ] Créer une nouvelle semaine.
-- [ ] Copier des repas d'une semaine.
-- [ ] Conserver l'historique.
-- [ ] Empêcher les duplications accidentelles.
+- [x] Naviguer vers la semaine précédente.
+- [x] Naviguer vers la semaine suivante.
+- [x] Créer une nouvelle semaine.
+- [x] Copier des repas d'une semaine.
+- [x] Conserver l'historique.
+- [x] Empêcher les duplications accidentelles.
 
 ---
 
@@ -723,42 +723,42 @@ Une fonctionnalité est terminée lorsque :
 
 ### 13.1. Affichage — P0
 
-- [ ] Créer la route dynamique d'une recette.
-- [ ] Afficher l'image illustrative.
-- [ ] Afficher nom et description.
-- [ ] Afficher préparation, cuisson et difficulté.
-- [ ] Afficher le nombre de portions.
-- [ ] Afficher le coût estimé.
-- [ ] Afficher calories et macronutriments estimés.
-- [ ] Afficher les allergènes.
-- [ ] Afficher le matériel nécessaire.
-- [ ] Afficher les ingrédients et quantités.
-- [ ] Afficher les étapes numérotées.
-- [ ] Afficher les conseils et variantes.
-- [ ] Afficher les substitutions possibles.
-- [ ] Afficher conservation et réchauffage.
+- [x] Créer la route dynamique d'une recette.
+- [x] Afficher l'image illustrative.
+- [x] Afficher nom et description.
+- [x] Afficher préparation, cuisson et difficulté.
+- [x] Afficher le nombre de portions.
+- [x] Afficher le coût estimé.
+- [x] Afficher calories et macronutriments estimés.
+- [x] Afficher les allergènes.
+- [x] Afficher le matériel nécessaire.
+- [x] Afficher les ingrédients et quantités.
+- [x] Afficher les étapes numérotées.
+- [x] Afficher les conseils et variantes.
+- [x] Afficher les substitutions possibles.
+- [x] Afficher conservation et réchauffage.
 
 ### 13.2. Interactions — P0
 
-- [ ] Modifier le nombre de portions.
-- [ ] Recalculer les quantités.
-- [ ] Aimer la recette.
-- [ ] Ne pas aimer la recette.
-- [ ] Ajouter aux favoris.
-- [ ] Retirer des favoris.
-- [ ] Indiquer que le plat a été cuisiné.
-- [ ] Ajouter les ingrédients aux courses.
-- [ ] Remplacer la recette dans le planning.
-- [ ] Signaler une incohérence.
-- [ ] Éviter les doubles soumissions.
+- [x] Modifier le nombre de portions.
+- [x] Recalculer les quantités.
+- [x] Aimer la recette.
+- [x] Ne pas aimer la recette.
+- [x] Ajouter aux favoris.
+- [x] Retirer des favoris.
+- [x] Indiquer que le plat a été cuisiné.
+- [x] Ajouter les ingrédients aux courses.
+- [x] Remplacer la recette dans le planning.
+- [x] Signaler une incohérence.
+- [x] Éviter les doubles soumissions.
 
 ### 13.3. Aide pendant la cuisine — P1
 
-- [ ] Ajouter un mode cuisine lisible.
-- [ ] Empêcher la mise en veille lorsque possible.
-- [ ] Ajouter des minuteurs.
-- [ ] Permettre de cocher les étapes.
-- [ ] Agrandir les contrôles tactiles.
+- [x] Ajouter un mode cuisine lisible.
+- [x] Empêcher la mise en veille lorsque possible.
+- [x] Ajouter des minuteurs.
+- [x] Permettre de cocher les étapes.
+- [x] Agrandir les contrôles tactiles.
 
 ---
 
@@ -766,38 +766,38 @@ Une fonctionnalité est terminée lorsque :
 
 ### 14.1. Like et favoris — P0
 
-- [ ] Créer un retour visuel immédiat.
-- [ ] Enregistrer le like de manière idempotente.
-- [ ] Permettre d'annuler le like.
-- [ ] Distinguer like et favori.
-- [ ] Mettre à jour les recommandations futures.
+- [x] Créer un retour visuel immédiat.
+- [x] Enregistrer le like de manière idempotente.
+- [x] Permettre d'annuler le like.
+- [x] Distinguer like et favori.
+- [x] Mettre à jour les recommandations futures.
 
 ### 14.2. Dislike — P0
 
-- [ ] Afficher les motifs prédéfinis.
-- [ ] Ajouter « Je n'aime pas un ingrédient ».
-- [ ] Ajouter « Trop long ».
-- [ ] Ajouter « Trop compliqué ».
-- [ ] Ajouter « Trop cher ».
-- [ ] Ajouter « Déjà mangé récemment ».
-- [ ] Ajouter « Ce type de plat ne me plaît pas ».
-- [ ] Ajouter un motif libre.
-- [ ] Permettre de passer le motif.
-- [ ] Mettre à jour les préférences selon le motif.
-- [ ] Ne jamais transformer automatiquement un dislike en allergie.
+- [x] Afficher les motifs prédéfinis.
+- [x] Ajouter « Je n'aime pas un ingrédient ».
+- [x] Ajouter « Trop long ».
+- [x] Ajouter « Trop compliqué ».
+- [x] Ajouter « Trop cher ».
+- [x] Ajouter « Déjà mangé récemment ».
+- [x] Ajouter « Ce type de plat ne me plaît pas ».
+- [x] Ajouter un motif libre.
+- [x] Permettre de passer le motif.
+- [x] Mettre à jour les préférences selon le motif.
+- [x] Ne jamais transformer automatiquement un dislike en allergie.
 
 ### 14.3. Remplacement — P0
 
-- [ ] Créer l'action de remplacement.
-- [ ] Proposer trois alternatives.
-- [ ] Permettre une demande libre.
-- [ ] Conserver les contraintes de sécurité.
-- [ ] Permettre de conserver calories ou protéines.
-- [ ] Permettre de conserver budget ou durée.
-- [ ] Remplacer uniquement le repas sélectionné.
-- [ ] Restaurer l'ancienne recette en cas d'échec.
-- [ ] Décompter le quota correctement.
-- [ ] Enregistrer le remplacement comme signal contextuel.
+- [x] Créer l'action de remplacement.
+- [x] Proposer trois alternatives.
+- [x] Permettre une demande libre.
+- [x] Conserver les contraintes de sécurité.
+- [x] Permettre de conserver calories ou protéines.
+- [x] Permettre de conserver budget ou durée.
+- [x] Remplacer uniquement le repas sélectionné.
+- [x] Restaurer l'ancienne recette en cas d'échec.
+- [x] Décompter le quota correctement.
+- [x] Enregistrer le remplacement comme signal contextuel.
 
 ---
 
@@ -869,7 +869,7 @@ Une fonctionnalité est terminée lorsque :
 - [x] Modifier aliments aimés et non aimés.
 - [x] Modifier budget et durée.
 - [x] Modifier niveau et équipements.
-- [ ] Modifier les préférences de notification.
+- [x] Modifier les préférences de notification.
 - [x] Afficher le niveau de complétion.
 - [x] Afficher les préférences déduites.
 - [x] Permettre de corriger les préférences déduites.
